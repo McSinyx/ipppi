@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="189px" preserveAspectRatio="none" style="width:576px;height:189px;" version="1.1" viewBox="0 0 576 189" width="576px" zoomAndPan="magnify"><defs><filter height="300%" id="f1fkyxzvrf9rwj" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[fee662a292a0353a69bd162820bae93b]
+entity User--><ellipse cx="136" cy="17.5" fill="#FEFECE" filter="url(#f1fkyxzvrf9rwj)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 1.5;"/><path d="M136,25.5 L136,52.5 M123,33.5 L149,33.5 M136,52.5 L123,67.5 M136,52.5 L149,67.5 " fill="none" filter="url(#f1fkyxzvrf9rwj)" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="32" x="120" y="85.9951">User</text><!--MD5=[0e386df696c8989779f0bde43ae749c6]
+entity Uploader--><ellipse cx="255" cy="17.5" fill="#FEFECE" filter="url(#f1fkyxzvrf9rwj)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 1.5;"/><path d="M255,25.5 L255,52.5 M242,33.5 L268,33.5 M255,52.5 L242,67.5 M255,52.5 L268,67.5 " fill="none" filter="url(#f1fkyxzvrf9rwj)" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="62" x="224" y="85.9951">Uploader</text><!--MD5=[b90713b5ddaea180d3429e7b1ef7c0f8]
+entity Maintainer--><ellipse cx="357" cy="17.5" fill="#FEFECE" filter="url(#f1fkyxzvrf9rwj)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 1.5;"/><path d="M357,25.5 L357,52.5 M344,33.5 L370,33.5 M357,52.5 L344,67.5 M357,52.5 L370,67.5 " fill="none" filter="url(#f1fkyxzvrf9rwj)" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="71" x="321.5" y="85.9951">Maintainer</text><!--MD5=[a74c9f7ba4e347df35943d93696ec108]
+entity IPFS--><ellipse cx="442" cy="17.5" fill="#FEFECE" filter="url(#f1fkyxzvrf9rwj)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 1.5;"/><path d="M442,25.5 L442,52.5 M429,33.5 L455,33.5 M442,52.5 L429,67.5 M442,52.5 L455,67.5 " fill="none" filter="url(#f1fkyxzvrf9rwj)" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="29" x="427.5" y="85.9951">IPFS</text><ellipse cx="57.7904" cy="163.5236" fill="#FEFECE" filter="url(#f1fkyxzvrf9rwj)" rx="51.7904" ry="14.5236" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="69" x="23.2904" y="168.1721">Download</text><ellipse cx="176.9914" cy="163.5236" fill="#FEFECE" filter="url(#f1fkyxzvrf9rwj)" rx="31.9914" ry="14.5236" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="41" x="156.4914" y="168.1721">Query</text><ellipse cx="317.163" cy="163.5236" fill="#FEFECE" filter="url(#f1fkyxzvrf9rwj)" rx="29.163" ry="14.5236" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="37" x="298.663" y="168.1721">Login</text><ellipse cx="528.9411" cy="48.5236" fill="#FEFECE" filter="url(#f1fkyxzvrf9rwj)" rx="36.9411" ry="14.5236" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="48" x="504.9411" y="53.1721">Upload</text><!--MD5=[fe4d1e544d1f5aae5d4d05c630db20d2]
+link User to Download--><path d="M119.84,72.91 C105.07,94.31 83.55,125.48 70.19,144.85 " fill="none" id="User-&gt;Download" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="67.3,149.03,75.707,143.8995,70.1423,144.9165,69.1254,139.3518,67.3,149.03" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[ed3a9acfa5b2fcf1ba972f6d55686688]
+link User to Query--><path d="M150.34,89.02 C157.14,107.78 164.95,129.28 170.35,144.16 " fill="none" id="User-&gt;Query" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="172.08,148.94,172.7539,139.1142,170.3667,144.2427,165.2382,141.8555,172.08,148.94" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[e19bf40d7e0344141de5bf276f29d85b]
+link Uploader to Login--><path d="M276.68,89.02 C287.13,108.06 299.13,129.92 307.3,144.82 " fill="none" id="Uploader-&gt;Login" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="309.71,149.21,308.8739,139.3967,307.2988,144.8298,301.8656,143.2547,309.71,149.21" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[6be640c7dbb82f7ade64d9ecc2d766a0]
+link Maintainer to Login--><path d="M343.01,89.02 C336.37,107.78 328.76,129.28 323.49,144.16 " fill="none" id="Maintainer-&gt;Login" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="321.8,148.94,328.5775,141.794,323.4708,144.2274,321.0374,139.1207,321.8,148.94" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[8606039becccee1ed8e62a5f2520abcb]
+@startuml
+actor User
+actor Uploader
+actor Maintainer
+actor IPFS
+
+usecase Download
+usecase Query
+usecase Login
+usecase Upload
+
+User - -> Download
+User - -> Query
+
+Uploader - -> Login
+Maintainer - -> Login
+
+@enduml
+
+PlantUML version 1.2020.02(Sun Mar 01 17:22:07 ICT 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 11.0.8+10-post-Debian-1
+Operating System: Linux
+Default Encoding: UTF-8
+Language: en
+Country: DK
+--></g></svg>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="684px" preserveAspectRatio="none" style="width:710px;height:684px;" version="1.1" viewBox="0 0 710 684" width="710px" zoomAndPan="magnify"><defs><filter height="300%" id="f10su5v68cxtlq" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[fee662a292a0353a69bd162820bae93b]
+entity User--><ellipse cx="57" cy="17.5" fill="#FEFECE" filter="url(#f10su5v68cxtlq)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 1.5;"/><path d="M57,25.5 L57,52.5 M44,33.5 L70,33.5 M57,52.5 L44,67.5 M57,52.5 L70,67.5 " fill="none" filter="url(#f10su5v68cxtlq)" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="32" x="41" y="85.9951">User</text><!--MD5=[f3401c2d09288f830763ccde49063a6d]
+entity Contributor--><ellipse cx="654" cy="159.5" fill="#FEFECE" filter="url(#f10su5v68cxtlq)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 1.5;"/><path d="M654,167.5 L654,194.5 M641,175.5 L667,175.5 M654,194.5 L641,209.5 M654,194.5 L667,209.5 " fill="none" filter="url(#f10su5v68cxtlq)" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="78" x="615" y="227.9951">Contributor</text><!--MD5=[b90713b5ddaea180d3429e7b1ef7c0f8]
+entity Maintainer--><ellipse cx="343" cy="17.5" fill="#FEFECE" filter="url(#f10su5v68cxtlq)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 1.5;"/><path d="M343,25.5 L343,52.5 M330,33.5 L356,33.5 M343,52.5 L330,67.5 M343,52.5 L356,67.5 " fill="none" filter="url(#f10su5v68cxtlq)" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="71" x="307.5" y="85.9951">Maintainer</text><!--MD5=[a74c9f7ba4e347df35943d93696ec108]
+entity IPFS--><ellipse cx="125" cy="329.5" fill="#FEFECE" filter="url(#f10su5v68cxtlq)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 1.5;"/><path d="M125,337.5 L125,364.5 M112,345.5 L138,345.5 M125,364.5 L112,379.5 M125,364.5 L138,379.5 " fill="none" filter="url(#f10su5v68cxtlq)" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="29" x="110.5" y="397.9951">IPFS</text><!--MD5=[fa1e3283224feb76407c84b7e90ed808]
+entity Database--><ellipse cx="336" cy="602.5" fill="#FEFECE" filter="url(#f10su5v68cxtlq)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 1.5;"/><path d="M336,610.5 L336,637.5 M323,618.5 L349,618.5 M336,637.5 L323,652.5 M336,637.5 L349,652.5 " fill="none" filter="url(#f10su5v68cxtlq)" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="66" x="303" y="670.9951">Database</text><ellipse cx="124.7904" cy="190.5236" fill="#FEFECE" filter="url(#f10su5v68cxtlq)" rx="51.7904" ry="14.5236" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="69" x="90.2904" y="195.1721">Download</text><ellipse cx="37.9914" cy="275.5236" fill="#FEFECE" filter="url(#f10su5v68cxtlq)" rx="31.9914" ry="14.5236" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="41" x="17.4914" y="280.1721">Query</text><ellipse cx="655.0122" cy="445.5236" fill="#FEFECE" filter="url(#f10su5v68cxtlq)" rx="44.0122" ry="14.5236" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="58" x="626.0122" y="450.1721">Register</text><ellipse cx="336.163" cy="511.0236" fill="#FEFECE" filter="url(#f10su5v68cxtlq)" rx="29.163" ry="14.5236" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="37" x="317.663" y="515.6721">Login</text><ellipse cx="272.211" cy="360.4422" fill="#FEFECE" filter="url(#f10su5v68cxtlq)" rx="97.711" ry="21.9422" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="171" x="186.711" y="365.0906">Vote for New Maintainers</text><ellipse cx="504.0203" cy="360.3041" fill="#FEFECE" filter="url(#f10su5v68cxtlq)" rx="99.5203" ry="22.3041" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="175" x="416.5203" y="364.9525">Propose Package Update</text><ellipse cx="499.2229" cy="511.0446" fill="#FEFECE" filter="url(#f10su5v68cxtlq)" rx="93.2229" ry="21.0446" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="161" x="418.7229" y="515.693">Check against Conflicts</text><ellipse cx="478.1576" cy="190.4315" fill="#FEFECE" filter="url(#f10su5v68cxtlq)" rx="72.6576" ry="16.9315" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="113" x="421.6576" y="195.0799">Review Proposal</text><ellipse cx="250.8553" cy="190.5236" fill="#FEFECE" filter="url(#f10su5v68cxtlq)" rx="38.3553" ry="14.5236" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="50" x="225.8553" y="195.1721">Update</text><!--MD5=[fe4d1e544d1f5aae5d4d05c630db20d2]
+link User to Download--><path d="M73.12,82.68 C86.61,110.46 105.36,149.05 116.23,171.44 " fill="none" id="User-&gt;Download" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="118.43,175.96,118.0959,166.1168,116.2455,171.4625,110.8998,169.612,118.43,175.96" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[5128ad341e1f5658b79b0c894c7a6c43]
+link Download to IPFS--><path d="M125,205.25 C125,228.85 125,278.06 125,314.59 " fill="none" id="Download-&gt;IPFS" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="125,319.88,129,310.88,125,314.88,121,310.88,125,319.88" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[ed3a9acfa5b2fcf1ba972f6d55686688]
+link User to Query--><path d="M53.65,89.21 C49.51,138.15 42.66,219.29 39.58,255.75 " fill="none" id="User-&gt;Query" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="39.16,260.8,43.8915,252.1621,39.574,255.8172,35.919,251.4997,39.16,260.8" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[c412ae0b98e24140cd1be0a7e2e34b30]
+link Query to Database--><path d="M42.05,290.11 C49.58,314.02 67.31,364.47 93,401 C154.33,488.23 252.15,569.04 302.95,608.04 " fill="none" id="Query-Database" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[6d660fad456c420e2c6aa0727d070b09]
+link Contributor to Register--><path d="M654.16,231.03 C654.37,286.36 654.76,384.72 654.93,425.73 " fill="none" id="Contributor-&gt;Register" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="654.95,430.9,658.9243,421.8886,654.9357,425.9,650.9243,421.9115,654.95,430.9" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[d25a51d98ea9c50230c9ef23c5563995]
+link Register to Database--><path d="M651.27,460 C645.45,478.68 632.47,512.34 610,532 C538.7,594.4 425.36,619.26 369.45,628.13 " fill="none" id="Register-Database" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[5cef848000ed1a6021cb90ef380a2a0c]
+link Contributor to Propose--><path d="M618.45,231.31 C589.88,263.31 550.63,307.27 526.32,334.51 " fill="none" id="Contributor-&gt;Propose" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="522.84,338.4,531.8176,334.3499,526.1698,334.6701,525.8497,329.0223,522.84,338.4" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[154e7e4c74084e0a6421e695aa485c21]
+link Propose to Login--><path d="M480.29,382.46 C446.18,412.61 384.05,467.53 353.67,494.38 " fill="none" id="Propose-&gt;Login" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="349.78,497.82,359.1698,494.8482,353.5233,494.5053,353.8662,488.8588,349.78,497.82" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="61" x="427" y="450.0669">«include»</text><!--MD5=[1f9418f5da9ba6df1fd8b1982b48bfc5]
+link Propose to Check--><path d="M503.27,383.09 C502.37,410.05 500.82,456.09 499.85,484.68 " fill="none" id="Propose-&gt;Check" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="499.68,489.81,503.986,480.9523,499.8513,484.8129,495.9907,480.6782,499.68,489.81" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="61" x="502" y="450.0669">«include»</text><!--MD5=[8f2fb4e962bc34e9b94d529a62651e55]
+link Check to Database--><path d="M472.81,531.36 C444.64,552.18 399.79,585.35 369.17,607.98 " fill="none" id="Check-Database" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[994034b9d75866a4c1b611139ff47f41]
+link Maintainer to Review--><path d="M378.82,86.65 C404.56,113.34 438.25,148.27 458.99,169.79 " fill="none" id="Maintainer-&gt;Review" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="462.71,173.64,459.3422,164.3849,459.2393,170.0408,453.5834,169.9379,462.71,173.64" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[34ee757fb2ac79744404717ec9f9a281]
+link Review to Propose--><path d="M480.49,207.61 C485.2,238 495.38,303.79 500.66,337.94 " fill="none" id="Review-Propose" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[ff56b85dbaa745fb85929773f183c620]
+link Maintainer to Update--><path d="M316.88,89.24 C299,116.45 276.16,151.21 262.61,171.83 " fill="none" id="Maintainer-&gt;Update" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="259.7,176.26,267.9785,170.9246,262.4405,172.0779,261.2872,166.5399,259.7,176.26" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[490bc960ec86520a13bfc100bb1ec4ab]
+link Update to IPFS--><path d="M241.11,204.68 C219.01,234.15 165.51,305.49 139.57,340.07 " fill="none" id="Update-IPFS" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[732dd9bf00ccbe52a5beba9c2152f385]
+link Maintainer to Vote--><path d="M335.93,89.33 C329.19,126.22 318.39,182.53 307,231 C298.62,266.66 287.2,307.4 279.72,333.27 " fill="none" id="Maintainer-&gt;Vote" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="278.28,338.24,284.634,330.7149,279.6762,333.4389,276.9522,328.4811,278.28,338.24" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[a836fded0c80e4c409f211f3dc43a4b0]
+link Vote to Database--><path d="M271.5,382.75 C271.31,415.52 273.24,480.05 289,532 C295.32,552.83 305.22,574.85 314.3,592.95 " fill="none" id="Vote-Database" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[13a77bd23520ac5923e9e69896e3dc80]
+link Vote to Login--><path d="M274.79,382.75 C278.09,403.31 284.74,434.97 297,460 C303.02,472.28 312.38,484.42 320.42,493.66 " fill="none" id="Vote-&gt;Login" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="323.78,497.44,320.8082,488.0502,320.4653,493.6967,314.8188,493.3538,323.78,497.44" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="61" x="298" y="450.0669">«include»</text><!--MD5=[90f0eec871badf24b26e64e95f40d1fb]
+link Login to Database--><path d="M336,525.82 C336,542.08 336,569.78 336,592.88 " fill="none" id="Login-Database" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[0d7d57352f6f70aa267ae6e74fe5f1de]
+@startuml
+actor User
+actor Contributor
+actor Maintainer
+actor IPFS
+actor Database
+
+usecase Download
+usecase Query
+
+usecase Register
+usecase Login
+usecase "Vote for New Maintainers" as Vote
+
+usecase "Propose Package Update" as Propose
+usecase "Check against Conflicts" as Check
+usecase "Review Proposal" as Review
+usecase Update
+
+User - -> Download
+Download - -> IPFS
+
+User - -> Query
+Query - - Database
+
+Contributor - -> Register
+Register - - Database
+
+Contributor - -> Propose
+Propose ..> Login : <<include>>
+Propose ..> Check : <<include>>
+Check - - Database
+
+Maintainer - -> Review
+Review - - Propose
+
+Maintainer - -> Update
+Update - - IPFS
+
+Maintainer - -> Vote
+Vote - - Database
+Vote ..> Login : <<include>>
+Login - - Database
+
+@enduml
+
+PlantUML version 1.2020.02(Sun Mar 01 17:22:07 ICT 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 11.0.8+10-post-Debian-1
+Operating System: Linux
+Default Encoding: UTF-8
+Language: en
+Country: DK
+--></g></svg>

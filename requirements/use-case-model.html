@@ -123,14 +123,6 @@ User --&gt; Query
 User --&gt; Download
 Download --&gt; IPFS
 
-Maintainer --&gt; Review
-Review -- Propose
-Review ..&gt; Login : &lt;&lt;include&gt;&gt;
-
-Update ..&gt; Review : &lt;&lt;extend&gt;&gt;
-Update ..&gt; Check : &lt;&lt;include&gt;&gt;
-Update --&gt; IPFS
-
 Maintainer --&gt; Vote
 Vote ..&gt; Login : &lt;&lt;include&gt;&gt;
 
@@ -139,7 +131,14 @@ Contributor --&gt; Register
 
 Contributor --&gt; Propose
 Propose ..&gt; Login : &lt;&lt;include&gt;&gt;
-Propose ..&gt; Check : &lt;&lt;include&gt;&gt;' src="../_images/plantuml-bca46b51a52eddd671a08397b63423d3e36a1606.svg"/></p>
+Propose ..&gt; Check : &lt;&lt;include&gt;&gt;
+
+Maintainer --&gt; Review
+Review ..&gt; Login : &lt;&lt;include&gt;&gt;
+
+Update ..&gt; Review : &lt;&lt;extend&gt;&gt;
+Update ..&gt; Check : &lt;&lt;include&gt;&gt;
+Update --&gt; IPFS' src="../_images/plantuml-4a6b995b48ed222d5873b64527e469817db6d286.svg"/></p>
 </div>
 
       </article>

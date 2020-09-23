@@ -101,6 +101,86 @@
         </label>
         <div class="section" id="glossary">
 <h1>Glossary<a class="headerlink" href="#glossary" title="Permalink to this headline">¶</a></h1>
+<dl class="glossary">
+<dt id="term-Built-Distribution">Built Distribution</dt><dd><p>A <a class="reference internal" href="#term-Distribution-Package"><span class="xref std std-term">Distribution</span></a> format containing files
+and metadata that only need to be moved to the correct location on the
+target system, to be installed.</p>
+</dd>
+<dt id="term-Distribution-Package">Distribution Package</dt><dd><p>A versioned archive file that contains Python <a class="reference internal" href="#term-Import-Package"><span class="xref std std-term">packages</span></a>, <a class="reference internal" href="#term-Module"><span class="xref std std-term">modules</span></a>, and other resource files
+that are used to distribute a <a class="reference internal" href="#term-Release"><span class="xref std std-term">Release</span></a>.  The archive file
+is what an end-user will download from the internet and install.</p>
+<p>A distribution package is more commonly referred to with the single words
+<em>package</em> or <em>distribution</em>, but this guide may use the expanded term
+when more clarity is needed to prevent confusion
+with an <a class="reference internal" href="#term-Import-Package"><span class="xref std std-term">Import Package</span></a> (which is also commonly called a <em>package</em>)
+or another kind of distribution (e.g. a Linux distribution
+or the Python language distribution), which are often referred
+o with the single term <em>distribution</em>.</p>
+</dd>
+<dt id="term-Import-Package">Import Package</dt><dd><p>A Python module which can contain other modules or recursively,
+other packages.</p>
+</dd>
+<dt id="term-The-InterPlanetary-File-System-IPFS">The InterPlanetary File System (IPFS)</dt><dd><p><a class="reference external" href="https://ipfs.io">IPFS</a> is a protocol and peer-to-peer network for storing and sharing data
+in a distributed file system.  It uses content-addressing
+to uniquely identify each file in a global namespace
+connecting all computing devices.</p>
+</dd>
+<dt id="term-Module">Module</dt><dd><p>The basic unit of code reusability in Python.</p>
+</dd>
+<dt id="term-Package-Index">Package Index</dt><dd><p>A repository of distributions with a web interface to automate
+<a class="reference internal" href="#term-Distribution-Package"><span class="xref std std-term">package</span></a> discovery and consumption.</p>
+</dd>
+<dt id="term-Per-Project-Index">Per Project Index</dt><dd><p>A private or other non-canonical <a class="reference internal" href="#term-Package-Index"><span class="xref std std-term">Package Index</span></a> indicated by
+a specific <a class="reference internal" href="#term-Project"><span class="xref std std-term">Project</span></a> as the index preferred or required to
+resolve dependencies of that project.</p>
+</dd>
+<dt id="term-Project">Project</dt><dd><p>A library, framework, script, plugin, application, or collection of data
+or other resources, or some combination thereof that is intended to be
+packaged into a <a class="reference internal" href="#term-Distribution-Package"><span class="xref std std-term">Distribution</span></a>.</p>
+<p>Python projects must have unique names, which are registered on
+<a class="reference internal" href="#term-Python-Package-Index-PyPI"><span class="xref std std-term">PyPI</span></a>. Each project will then
+contain one or more <a class="reference internal" href="#term-Release"><span class="xref std std-term">Releases</span></a>, and each release may
+comprise one or more <a class="reference internal" href="#term-Distribution-Package"><span class="xref std std-term">distributions</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There is a strong convention to name a project after the name
+of the package that is imported to run that project.  However,
+this doesn’t have to hold true.  It’s possible to install
+a distribution from the project <code class="docutils literal notranslate"><span class="pre">foo</span></code> and have it provide
+a package importable only as <code class="docutils literal notranslate"><span class="pre">bar</span></code>.</p>
+</div>
+</dd>
+<dt id="term-Python-Packaging-Authority-PyPA">Python Packaging Authority (PyPA)</dt><dd><p><a class="reference external" href="https://pypa.io">PyPA</a> is a working group that maintains many of
+the relevant projects in Python packaging.</p>
+</dd>
+<dt id="term-Python-Package-Index-PyPI">Python Package Index (PyPI)</dt><dd><p><a class="reference external" href="https://pypi.org">PyPI</a> is the default <a class="reference internal" href="#term-Package-Index"><span class="xref std std-term">Package Index</span></a> for the Python community. It is open to all Python developers to
+consume and distribute their distributions.</p>
+</dd>
+<dt id="term-Release">Release</dt><dd><p>A snapshot of a <a class="reference internal" href="#term-Project"><span class="xref std std-term">Project</span></a> at a particular point in time,
+denoted by a version identifier.</p>
+<p>Making a release may entail the publishing of multiple
+<a class="reference internal" href="#term-Distribution-Package"><span class="xref std std-term">Distributions</span></a>.  For example, if version
+1.0 of a project was released, it could be available in both a source
+distribution format and a Windows installer distribution format.</p>
+</dd>
+<dt id="term-Requirement">Requirement</dt><dd><p>A specification for a <a class="reference internal" href="#term-Distribution-Package"><span class="xref std std-term">package</span></a> to be
+installed.  <a class="reference external" href="https://pip.pypa.io">pip</a>, the <a class="reference internal" href="#term-Python-Packaging-Authority-PyPA"><span class="xref std std-term">PyPA</span></a>
+recommended installer, allows various forms of specification
+that can all be considered a <em>requirement</em>.</p>
+</dd>
+<dt id="term-Source-Distribution-or-sdist">Source Distribution (or “sdist”)</dt><dd><p>A <a class="reference internal" href="#term-Distribution-Package"><span class="xref std std-term">distribution</span></a> format (usually generated
+using <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">sdist</span></code>) that provides metadata and the
+essential source files needed for installing by a tool like <a class="reference external" href="https://pip.pypa.io">pip</a>,
+or for generating a <a class="reference internal" href="#term-Built-Distribution"><span class="xref std std-term">Built Distribution</span></a>.</p>
+</dd>
+<dt id="term-Version-Specifier">Version Specifier</dt><dd><p>The version component of a requirement specifier.  For example,
+the <code class="docutils literal notranslate"><span class="pre">&gt;=1.3</span></code> portion of <code class="docutils literal notranslate"><span class="pre">foo&gt;=1.3</span></code>.  <span class="target" id="index-0"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0440"><strong>PEP 440</strong></a> contains
+a <span class="target" id="index-1"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0440#version-specifiers"><strong>full specification</strong></a>
+of the specifiers that Python packaging currently supports.</p>
+</dd>
+<dt id="term-Wheel">Wheel</dt><dd><p>A <a class="reference internal" href="#term-Built-Distribution"><span class="xref std std-term">Built Distribution</span></a> format introduced by <span class="target" id="index-2"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0427"><strong>PEP 427</strong></a>.</p>
+</dd>
+</dl>
 </div>
 
       </article>

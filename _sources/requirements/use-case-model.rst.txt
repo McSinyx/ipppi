@@ -24,14 +24,6 @@ Use-Case Model
    User --> Download
    Download --> IPFS
 
-   Maintainer --> Review
-   Review -- Propose
-   Review ..> Login : <<include>>
-
-   Update ..> Review : <<extend>>
-   Update ..> Check : <<include>>
-   Update --> IPFS
-
    Maintainer --> Vote
    Vote ..> Login : <<include>>
 
@@ -41,3 +33,10 @@ Use-Case Model
    Contributor --> Propose
    Propose ..> Login : <<include>>
    Propose ..> Check : <<include>>
+
+   Maintainer --> Review
+   Review ..> Login : <<include>>
+
+   Update ..> Review : <<extend>>
+   Update ..> Check : <<include>>
+   Update --> IPFS

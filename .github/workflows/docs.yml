@@ -23,7 +23,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        sudo apt install plantuml
+        sudo apt-get -y install plantuml
         python -m pip install -r docs/requirements.txt
 
     - name: Build site

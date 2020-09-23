@@ -1,5 +1,5 @@
-Welcome to ipppi's documentation!
-=================================
+Overview
+========
 
 InterPlanetary Python Package Index is an attempt to build a resilient
 and reproducible package index for the Python programming language,

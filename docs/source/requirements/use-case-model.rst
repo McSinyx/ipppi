@@ -7,7 +7,6 @@ Use-Case Model
    actor Contributor
    actor Maintainer
    actor IPFS
-   actor Database
 
    usecase Download
    usecase Query
@@ -21,30 +20,24 @@ Use-Case Model
    usecase "Review Proposal" as Review
    usecase Update
 
+   User --> Query
    User --> Download
    Download --> IPFS
-
-   User --> Query
-   Query -- Database
-
-   Contributor --> Register
-   Register -- Database
-
-   Contributor --> Propose
-   Propose ..> Login : <<include>>
-   Propose ..> Check : <<include>>
-   Check -- Database
 
    Maintainer --> Review
    Review -- Propose
    Review ..> Login : <<include>>
 
-   Review ..> Update : <<extend>>
+   Update ..> Review : <<extend>>
    Update ..> Check : <<include>>
-   Update -- Database
-   Update -- IPFS
+   Update --> IPFS
 
    Maintainer --> Vote
-   Vote -- Database
    Vote ..> Login : <<include>>
-   Login -- Database
+
+   Maintainer --|> Contributor
+   Contributor --> Register
+
+   Contributor --> Propose
+   Propose ..> Login : <<include>>
+   Propose ..> Check : <<include>>

@@ -106,7 +106,6 @@
 actor Contributor
 actor Maintainer
 actor IPFS
-actor Database
 
 usecase Download
 usecase Query
@@ -120,33 +119,27 @@ usecase "Check against Conflicts" as Check
 usecase "Review Proposal" as Review
 usecase Update
 
+User --&gt; Query
 User --&gt; Download
 Download --&gt; IPFS
-
-User --&gt; Query
-Query -- Database
-
-Contributor --&gt; Register
-Register -- Database
-
-Contributor --&gt; Propose
-Propose ..&gt; Login : &lt;&lt;include&gt;&gt;
-Propose ..&gt; Check : &lt;&lt;include&gt;&gt;
-Check -- Database
 
 Maintainer --&gt; Review
 Review -- Propose
 Review ..&gt; Login : &lt;&lt;include&gt;&gt;
 
-Review ..&gt; Update : &lt;&lt;extend&gt;&gt;
+Update ..&gt; Review : &lt;&lt;extend&gt;&gt;
 Update ..&gt; Check : &lt;&lt;include&gt;&gt;
-Update -- Database
-Update -- IPFS
+Update --&gt; IPFS
 
 Maintainer --&gt; Vote
-Vote -- Database
 Vote ..&gt; Login : &lt;&lt;include&gt;&gt;
-Login -- Database' src="../_images/plantuml-26b360b0fe0246604dceaa6008ceb89733ec1072.svg"/></p>
+
+Maintainer --|&gt; Contributor
+Contributor --&gt; Register
+
+Contributor --&gt; Propose
+Propose ..&gt; Login : &lt;&lt;include&gt;&gt;
+Propose ..&gt; Check : &lt;&lt;include&gt;&gt;' src="../_images/plantuml-bca46b51a52eddd671a08397b63423d3e36a1606.svg"/></p>
 </div>
 
       </article>

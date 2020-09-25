@@ -302,26 +302,45 @@ Check against Conflicts
 Brief Description
 ^^^^^^^^^^^^^^^^^
 
+This use case checks for the compatibility between the packages presuming
+the proposal is accepted.
+
 Flow of Events
 ^^^^^^^^^^^^^^
 
 Basic Flow
 """"""""""
 
+This use case starts when distribution packages are submitted by contributors.
+
+#. Check if the requirements of each package if they do not conflict
+   with each other.
+#. If there exists conflict, report failure, otherwise report success.
+
 Alternative Flows
 """""""""""""""""
+
+None.
 
 Special Requirements
 ^^^^^^^^^^^^^^^^^^^^
 
+None.
+
 Pre-Conditions
 ^^^^^^^^^^^^^^
+
+None.
 
 Post-Conditions
 ^^^^^^^^^^^^^^^
 
+None.
+
 Extension Points
 ^^^^^^^^^^^^^^^^
+
+None.
 
 Review Proposal
 ---------------
@@ -329,26 +348,45 @@ Review Proposal
 Brief Description
 ^^^^^^^^^^^^^^^^^
 
+This use case describes how a Maintainer decides to approve
+or dismiss proposals presuming it has them.
+
 Flow of Events
 ^^^^^^^^^^^^^^
 
 Basic Flow
 """"""""""
 
+Use case starts when a proposal is uploaded.
+
+#. Maintainer checks for available proposals.
+#. Maintainer decide whether to dismiss or approve the proposal.
+#. System update the database accordingly.
+
 Alternative Flows
 """""""""""""""""
+
+None.
 
 Special Requirements
 ^^^^^^^^^^^^^^^^^^^^
 
+None.
+
 Pre-Conditions
 ^^^^^^^^^^^^^^
+
+None.
 
 Post-Conditions
 ^^^^^^^^^^^^^^^
 
+None.
+
 Extension Points
 ^^^^^^^^^^^^^^^^
+
+If the Maintainer approve the proposal, proceed into the Update use case.
 
 Update
 ------

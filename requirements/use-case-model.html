@@ -392,54 +392,80 @@ cancel the operation or provide at least one package name.</p>
 <h2>Check against Conflicts<a class="headerlink" href="#check-against-conflicts" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id41">
 <h3>Brief Description<a class="headerlink" href="#id41" title="Permalink to this headline">¶</a></h3>
+<p>This use case checks for the compatibility between the packages presuming
+the proposal is accepted.</p>
 </div>
 <div class="section" id="id42">
 <h3>Flow of Events<a class="headerlink" href="#id42" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="id43">
 <h4>Basic Flow<a class="headerlink" href="#id43" title="Permalink to this headline">¶</a></h4>
+<p>This use case starts when distribution packages are submitted by contributors.</p>
+<ol class="arabic simple">
+<li><p>Check if the requirements of each package if they do not conflict
+with each other.</p></li>
+<li><p>If there exists conflict, report failure, otherwise report success.</p></li>
+</ol>
 </div>
 <div class="section" id="id44">
 <h4>Alternative Flows<a class="headerlink" href="#id44" title="Permalink to this headline">¶</a></h4>
+<p>None.</p>
 </div>
 </div>
 <div class="section" id="id45">
 <h3>Special Requirements<a class="headerlink" href="#id45" title="Permalink to this headline">¶</a></h3>
+<p>None.</p>
 </div>
 <div class="section" id="id46">
 <h3>Pre-Conditions<a class="headerlink" href="#id46" title="Permalink to this headline">¶</a></h3>
+<p>None.</p>
 </div>
 <div class="section" id="id47">
 <h3>Post-Conditions<a class="headerlink" href="#id47" title="Permalink to this headline">¶</a></h3>
+<p>None.</p>
 </div>
 <div class="section" id="id48">
 <h3>Extension Points<a class="headerlink" href="#id48" title="Permalink to this headline">¶</a></h3>
+<p>None.</p>
 </div>
 </div>
 <div class="section" id="review-proposal">
 <h2>Review Proposal<a class="headerlink" href="#review-proposal" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id49">
 <h3>Brief Description<a class="headerlink" href="#id49" title="Permalink to this headline">¶</a></h3>
+<p>This use case describes how a Maintainer decides to approve
+or dismiss proposals presuming it has them.</p>
 </div>
 <div class="section" id="id50">
 <h3>Flow of Events<a class="headerlink" href="#id50" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="id51">
 <h4>Basic Flow<a class="headerlink" href="#id51" title="Permalink to this headline">¶</a></h4>
+<p>Use case starts when a proposal is uploaded.</p>
+<ol class="arabic simple">
+<li><p>Maintainer checks for available proposals.</p></li>
+<li><p>Maintainer decide whether to dismiss or approve the proposal.</p></li>
+<li><p>System update the database accordingly.</p></li>
+</ol>
 </div>
 <div class="section" id="id52">
 <h4>Alternative Flows<a class="headerlink" href="#id52" title="Permalink to this headline">¶</a></h4>
+<p>None.</p>
 </div>
 </div>
 <div class="section" id="id53">
 <h3>Special Requirements<a class="headerlink" href="#id53" title="Permalink to this headline">¶</a></h3>
+<p>None.</p>
 </div>
 <div class="section" id="id54">
 <h3>Pre-Conditions<a class="headerlink" href="#id54" title="Permalink to this headline">¶</a></h3>
+<p>None.</p>
 </div>
 <div class="section" id="id55">
 <h3>Post-Conditions<a class="headerlink" href="#id55" title="Permalink to this headline">¶</a></h3>
+<p>None.</p>
 </div>
 <div class="section" id="id56">
 <h3>Extension Points<a class="headerlink" href="#id56" title="Permalink to this headline">¶</a></h3>
+<p>If the Maintainer approve the proposal, proceed into the Update use case.</p>
 </div>
 </div>
 <div class="section" id="update">

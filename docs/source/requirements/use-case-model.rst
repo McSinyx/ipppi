@@ -64,8 +64,10 @@ Alternative Flows
 """""""""""""""""
 **Full Storage Warning**
 * Before the download,if the remaining disk storage is not enough for the package downloaded,a warning would be sent. The user has the choice to go ahead or abort the download.
+
 **Internet Connection Broken**
 * If the user's internet connection is broken during the download,the system will display an error message.The user will have the option to either retry or abort.
+
 **Full Storage Error**
 * If the user's internet connection is broken during the download,the system will display an error message.The user can either choose to retry or abort.
 

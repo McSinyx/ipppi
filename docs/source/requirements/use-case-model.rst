@@ -53,14 +53,14 @@ This use case started with the user sending his/her request to download his/her 
 Basic Flow
 """"""""""
 1.The system requires that the request fulfilling all both criterias
-  -The package
-  -The package's version
+  *The package
+  *The package's version
 2.Once the request is successfully sent from the user to the IPFS,it will send the file to the user
 Alternative Flows
 """""""""""""""""
-2.b Before the download,if the remaining disk storage is not enough for the package downloaded,a warning would be sent. The user has the choice to go ahead or abort the download.
-2.c Internet Connection Broken:If the user's internet connection is broken during the download,the system will display an error message.The user will have the option to either retry or abort.
-2.d User's disk storage is full:If the user's internet connection is broken during the download,the system will display an error message.The user can either choose to retry or abort.
+*Before the download,if the remaining disk storage is not enough for the package downloaded,a warning would be sent. The user has the choice to go ahead or abort the download.
+*Internet Connection Broken:If the user's internet connection is broken during the download,the system will display an error message.The user will have the option to either retry or abort.
+*User's disk storage is full:If the user's internet connection is broken during the download,the system will display an error message.The user can either choose to retry or abort.
 Special Requirements
 ^^^^^^^^^^^^^^^^^^^^
 None
@@ -86,7 +86,7 @@ Flow of Events
 Basic Flow
 """"""""""
 This use case starts with the user sending a query for his/her desired files in the database. </p>
-1.A list of search results that are significantly simillar to the input of the user (either matching name,description or dependencies' name) will appear.
+A list of search results that are significantly simillar to the input of the user (either matching name,description or dependencies' name) will appear.
 2.The user clicks into a result
 3.A page of the result's package's information appears,showing its name,id,version,description,its shorterned name and a list of its dependencies
 Alternative Flows

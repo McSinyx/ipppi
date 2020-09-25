@@ -197,54 +197,112 @@ Update --&gt; IPFS' src="../_images/plantuml-c549b96e42c12ec9e5126e947f853ca9711
 <h2>Register<a class="headerlink" href="#register" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id9">
 <h3>Brief Description<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<p>This use case describes how a user creates an account.</p>
+<p>Actor: New contributor/Contributor with no account (Guest)</p>
 </div>
 <div class="section" id="id10">
 <h3>Flow of Events<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<p>The use case starts when a contributor visits the login page.
+If perse doesn’t have an account, perse can create a new one.</p>
 <div class="section" id="id11">
 <h4>Basic Flow<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h4>
+<ol class="arabic simple">
+<li><p>The contributor select the registration option on the login page.</p></li>
+<li><p>The System prompts contributor for registration information: Username, Password, etc</p></li>
+<li><p>The contributor enters the information.</p></li>
+<li><p>System verifies information and creates account.</p></li>
+<li><p>The use case ends.</p></li>
+</ol>
 </div>
 <div class="section" id="id12">
 <h4>Alternative Flows<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Cancel Registration</strong></p>
+<ul>
+<li><p>The contributor select the cancel option.</p></li>
+<li><p>The system returns the contributor to the login page, all information entered is deleted.</p></li>
+</ul>
+</li>
+<li><p><strong>Invalid entered information</strong></p>
+<ul>
+<li><p>Contributor finishes the registration form.</p></li>
+<li><p>The system checks and shows the invalid information</p></li>
+<li><p>Contributor re-enters the invalid information.</p></li>
+</ul>
+</li>
+</ul>
 </div>
 </div>
 <div class="section" id="id13">
 <h3>Special Requirements<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<p>No special requirements.</p>
 </div>
 <div class="section" id="id14">
 <h3>Pre-Conditions<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<p>No pre-conditions.</p>
 </div>
 <div class="section" id="id15">
 <h3>Post-Conditions<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Success</strong>: The contributor now has had his/her own account and can use it to log in.</p></li>
+<li><p><strong>Failure</strong>: The contributor is returned to the home page and continues to be a guest.</p></li>
+</ul>
 </div>
 <div class="section" id="id16">
 <h3>Extension Points<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<p>No extension points.</p>
 </div>
 </div>
 <div class="section" id="login">
 <h2>Login<a class="headerlink" href="#login" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id17">
 <h3>Brief Description<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<p>This use case describes how a contributor logs into the system.</p>
+<p>Actor: Contributor with created account</p>
 </div>
 <div class="section" id="id18">
 <h3>Flow of Events<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<p>The use case starts when a contributor is not logged in to the system and goes to the login page.</p>
 <div class="section" id="id19">
 <h4>Basic Flow<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h4>
+<ol class="arabic simple">
+<li><p>The contributor enters his/her username and password.</p></li>
+<li><p>The system validates the entered username and password.</p></li>
+<li><p>The contributor is signed in and returned to the home page as a Logged In Contributor.</p></li>
+<li><p>The use case ends.</p></li>
+</ol>
 </div>
 <div class="section" id="id20">
 <h4>Alternative Flows<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Wrong username/password</strong></p>
+<ul>
+<li><p>The system shows why the contributor is not authenticated.</p></li>
+<li><p>The contributor re-enters the information.</p></li>
+<li><p>The Basic Flow continues after the contributor enters the information (From step 2).</p></li>
+</ul>
+</li>
+</ul>
 </div>
 </div>
 <div class="section" id="id21">
 <h3>Special Requirements<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
+<p>No special requirements.</p>
 </div>
 <div class="section" id="id22">
 <h3>Pre-Conditions<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
+<p>No pre-conditions.</p>
 </div>
 <div class="section" id="id23">
 <h3>Post-Conditions<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Success</strong>: The contributor is logged in and is able to to do specific actions.</p></li>
+<li><p><strong>Failure</strong>: The contributor continues to be a guest.</p></li>
+</ul>
 </div>
 <div class="section" id="id24">
 <h3>Extension Points<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h3>
+<p>No extension points.</p>
 </div>
 </div>
 <div class="section" id="vote-for-new-maintainers">

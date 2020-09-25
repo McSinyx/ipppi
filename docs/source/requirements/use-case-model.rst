@@ -100,8 +100,8 @@ Register
 
 Brief Description
 ^^^^^^^^^^^^^^^^^
-This use case describes how a user creates an account.
-Actor: Guest
+| This use case describes how a user creates an account.
+| Actor: Guest
 
 Flow of Events
 ^^^^^^^^^^^^^^
@@ -110,7 +110,11 @@ Flow of Events
 
 Basic Flow
 """"""""""
-
+1. The user select the registration option on the login page.
+2. The System prompts user for registration information: Username, Password, etc
+3. The user enters their information.
+4. System verifies information and creates account.
+5. The use case ends.
 
 Alternative Flows
 """""""""""""""""

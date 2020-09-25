@@ -335,26 +335,18 @@ If perse doesn’t have an account, perse can create a new one.</p>
 </div>
 <div class="section" id="vote-for-new-maintainers">
 <h2>Vote for New Maintainers<a class="headerlink" href="#vote-for-new-maintainers" title="Permalink to this headline">¶</a></h2>
-<p>Brief Description
-The maintainers of the database will vote for new maintainer when they need, replace, reduce maintainers</p>
-<p>Flow of Events
-Maintainers need more/less maintainer for the job, they will vote for new maintainer</p>
-<p>Basic Flow
-Maintainers need more/less maintainer for the job -&gt; agree for human changes -&gt; new maintainer login special account</p>
-<p>Alternative Flows
-alt 1. Maintainers need more/less maintainer for the job -&gt; disagree for the new maintainers -&gt; vote for another candidates</p>
+<p>Brief Description</p>
+<p>Flow of Events</p>
+<p>Basic Flow</p>
+<p>Alternative Flows</p>
 <div class="section" id="id30">
 <h3>Special Requirements<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h3>
-<p>Maintainers:Need knowledges in project management</p>
 </div>
 <div class="section" id="id31">
 <h3>Pre-Conditions<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h3>
-<p>Lack of Human resources
-Maintainers have low efficiently</p>
 </div>
 <div class="section" id="id32">
 <h3>Post-Conditions<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h3>
-<p>New Candidates voted to become maintainers</p>
 </div>
 <div class="section" id="id33">
 <h3>Extension Points<a class="headerlink" href="#id33" title="Permalink to this headline">¶</a></h3>
@@ -474,43 +466,27 @@ cancel the operation or provide at least one package name.</p>
 <h2>Update<a class="headerlink" href="#update" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id58">
 <h3>Brief Description<a class="headerlink" href="#id58" title="Permalink to this headline">¶</a></h3>
-<p>This use case describes how an update operate.
-Actor: Distributed File System
-Actor: Maintainer
-Actor: Contributor</p>
 </div>
 <div class="section" id="id59">
 <h3>Flow of Events<a class="headerlink" href="#id59" title="Permalink to this headline">¶</a></h3>
-<p>Use case start when a maintainer want to update package onto IFPS The maintainer review the packages proposed by the contributor The IFPS and maintainer will check for any conflict exist
-Basic Flow
-“”””””””””
-The package will be checked against conflicts the contributor.
-Next, the package will wait to be reviewed by the maintainer.
-After that, the maintainer will decide to update the package to IFPS by schedule data, size, length, date of the update for the maintenance.After maintenance the maintainer will check for any conflicts, bugs maintain.</p>
-</div>
 <div class="section" id="id60">
-<h3>Alternative Flows<a class="headerlink" href="#id60" title="Permalink to this headline">¶</a></h3>
-<p>Alt 1. The package will be checked against conflicts the contributor -&gt; found conflicts -&gt; the package is fixed by the contributor</p>
-<p>alt 2. The package will wait to be reviewed by the maintainer -&gt; the maintainer reject the package -&gt;the package will not be updated -&gt; the package is fixed by the contributor</p>
-<p>alt 3. After maintenance, maintain any bug and conflicts -&gt; the maintainer continue the maintenance -&gt; the package will be fixed by the contributor and maintainer</p>
+<h4>Basic Flow<a class="headerlink" href="#id60" title="Permalink to this headline">¶</a></h4>
+</div>
 </div>
 <div class="section" id="id61">
-<h3>Special Requirements<a class="headerlink" href="#id61" title="Permalink to this headline">¶</a></h3>
-<p>Maintainers:
-Contributor: have decent knowledges in HTML, SQL</p>
+<h3>Alternative Flows<a class="headerlink" href="#id61" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="id62">
-<h3>Pre-Conditions<a class="headerlink" href="#id62" title="Permalink to this headline">¶</a></h3>
-<p>System need an update to increase performance
-Bug, error founded</p>
+<h3>Special Requirements<a class="headerlink" href="#id62" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="id63">
-<h3>Post-Conditions<a class="headerlink" href="#id63" title="Permalink to this headline">¶</a></h3>
-<p>Minimal Guarantee: Bug, error reduced, maintenance update succesfully with no critical bug</p>
-<p>Success Guarantee: BUg, error terminated, maintenance update succesfully</p>
+<h3>Pre-Conditions<a class="headerlink" href="#id63" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="id64">
-<h3>Extension Points<a class="headerlink" href="#id64" title="Permalink to this headline">¶</a></h3>
+<h3>Post-Conditions<a class="headerlink" href="#id64" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id65">
+<h3>Extension Points<a class="headerlink" href="#id65" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
 </div>
@@ -651,12 +627,15 @@ Bug, error founded</p>
 </li>
 <li><a class="reference internal" href="#update">Update</a><ul>
 <li><a class="reference internal" href="#id58">Brief Description</a></li>
-<li><a class="reference internal" href="#id59">Flow of Events</a></li>
-<li><a class="reference internal" href="#id60">Alternative Flows</a></li>
-<li><a class="reference internal" href="#id61">Special Requirements</a></li>
-<li><a class="reference internal" href="#id62">Pre-Conditions</a></li>
-<li><a class="reference internal" href="#id63">Post-Conditions</a></li>
-<li><a class="reference internal" href="#id64">Extension Points</a></li>
+<li><a class="reference internal" href="#id59">Flow of Events</a><ul>
+<li><a class="reference internal" href="#id60">Basic Flow</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id61">Alternative Flows</a></li>
+<li><a class="reference internal" href="#id62">Special Requirements</a></li>
+<li><a class="reference internal" href="#id63">Pre-Conditions</a></li>
+<li><a class="reference internal" href="#id64">Post-Conditions</a></li>
+<li><a class="reference internal" href="#id65">Extension Points</a></li>
 </ul>
 </li>
 </ul>

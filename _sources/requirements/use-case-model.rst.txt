@@ -239,29 +239,21 @@ Vote for New Maintainers
 ------------------------
 
 Brief Description
-The maintainers of the database will vote for new maintainer when they need, replace, reduce maintainers
 
 Flow of Events
-Maintainers need more/less maintainer for the job, they will vote for new maintainer
 
 Basic Flow
-Maintainers need more/less maintainer for the job -> agree for human changes -> new maintainer login special account
 
 Alternative Flows
-alt 1. Maintainers need more/less maintainer for the job -> disagree for the new maintainers -> vote for another candidates
 
 Special Requirements
 ^^^^^^^^^^^^^^^^^^^^
-Maintainers:Need knowledges in project management
 
 Pre-Conditions
 ^^^^^^^^^^^^^^
-Lack of Human resources
-Maintainers have low efficiently
 
 Post-Conditions
 ^^^^^^^^^^^^^^^
-New Candidates voted to become maintainers
 
 Extension Points
 ^^^^^^^^^^^^^^^^
@@ -386,43 +378,24 @@ Update
 
 Brief Description
 ^^^^^^^^^^^^^^
-This use case describes how an update operate.
-Actor: Distributed File System 
-Actor: Maintainer
-Actor: Contributor
 
 Flow of Events
 ^^^^^^^^^^^^^^ 
-Use case start when a maintainer want to update package onto IFPS The maintainer review the packages proposed by the contributor The IFPS and maintainer will check for any conflict exist 
+
 Basic Flow
 """""""""" 
-The package will be checked against conflicts the contributor.
-Next, the package will wait to be reviewed by the maintainer.
-After that, the maintainer will decide to update the package to IFPS by schedule data, size, length, date of the update for the maintenance.After maintenance the maintainer will check for any conflicts, bugs maintain.
 
 Alternative Flows
 ^^^^^^^^^^^^^^
-Alt 1. The package will be checked against conflicts the contributor -> found conflicts -> the package is fixed by the contributor
-
-alt 2. The package will wait to be reviewed by the maintainer -> the maintainer reject the package ->the package will not be updated -> the package is fixed by the contributor
-
-alt 3. After maintenance, maintain any bug and conflicts -> the maintainer continue the maintenance -> the package will be fixed by the contributor and maintainer
 
 Special Requirements
 ^^^^^^^^^^^^^^^^^^^^
-Maintainers:
-Contributor: have decent knowledges in HTML, SQL 
 
 Pre-Conditions
 ^^^^^^^^^^^^^^
-System need an update to increase performance
-Bug, error founded
 
 Post-Conditions
 ^^^^^^^^^^^^^^^
-Minimal Guarantee: Bug, error reduced, maintenance update succesfully with no critical bug
-
-Success Guarantee: BUg, error terminated, maintenance update succesfully
 
 Extension Points
 ^^^^^^^^^^^^^^^^

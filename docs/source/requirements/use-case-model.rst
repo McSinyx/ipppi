@@ -45,8 +45,8 @@ Download
 --------
 
 Brief Description
-This use case allows the user to download his/her desired package from the distributed file system 
 ^^^^^^^^^^^^^^^^^
+This use case allows the user to download his/her desired package from the distributed file system 
 
 Flow of Events
 ^^^^^^^^^^^^^^

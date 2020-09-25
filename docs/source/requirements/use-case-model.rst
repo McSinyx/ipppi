@@ -100,16 +100,19 @@ Register
 
 Brief Description
 ^^^^^^^^^^^^^^^^^
-| This use case describes how a user creates an account.
-| Actor: New user/User with no account(Guest)
+
+This use case describes how a user creates an account.
+
+Actor: New user/User with no account(Guest)
 
 Flow of Events
 ^^^^^^^^^^^^^^
 | The use case starts when a system user visits the login page. 
-| If he/she doesn't have an account, he/she can create a new one. 
+| If perse doesn't have an account, perse can create a new one. 
 
 Basic Flow
 """"""""""
+
 1. The user select the registration option on the login page.
 2. The System prompts user for registration information: Username, Password, etc
 3. The user enters the information.
@@ -118,9 +121,11 @@ Basic Flow
 
 Alternative Flows
 """""""""""""""""
-* Cancel Registration   
-   * The user select the cancel option.
-   * The system returns the user to the login page, all information entered is deleted.
+
+* Cancel Registration
+
+  * The user select the cancel option.
+  * The system returns the user to the login page, all information entered is deleted.
 
 * Invalid entered information
    * User finishes the registration form.
@@ -158,10 +163,11 @@ The use case starts when a system user is not logged in to the system and goes t
 
 Basic Flow
 """"""""""
-1.	The user enters his/her username and password.
-2.	The system validates the entered username and password.
-3.	The user is signed in and returned to the home page as a Logged In User.
-4.	The use case ends.
+
+1. The user enters his/her username and password.
+2. The system validates the entered username and password.
+3. The user is signed in and returned to the home page as a Logged In User.
+4. The use case ends.
 
 Alternative Flows
 """""""""""""""""

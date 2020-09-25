@@ -130,9 +130,9 @@ Alternative Flows
 
 * **Invalid entered information**
 
-   * Contributor finishes the registration form.
-   * The system checks and shows the invalid information
-   * Contributor re-enters the invalid information.
+  * Contributor finishes the registration form.
+  * The system checks and shows the invalid information
+  * Contributor re-enters the invalid information.
 
 Special Requirements
 ^^^^^^^^^^^^^^^^^^^^
@@ -147,11 +147,8 @@ No pre-conditions.
 Post-Conditions
 ^^^^^^^^^^^^^^^
 
-* **Success** 
-The contributor now has had his/her own account and can use it to log in.
-
-* **Failure**
-The contributor is returned to the home page and continues to be a guest.
+* **Success**: The contributor now has had his/her own account and can use it to log in.
+* **Failure**: The contributor is returned to the home page and continues to be a guest.
 
 Extension Points
 ^^^^^^^^^^^^^^^^
@@ -185,9 +182,10 @@ Alternative Flows
 """""""""""""""""
 
 * Wrong username/password
-   * The system shows why the contributor is not authenticated.
-   * The contributor re-enters the information.
-   * The Basic Flow continues after the contributor enters the information (From step 2).
+
+  * The system shows why the contributor is not authenticated.
+  * The contributor re-enters the information.
+  * The Basic Flow continues after the contributor enters the information (From step 2).
 
 Special Requirements
 ^^^^^^^^^^^^^^^^^^^^
@@ -202,11 +200,8 @@ No pre-conditions.
 Post-Conditions
 ^^^^^^^^^^^^^^^
 
-* **Success**
-The contributor is logged in and is able to to do specific actions.
-
-* **Failure** 
-The contributor continues to be a guest.
+* **Success**: The contributor is logged in and is able to to do specific actions.
+* **Failure**: The contributor continues to be a guest.
 
 Extension Points
 ^^^^^^^^^^^^^^^^

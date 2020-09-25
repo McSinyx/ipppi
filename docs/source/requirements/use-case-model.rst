@@ -182,26 +182,58 @@ Propose Package Update
 Brief Description
 ^^^^^^^^^^^^^^^^^
 
+The use case allows the Contributor to creat a proposal for update
+one or many distribution packages.  This includes adding, removing
+and upgrading/downgrading them as appropriate by the situation.
+
 Flow of Events
 ^^^^^^^^^^^^^^
 
 Basic Flow
 """"""""""
 
+This use case starts when the Contributor wishes to create
+a *Package Update Proposal*.
+
+#. The system requests that the Contributor specify
+   the name of packages to be updated.
+#. Once the Contributor selects the package names, the system requests
+   that the Contributor provide the :term:`release <Release>` to be pinned.
+   The Contributor may leave the field blank to remove the package
+   from the index.
+#. The system notify the Maintainer to review the proposal,
+   while at the same time automatically check for conflicts
+   within the new set of distributions.
+#. If the Maintainer request changes or the automated check fails,
+   the previous step is repeated.
+
 Alternative Flows
 """""""""""""""""
+
+Requested Information Unavailable
+   If, in the Basic Flow, no package name is provided, the system will
+   display an error message.  The Contributor can choose to either
+   cancel the operation or provide at least one package name.
 
 Special Requirements
 ^^^^^^^^^^^^^^^^^^^^
 
+None.
+
 Pre-Conditions
 ^^^^^^^^^^^^^^
+
+The Contributor must be logged onto the system before this use case begin.
 
 Post-Conditions
 ^^^^^^^^^^^^^^^
 
+The new proposal is either dismissed or approved.
+
 Extension Points
 ^^^^^^^^^^^^^^^^
+
+None.
 
 Check against Conflicts
 -----------------------

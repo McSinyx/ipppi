@@ -101,44 +101,6 @@
         </label>
         <div class="section" id="use-case-model">
 <h1>Use-Case Model<a class="headerlink" href="#use-case-model" title="Permalink to this headline">¶</a></h1>
-<p class="plantuml">
-<img alt='actor User
-actor Contributor
-actor Maintainer
-actor "Distributed File System" as IPFS
-
-usecase Download
-usecase Query
-
-usecase Register
-usecase Login
-usecase "Vote for New Maintainers" as Vote
-
-usecase "Propose Package Update" as Propose
-usecase "Check against Conflicts" as Check
-usecase "Review Proposal" as Review
-usecase Update
-
-User --&gt; Query
-User --&gt; Download
-Download --&gt; IPFS
-
-Maintainer --&gt; Vote
-Vote ..&gt; Login : &lt;&lt;include&gt;&gt;
-
-Maintainer --|&gt; Contributor
-Contributor --&gt; Register
-
-Contributor --&gt; Propose
-Propose ..&gt; Login : &lt;&lt;include&gt;&gt;
-Propose ..&gt; Check : &lt;&lt;include&gt;&gt;
-
-Maintainer --&gt; Review
-Review ..&gt; Login : &lt;&lt;include&gt;&gt;
-
-Update ..&gt; Review : &lt;&lt;extend&gt;&gt;
-Update ..&gt; Check : &lt;&lt;include&gt;&gt;
-Update --&gt; IPFS' src="../_images/plantuml-c549b96e42c12ec9e5126e947f853ca9711d7fca.svg"/></p>
 <div class="section" id="download">
 <h2>Download<a class="headerlink" href="#download" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="brief-description">
@@ -148,19 +110,45 @@ Update --&gt; IPFS' src="../_images/plantuml-c549b96e42c12ec9e5126e947f853ca9711
 <h3>Flow of Events<a class="headerlink" href="#flow-of-events" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="basic-flow">
 <h4>Basic Flow<a class="headerlink" href="#basic-flow" title="Permalink to this headline">¶</a></h4>
+<p>This use case started with the user sending his/her request to download his/her desired package, presumbably after Query use case for searching from the distributed file system.</p>
+<ol class="arabic simple">
+<li><p>The system requires that the request fulfilling all both criterias</p></li>
+</ol>
+<ul class="simple">
+<li><p>The package</p></li>
+<li><p>The package’s version</p></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p>Once the request is successfully sent from the user to the IPFS,it will send the file to the user</p></li>
+</ol>
 </div>
 <div class="section" id="alternative-flows">
 <h4>Alternative Flows<a class="headerlink" href="#alternative-flows" title="Permalink to this headline">¶</a></h4>
+<p><strong>Full Storage Warning</strong></p>
+<ul class="simple">
+<li><p>Before the download,if the remaining disk storage is not enough for the package downloaded,a warning would be sent. The user has the choice to go ahead or abort the download.</p></li>
+</ul>
+<p><strong>Internet Connection Broken</strong></p>
+<ul class="simple">
+<li><p>If the user’s internet connection is broken during the download,the system will display an error message.The user will have the option to either retry or abort.</p></li>
+</ul>
+<p><strong>Full Storage Error</strong></p>
+<ul class="simple">
+<li><p>User’s disk storage is full:If the user’s internet connection is broken during the download,the system will display an error message.The user can either choose to retry or abort.</p></li>
+</ul>
 </div>
 </div>
 <div class="section" id="special-requirements">
 <h3>Special Requirements<a class="headerlink" href="#special-requirements" title="Permalink to this headline">¶</a></h3>
+<p>None</p>
 </div>
 <div class="section" id="pre-conditions">
 <h3>Pre-Conditions<a class="headerlink" href="#pre-conditions" title="Permalink to this headline">¶</a></h3>
+<p>The user having the internet connection before and during the use case</p>
 </div>
 <div class="section" id="post-conditions">
 <h3>Post-Conditions<a class="headerlink" href="#post-conditions" title="Permalink to this headline">¶</a></h3>
+<p>The file is successfully downloaded</p>
 </div>
 <div class="section" id="extension-points">
 <h3>Extension Points<a class="headerlink" href="#extension-points" title="Permalink to this headline">¶</a></h3>
@@ -170,14 +158,34 @@ Update --&gt; IPFS' src="../_images/plantuml-c549b96e42c12ec9e5126e947f853ca9711
 <h2>Query<a class="headerlink" href="#query" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id1">
 <h3>Brief Description<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>This use case allows the user to search for the package in the database of files in IPFS, possibly for the Download Use Case.</p>
 </div>
 <div class="section" id="id2">
 <h3>Flow of Events<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="id3">
 <h4>Basic Flow<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<p>This use case starts with the user sending a query for his/her desired files in the database.</p>
+<ol class="arabic simple">
+<li><p>A list of search results that are significantly simillar to the input of the user (either matching name,description or dependencies’ name) will appear.</p></li>
+<li><p>The user clicks into a result</p></li>
+<li><p>A page of the result’s package’s information appears,showing its name,id,version,description,its shorterned name and a list of its dependencies</p></li>
+</ol>
 </div>
 <div class="section" id="id4">
 <h4>Alternative Flows<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<p><strong>Changing pages</strong></p>
+<ul class="simple">
+<li><p>There will be a limit of results in a page,so the user may have to go to other pages for his/her files.The user goes to another page of the query results.</p></li>
+</ul>
+<p><strong>Direct Search</strong></p>
+<ul class="simple">
+<li><p>If the query result is 100% simillar to the package name in the database plus the version number, the user will be directed directly to the package’s page</p></li>
+</ul>
+<p>Special Requirements</p>
+<p><strong>Dissimilar inputs</strong></p>
+<ul class="simple">
+<li><p>If the input is too dissimilar from the name of any input from the package, an error dialog will appear,asking the user to input better</p></li>
+</ul>
 </div>
 </div>
 <div class="section" id="id5">
@@ -185,9 +193,11 @@ Update --&gt; IPFS' src="../_images/plantuml-c549b96e42c12ec9e5126e947f853ca9711
 </div>
 <div class="section" id="id6">
 <h3>Pre-Conditions<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>The user has internet connection</p>
 </div>
 <div class="section" id="id7">
 <h3>Post-Conditions<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>The user finds the information of his/her desired package</p>
 </div>
 <div class="section" id="id8">
 <h3>Extension Points<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>

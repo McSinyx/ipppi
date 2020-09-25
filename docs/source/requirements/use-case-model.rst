@@ -222,6 +222,7 @@ Maintainers need more/less maintainer for the job -> agree for human changes -> 
 
 Alternative Flows
 alt 1. Maintainers need more/less maintainer for the job -> disagree for the new maintainers -> vote for another candidates
+
 Special Requirements
 ^^^^^^^^^^^^^^^^^^^^
 Maintainers:Need knowledges in project management

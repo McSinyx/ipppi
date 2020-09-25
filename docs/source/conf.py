@@ -13,8 +13,8 @@ author = 'Group 11'
 # They can be extensions coming with Sphinx (named 'sphinx.ext.*')
 # or your custom ones.
 extensions = ['sphinx.ext.githubpages', 'sphinxcontrib.plantuml']
+plantuml = 'java -jar D:\GitHub\ipppi\docs\plantuml.jar'
 plantuml_output_format = 'svg_img'
-
 # Add any paths that contain templates here, relative to this directory.
 templates_path = []
 

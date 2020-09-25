@@ -47,54 +47,23 @@ Download
 Brief Description
 ^^^^^^^^^^^^^^^^^
 
-
-
 Flow of Events
 ^^^^^^^^^^^^^^
 
 Basic Flow
 """"""""""
 
-This use case started with the user sending his/her request to download his/her desired package, presumbably after Query use case for searching from the distributed file system.
-
-1. The system requires that the request fulfilling all both criterias
-
-*  The package
-  
-*  The package's version
-
-2. Once the request is successfully sent from the user to the IPFS,it will send the file to the user
-
-
 Alternative Flows
 """""""""""""""""
 
-**Full Storage Warning**
-
-* Before the download,if the remaining disk storage is not enough for the package downloaded,a warning would be sent. The user has the choice to go ahead or abort the download.
-
-**Internet Connection Broken**
-
-* If the user's internet connection is broken during the download,the system will display an error message.The user will have the option to either retry or abort.
-
-**Full Storage Error**
-
-* User's disk storage is full:If the user's internet connection is broken during the download,the system will display an error message.The user can either choose to retry or abort.
-
 Special Requirements
 ^^^^^^^^^^^^^^^^^^^^
-None
 
 Pre-Conditions
 ^^^^^^^^^^^^^^
 
-The user having the internet connection before and during the use case
-
-
 Post-Conditions
 ^^^^^^^^^^^^^^^
-
-The file is successfully downloaded
 
 Extension Points
 ^^^^^^^^^^^^^^^^
@@ -105,39 +74,14 @@ Query
 Brief Description
 ^^^^^^^^^^^^^^^^^
 
-This use case allows the user to search for the package in the database of files in IPFS, possibly for the Download Use Case.
-
 Flow of Events
 ^^^^^^^^^^^^^^
 
 Basic Flow
 """"""""""
 
-This use case starts with the user sending a query for his/her desired files in the database. 
-
-1. A list of search results that are significantly simillar to the input of the user (either matching name,description or dependencies' name) will appear.
-
-2. The user clicks into a result
-
-3. A page of the result's package's information appears,showing its name,id,version,description,its shorterned name and a list of its dependencies
-
-
 Alternative Flows
 """""""""""""""""
-
-**Changing pages**
-
-* There will be a limit of results in a page,so the user may have to go to other pages for his/her files.The user goes to another page of the query results.
-
-**Direct Search**
-
-* If the query result is 100% simillar to the package name in the database plus the version number, the user will be directed directly to the package's page
-Special Requirements
-
-**Dissimilar inputs**
-
-* If the input is too dissimilar from the name of any input from the package, an error dialog will appear,asking the user to input better
-
 
 Special Requirements
 ^^^^^^^^^^^^^^^^^^^^
@@ -145,13 +89,8 @@ Special Requirements
 Pre-Conditions
 ^^^^^^^^^^^^^^
 
-The user has internet connection
-
-
 Post-Conditions
 ^^^^^^^^^^^^^^^
-
-The user finds the information of his/her desired package
 
 Extension Points
 ^^^^^^^^^^^^^^^^
@@ -273,25 +212,29 @@ Vote for New Maintainers
 ------------------------
 
 Brief Description
-^^^^^^^^^^^^^^^^^
+The maintainers of the database will vote for new maintainer when they need, replace, reduce maintainers
 
 Flow of Events
-^^^^^^^^^^^^^^
+Maintainers need more/less maintainer for the job, they will vote for new maintainer
 
 Basic Flow
-""""""""""
+Maintainers need more/less maintainer for the job -> agree for human changes -> new maintainer login special account
 
 Alternative Flows
-"""""""""""""""""
+alt 1. Maintainers need more/less maintainer for the job -> disagree for the new maintainers -> vote for another candidates
 
 Special Requirements
 ^^^^^^^^^^^^^^^^^^^^
+Maintainers:Need knowledges in project management
 
 Pre-Conditions
 ^^^^^^^^^^^^^^
+Lack of Human resources
+Maintainers have low efficiently
 
 Post-Conditions
 ^^^^^^^^^^^^^^^
+New Candidates voted to become maintainers
 
 Extension Points
 ^^^^^^^^^^^^^^^^
@@ -415,25 +358,44 @@ Update
 ------
 
 Brief Description
-^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^
+This use case describes how an update operate.
+Actor: Distributed File System 
+Actor: Maintainer
+Actor: Contributor
 
 Flow of Events
-^^^^^^^^^^^^^^
-
+^^^^^^^^^^^^^^ 
+Use case start when a maintainer want to update package onto IFPS The maintainer review the packages proposed by the contributor The IFPS and maintainer will check for any conflict exist 
 Basic Flow
-""""""""""
+"""""""""" 
+The package will be checked against conflicts the contributor.
+Next, the package will wait to be reviewed by the maintainer.
+After that, the maintainer will decide to update the package to IFPS by schedule data, size, length, date of the update for the maintenance.After maintenance the maintainer will check for any conflicts, bugs maintain.
 
 Alternative Flows
-"""""""""""""""""
+^^^^^^^^^^^^^^
+Alt 1. The package will be checked against conflicts the contributor -> found conflicts -> the package is fixed by the contributor
+
+alt 2. The package will wait to be reviewed by the maintainer -> the maintainer reject the package ->the package will not be updated -> the package is fixed by the contributor
+
+alt 3. After maintenance, maintain any bug and conflicts -> the maintainer continue the maintenance -> the package will be fixed by the contributor and maintainer
 
 Special Requirements
 ^^^^^^^^^^^^^^^^^^^^
+Maintainers:
+Contributor: have decent knowledges in HTML, SQL 
 
 Pre-Conditions
 ^^^^^^^^^^^^^^
+System need an update to increase performance
+Bug, error founded
 
 Post-Conditions
 ^^^^^^^^^^^^^^^
+Minimal Guarantee: Bug, error reduced, maintenance update succesfully with no critical bug
+
+Success Guarantee: BUg, error terminated, maintenance update succesfully
 
 Extension Points
 ^^^^^^^^^^^^^^^^

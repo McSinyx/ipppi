@@ -91,8 +91,8 @@ This use case starts with the user sending a query for his/her desired files in 
 3.A page of the result's package's information appears,showing its name,id,version,description,its shorterned name and a list of its dependencies
 Alternative Flows
 """""""""""""""""
-1.b There will be a limit of results in a page,so the user may have to go to other pages for his/her files.The user goes to another page of the query results.</li>
-2.bIf the query result is 100% simillar to the package name in the database plus the version number, the user will be directed directly to the package's page</li>
+1.b There will be a limit of results in a page,so the user may have to go to other pages for his/her files.The user goes to another page of the query results.
+2.b If the query result is 100% simillar to the package name in the database plus the version number, the user will be directed directly to the package's page
 Special Requirements
 ^^^^^^^^^^^^^^^^^^^^
 1.b If the input is too dissimilar from the name of any input from the package, an error dialog will appear,asking the user to input better

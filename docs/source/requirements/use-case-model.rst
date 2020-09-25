@@ -101,7 +101,7 @@ Register
 Brief Description
 ^^^^^^^^^^^^^^^^^
 | This use case describes how a user creates an account.
-| Actor: Guest
+| Actor: New user/User with no account(Guest)
 
 Flow of Events
 ^^^^^^^^^^^^^^

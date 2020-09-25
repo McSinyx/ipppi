@@ -228,7 +228,9 @@ The Contributor must be logged onto the system before this use case begin.
 Post-Conditions
 ^^^^^^^^^^^^^^^
 
-The new proposal is either dismissed or approved.
+Success: The new proposal is either dismissed or approved.
+
+Failure: The system state is unchanged.
 
 Extension Points
 ^^^^^^^^^^^^^^^^

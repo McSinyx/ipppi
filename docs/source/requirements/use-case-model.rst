@@ -100,12 +100,17 @@ Register
 
 Brief Description
 ^^^^^^^^^^^^^^^^^
+This use case describes how a user creates an account.
+Actor: Guest
 
 Flow of Events
 ^^^^^^^^^^^^^^
+| The use case starts when a system user visits the login page. 
+| If he/she doesn't have an account, he/she can create a new one. 
 
 Basic Flow
 """"""""""
+
 
 Alternative Flows
 """""""""""""""""
@@ -127,6 +132,8 @@ Login
 
 Brief Description
 ^^^^^^^^^^^^^^^^^
+| This use case describes how a user logs into the system.
+ | Actor: User with created account 
 
 Flow of Events
 ^^^^^^^^^^^^^^

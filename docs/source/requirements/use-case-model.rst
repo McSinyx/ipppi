@@ -106,8 +106,10 @@ Basic Flow
 Alternative Flows
 """""""""""""""""
 *There will be a limit of results in a page,so the user may have to go to other pages for his/her files.The user goes to another page of the query results.
+
 *If the query result is 100% simillar to the package name in the database plus the version number, the user will be directed directly to the package's page
 *If the input is too dissimilar from the name of any input from the package, an error dialog will appear,asking the user to input better
+
 
 Special Requirements
 ^^^^^^^^^^^^^^^^^^^^

@@ -6,7 +6,7 @@ Use-Case Model
    actor User
    actor Contributor
    actor Maintainer
-   actor IPFS
+   actor "Distributed File System" as IPFS
 
    usecase Download
    usecase Query

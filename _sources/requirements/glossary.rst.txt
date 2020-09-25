@@ -29,7 +29,7 @@ Glossary
       A Python module which can contain other modules or recursively,
       other packages.
 
-   The InterPlanetary File System (IPFS)
+   InterPlanetary File System (IPFS)
 
       IPFS_ is a protocol and peer-to-peer network for storing and sharing data
       in a distributed file system.  It uses content-addressing

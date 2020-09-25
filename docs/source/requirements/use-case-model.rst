@@ -108,8 +108,8 @@ Actor: New contributor/Contributor with no account (Guest)
 Flow of Events
 ^^^^^^^^^^^^^^
 
-| The use case starts when a contributor visits the login page. 
-| If perse doesn't have an account, perse can create a new one. 
+The use case starts when a contributor visits the login page.
+If perse doesn't have an account, perse can create a new one.
 
 Basic Flow
 """"""""""

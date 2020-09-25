@@ -4,8 +4,6 @@
 # For a full list see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
-from os.path import dirname, join
-
 # Project information
 project = 'ipppi'
 copyright = '2020, Group 11'
@@ -15,9 +13,8 @@ author = 'Group 11'
 # They can be extensions coming with Sphinx (named 'sphinx.ext.*')
 # or your custom ones.
 extensions = ['sphinx.ext.githubpages', 'sphinxcontrib.plantuml']
-plantuml = f"java -jar {join(dirname(__file__), 'plantuml.jar')}"
+plantuml = 'java -jar D:\GitHub\ipppi\docs\plantuml.jar'
 plantuml_output_format = 'svg_img'
-
 # Add any paths that contain templates here, relative to this directory.
 templates_path = []
 

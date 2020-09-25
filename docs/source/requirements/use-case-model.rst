@@ -59,9 +59,9 @@ Basic Flow
 
 1.The system requires that the request fulfilling all both criterias
 
-  *The package
+*The package
   
-  *The package's version
+*The package's version
 
 2.Once the request is successfully sent from the user to the IPFS,it will send the file to the user
 

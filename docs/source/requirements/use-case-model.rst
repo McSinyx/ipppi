@@ -125,8 +125,8 @@ Alternative Flows
 
 * **Cancel Registration**
 
-  * The contributor select the cancel option.
-  * The system returns the contributor to the login page, all information entered is deleted.
+   * The contributor select the cancel option.
+   * The system returns the contributor to the login page, all information entered is deleted.
 
 * **Invalid entered information**
 
@@ -184,7 +184,7 @@ Basic Flow
 Alternative Flows
 """""""""""""""""
 
-* **Wrong username/password**
+* Wrong username/password
    * The system shows why the contributor is not authenticated.
    * The contributor re-enters the information.
    * The Basic Flow continues after the contributor enters the information (From step 2).

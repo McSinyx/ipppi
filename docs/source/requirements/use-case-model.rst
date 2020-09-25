@@ -57,6 +57,7 @@ Basic Flow
 This use case started with the user sending his/her request to download his/her desired package, presumbably after Query use case for searching from the distributed file system.
 
 1. The system requires that the request fulfilling all both criterias
+
 *  The package
 *  The package's version
 

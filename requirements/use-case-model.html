@@ -141,26 +141,53 @@ Update ..&gt; Check : &lt;&lt;include&gt;&gt;
 Update --&gt; IPFS' src="../_images/plantuml-c549b96e42c12ec9e5126e947f853ca9711d7fca.svg"/></p>
 <div class="section" id="download">
 <h2>Download<a class="headerlink" href="#download" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="brief-description">
-<h3>Brief Description<a class="headerlink" href="#brief-description" title="Permalink to this headline">¶</a></h3>
-</div>
+<p>Brief Description
+This use case allows the user to download his/her desired package from the distributed file system
+^^^^^^^^^^^^^^^^^</p>
 <div class="section" id="flow-of-events">
 <h3>Flow of Events<a class="headerlink" href="#flow-of-events" title="Permalink to this headline">¶</a></h3>
+<p>This use case started with the user sending his/her request to download his/her desired package,presumbably after Query use case for searching, from the distributed file system</p>
 <div class="section" id="basic-flow">
 <h4>Basic Flow<a class="headerlink" href="#basic-flow" title="Permalink to this headline">¶</a></h4>
+<p>This use case started with the user sending his/her request to download his/her desired package, presumbably after Query use case for searching from the distributed file system.</p>
+<ol class="arabic simple">
+<li><p>The system requires that the request fulfilling all both criterias</p></li>
+</ol>
+<ul class="simple">
+<li><p>The package</p></li>
+<li><p>The package’s version</p></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p>Once the request is successfully sent from the user to the IPFS,it will send the file to the user</p></li>
+</ol>
 </div>
 <div class="section" id="alternative-flows">
 <h4>Alternative Flows<a class="headerlink" href="#alternative-flows" title="Permalink to this headline">¶</a></h4>
+<p><strong>Full Storage Warning</strong></p>
+<ul class="simple">
+<li><p>Before the download,if the remaining disk storage is not enough for the package downloaded,a warning would be sent. The user has the choice to go ahead or abort the download.</p></li>
+</ul>
+<p><strong>Internet Connection Broken</strong></p>
+<ul class="simple">
+<li><p>If the user’s internet connection is broken during the download,the system will display an error message.The user will have the option to either retry or abort.</p></li>
+</ul>
+<p><strong>Full Storage Error</strong></p>
+<ul class="simple">
+<li><p>If the user’s internet connection is broken during the download,the system will display an error message.The user can either choose to retry or abort.</p></li>
+</ul>
 </div>
 </div>
 <div class="section" id="special-requirements">
 <h3>Special Requirements<a class="headerlink" href="#special-requirements" title="Permalink to this headline">¶</a></h3>
+<p>None</p>
 </div>
 <div class="section" id="pre-conditions">
 <h3>Pre-Conditions<a class="headerlink" href="#pre-conditions" title="Permalink to this headline">¶</a></h3>
+<p>The user has internet connection</p>
 </div>
 <div class="section" id="post-conditions">
 <h3>Post-Conditions<a class="headerlink" href="#post-conditions" title="Permalink to this headline">¶</a></h3>
+<p>The package is successfully downloaded</p>
 </div>
 <div class="section" id="extension-points">
 <h3>Extension Points<a class="headerlink" href="#extension-points" title="Permalink to this headline">¶</a></h3>
@@ -168,44 +195,57 @@ Update --&gt; IPFS' src="../_images/plantuml-c549b96e42c12ec9e5126e947f853ca9711
 </div>
 <div class="section" id="query">
 <h2>Query<a class="headerlink" href="#query" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="brief-description">
+<h3>Brief Description<a class="headerlink" href="#brief-description" title="Permalink to this headline">¶</a></h3>
+<p>This use case allows the user to search for the package in the database of files in IPFS,possibly for the Download Use Case.</p>
+</div>
 <div class="section" id="id1">
-<h3>Brief Description<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-</div>
+<h3>Flow of Events<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>This use case starts with the user sending a query for his/her desired files in the database.</p>
 <div class="section" id="id2">
-<h3>Flow of Events<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<h4>Basic Flow<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<ol class="arabic simple">
+<li><p>A list of search results that are significantly simillar to the input of the user (either matching name,description or dependencies’ name) will appear.</p></li>
+<li><p>The user clicks into a result</p></li>
+<li><p>A page of the result’s package’s information appears,showing its name,id,version,description,its shorterned name and a list of its dependencies</p></li>
+</ol>
+</div>
 <div class="section" id="id3">
-<h4>Basic Flow<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<h4>Alternative Flows<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<p><a href="#id4"><span class="problematic" id="id5">*</span></a>There will be a limit of results in a page,so the user may have to go to other pages for his/her files.The user goes to another page of the query results.</p>
+<p><a href="#id6"><span class="problematic" id="id7">*</span></a>If the query result is 100% simillar to the package name in the database plus the version number, the user will be directed directly to the package’s page</p>
+<p><a href="#id8"><span class="problematic" id="id9">*</span></a>If the input is too dissimilar from the name of any input from the package, an error dialog will appear,asking the user to input better</p>
 </div>
-<div class="section" id="id4">
-<h4>Alternative Flows<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
 </div>
+<div class="section" id="id10">
+<h3>Special Requirements<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<p>None</p>
 </div>
-<div class="section" id="id5">
-<h3>Special Requirements<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id11">
+<h3>Pre-Conditions<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<p>The user has internet connection</p>
 </div>
-<div class="section" id="id6">
-<h3>Pre-Conditions<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id12">
+<h3>Post-Conditions<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<p>The user finds the information of his/her desired package</p>
 </div>
-<div class="section" id="id7">
-<h3>Post-Conditions<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="id8">
-<h3>Extension Points<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id13">
+<h3>Extension Points<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
 <div class="section" id="register">
 <h2>Register<a class="headerlink" href="#register" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id9">
-<h3>Brief Description<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id14">
+<h3>Brief Description<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
 <p>This use case describes how a user creates an account.</p>
 <p>Actor: New contributor/Contributor with no account (Guest)</p>
 </div>
-<div class="section" id="id10">
-<h3>Flow of Events<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id15">
+<h3>Flow of Events<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
 <p>The use case starts when a contributor visits the login page.
 If perse doesn’t have an account, perse can create a new one.</p>
-<div class="section" id="id11">
-<h4>Basic Flow<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id16">
+<h4>Basic Flow<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h4>
 <ol class="arabic simple">
 <li><p>The contributor select the registration option on the login page.</p></li>
 <li><p>The System prompts contributor for registration information: Username, Password, etc</p></li>
@@ -214,8 +254,8 @@ If perse doesn’t have an account, perse can create a new one.</p>
 <li><p>The use case ends.</p></li>
 </ol>
 </div>
-<div class="section" id="id12">
-<h4>Alternative Flows<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id17">
+<h4>Alternative Flows<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p><strong>Cancel Registration</strong></p>
 <ul>
@@ -233,38 +273,38 @@ If perse doesn’t have an account, perse can create a new one.</p>
 </ul>
 </div>
 </div>
-<div class="section" id="id13">
-<h3>Special Requirements<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id18">
+<h3>Special Requirements<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
 <p>No special requirements.</p>
 </div>
-<div class="section" id="id14">
-<h3>Pre-Conditions<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id19">
+<h3>Pre-Conditions<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
 <p>No pre-conditions.</p>
 </div>
-<div class="section" id="id15">
-<h3>Post-Conditions<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id20">
+<h3>Post-Conditions<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><strong>Success</strong>: The contributor now has had his/her own account and can use it to log in.</p></li>
 <li><p><strong>Failure</strong>: The contributor is returned to the home page and continues to be a guest.</p></li>
 </ul>
 </div>
-<div class="section" id="id16">
-<h3>Extension Points<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id21">
+<h3>Extension Points<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
 <p>No extension points.</p>
 </div>
 </div>
 <div class="section" id="login">
 <h2>Login<a class="headerlink" href="#login" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id17">
-<h3>Brief Description<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id22">
+<h3>Brief Description<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
 <p>This use case describes how a contributor logs into the system.</p>
 <p>Actor: Contributor with created account</p>
 </div>
-<div class="section" id="id18">
-<h3>Flow of Events<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id23">
+<h3>Flow of Events<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
 <p>The use case starts when a contributor is not logged in to the system and goes to the login page.</p>
-<div class="section" id="id19">
-<h4>Basic Flow<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id24">
+<h4>Basic Flow<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h4>
 <ol class="arabic simple">
 <li><p>The contributor enters his/her username and password.</p></li>
 <li><p>The system validates the entered username and password.</p></li>
@@ -272,8 +312,8 @@ If perse doesn’t have an account, perse can create a new one.</p>
 <li><p>The use case ends.</p></li>
 </ol>
 </div>
-<div class="section" id="id20">
-<h4>Alternative Flows<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id25">
+<h4>Alternative Flows<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p><strong>Wrong username/password</strong></p>
 <ul>
@@ -285,65 +325,65 @@ If perse doesn’t have an account, perse can create a new one.</p>
 </ul>
 </div>
 </div>
-<div class="section" id="id21">
-<h3>Special Requirements<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id26">
+<h3>Special Requirements<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h3>
 <p>No special requirements.</p>
 </div>
-<div class="section" id="id22">
-<h3>Pre-Conditions<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id27">
+<h3>Pre-Conditions<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h3>
 <p>No pre-conditions.</p>
 </div>
-<div class="section" id="id23">
-<h3>Post-Conditions<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id28">
+<h3>Post-Conditions<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><strong>Success</strong>: The contributor is logged in and is able to to do specific actions.</p></li>
 <li><p><strong>Failure</strong>: The contributor continues to be a guest.</p></li>
 </ul>
 </div>
-<div class="section" id="id24">
-<h3>Extension Points<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id29">
+<h3>Extension Points<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h3>
 <p>No extension points.</p>
 </div>
 </div>
 <div class="section" id="vote-for-new-maintainers">
 <h2>Vote for New Maintainers<a class="headerlink" href="#vote-for-new-maintainers" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id25">
-<h3>Brief Description<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="id26">
-<h3>Flow of Events<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id27">
-<h4>Basic Flow<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h4>
-</div>
-<div class="section" id="id28">
-<h4>Alternative Flows<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h4>
-</div>
-</div>
-<div class="section" id="id29">
-<h3>Special Requirements<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h3>
-</div>
 <div class="section" id="id30">
-<h3>Pre-Conditions<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h3>
+<h3>Brief Description<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="id31">
-<h3>Post-Conditions<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h3>
-</div>
+<h3>Flow of Events<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="id32">
-<h3>Extension Points<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h3>
+<h4>Basic Flow<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="id33">
+<h4>Alternative Flows<a class="headerlink" href="#id33" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="id34">
+<h3>Special Requirements<a class="headerlink" href="#id34" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id35">
+<h3>Pre-Conditions<a class="headerlink" href="#id35" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id36">
+<h3>Post-Conditions<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id37">
+<h3>Extension Points<a class="headerlink" href="#id37" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
 <div class="section" id="propose-package-update">
 <h2>Propose Package Update<a class="headerlink" href="#propose-package-update" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id33">
-<h3>Brief Description<a class="headerlink" href="#id33" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id38">
+<h3>Brief Description<a class="headerlink" href="#id38" title="Permalink to this headline">¶</a></h3>
 <p>The use case allows the Contributor to creat a proposal for update
 one or many distribution packages.  This includes adding, removing
 and upgrading/downgrading them as appropriate by the situation.</p>
 </div>
-<div class="section" id="id34">
-<h3>Flow of Events<a class="headerlink" href="#id34" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id35">
-<h4>Basic Flow<a class="headerlink" href="#id35" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id39">
+<h3>Flow of Events<a class="headerlink" href="#id39" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id40">
+<h4>Basic Flow<a class="headerlink" href="#id40" title="Permalink to this headline">¶</a></h4>
 <p>This use case starts when the Contributor wishes to create
 a <em>Package Update Proposal</em>.</p>
 <ol class="arabic simple">
@@ -360,8 +400,8 @@ within the new set of distributions.</p></li>
 the previous step is repeated.</p></li>
 </ol>
 </div>
-<div class="section" id="id36">
-<h4>Alternative Flows<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id41">
+<h4>Alternative Flows<a class="headerlink" href="#id41" title="Permalink to this headline">¶</a></h4>
 <dl class="simple">
 <dt>Requested Information Unavailable</dt><dd><p>If, in the Basic Flow, no package name is provided, the system will
 display an error message.  The Contributor can choose to either
@@ -370,35 +410,35 @@ cancel the operation or provide at least one package name.</p>
 </dl>
 </div>
 </div>
-<div class="section" id="id37">
-<h3>Special Requirements<a class="headerlink" href="#id37" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id42">
+<h3>Special Requirements<a class="headerlink" href="#id42" title="Permalink to this headline">¶</a></h3>
 <p>None.</p>
 </div>
-<div class="section" id="id38">
-<h3>Pre-Conditions<a class="headerlink" href="#id38" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id43">
+<h3>Pre-Conditions<a class="headerlink" href="#id43" title="Permalink to this headline">¶</a></h3>
 <p>The Contributor must be logged onto the system before this use case begin.</p>
 </div>
-<div class="section" id="id39">
-<h3>Post-Conditions<a class="headerlink" href="#id39" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id44">
+<h3>Post-Conditions<a class="headerlink" href="#id44" title="Permalink to this headline">¶</a></h3>
 <p>Success: The new proposal is either dismissed or approved.</p>
 <p>Failure: The system state is unchanged.</p>
 </div>
-<div class="section" id="id40">
-<h3>Extension Points<a class="headerlink" href="#id40" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id45">
+<h3>Extension Points<a class="headerlink" href="#id45" title="Permalink to this headline">¶</a></h3>
 <p>None.</p>
 </div>
 </div>
 <div class="section" id="check-against-conflicts">
 <h2>Check against Conflicts<a class="headerlink" href="#check-against-conflicts" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id41">
-<h3>Brief Description<a class="headerlink" href="#id41" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id46">
+<h3>Brief Description<a class="headerlink" href="#id46" title="Permalink to this headline">¶</a></h3>
 <p>This use case checks for the compatibility between the packages presuming
 the proposal is accepted.</p>
 </div>
-<div class="section" id="id42">
-<h3>Flow of Events<a class="headerlink" href="#id42" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id43">
-<h4>Basic Flow<a class="headerlink" href="#id43" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id47">
+<h3>Flow of Events<a class="headerlink" href="#id47" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id48">
+<h4>Basic Flow<a class="headerlink" href="#id48" title="Permalink to this headline">¶</a></h4>
 <p>This use case starts when distribution packages are submitted by contributors.</p>
 <ol class="arabic simple">
 <li><p>Check if the requirements of each package if they do not conflict
@@ -406,39 +446,39 @@ with each other.</p></li>
 <li><p>If there exists conflict, report failure, otherwise report success.</p></li>
 </ol>
 </div>
-<div class="section" id="id44">
-<h4>Alternative Flows<a class="headerlink" href="#id44" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id49">
+<h4>Alternative Flows<a class="headerlink" href="#id49" title="Permalink to this headline">¶</a></h4>
 <p>None.</p>
 </div>
 </div>
-<div class="section" id="id45">
-<h3>Special Requirements<a class="headerlink" href="#id45" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id50">
+<h3>Special Requirements<a class="headerlink" href="#id50" title="Permalink to this headline">¶</a></h3>
 <p>None.</p>
 </div>
-<div class="section" id="id46">
-<h3>Pre-Conditions<a class="headerlink" href="#id46" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id51">
+<h3>Pre-Conditions<a class="headerlink" href="#id51" title="Permalink to this headline">¶</a></h3>
 <p>None.</p>
 </div>
-<div class="section" id="id47">
-<h3>Post-Conditions<a class="headerlink" href="#id47" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id52">
+<h3>Post-Conditions<a class="headerlink" href="#id52" title="Permalink to this headline">¶</a></h3>
 <p>None.</p>
 </div>
-<div class="section" id="id48">
-<h3>Extension Points<a class="headerlink" href="#id48" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id53">
+<h3>Extension Points<a class="headerlink" href="#id53" title="Permalink to this headline">¶</a></h3>
 <p>None.</p>
 </div>
 </div>
 <div class="section" id="review-proposal">
 <h2>Review Proposal<a class="headerlink" href="#review-proposal" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id49">
-<h3>Brief Description<a class="headerlink" href="#id49" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id54">
+<h3>Brief Description<a class="headerlink" href="#id54" title="Permalink to this headline">¶</a></h3>
 <p>This use case describes how a Maintainer decides to approve
 or dismiss proposals presuming it has them.</p>
 </div>
-<div class="section" id="id50">
-<h3>Flow of Events<a class="headerlink" href="#id50" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id51">
-<h4>Basic Flow<a class="headerlink" href="#id51" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id55">
+<h3>Flow of Events<a class="headerlink" href="#id55" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id56">
+<h4>Basic Flow<a class="headerlink" href="#id56" title="Permalink to this headline">¶</a></h4>
 <p>Use case starts when a proposal is uploaded.</p>
 <ol class="arabic simple">
 <li><p>Maintainer checks for available proposals.</p></li>
@@ -446,53 +486,53 @@ or dismiss proposals presuming it has them.</p>
 <li><p>System update the database accordingly.</p></li>
 </ol>
 </div>
-<div class="section" id="id52">
-<h4>Alternative Flows<a class="headerlink" href="#id52" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id57">
+<h4>Alternative Flows<a class="headerlink" href="#id57" title="Permalink to this headline">¶</a></h4>
 <p>None.</p>
 </div>
 </div>
-<div class="section" id="id53">
-<h3>Special Requirements<a class="headerlink" href="#id53" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id58">
+<h3>Special Requirements<a class="headerlink" href="#id58" title="Permalink to this headline">¶</a></h3>
 <p>None.</p>
 </div>
-<div class="section" id="id54">
-<h3>Pre-Conditions<a class="headerlink" href="#id54" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id59">
+<h3>Pre-Conditions<a class="headerlink" href="#id59" title="Permalink to this headline">¶</a></h3>
 <p>None.</p>
 </div>
-<div class="section" id="id55">
-<h3>Post-Conditions<a class="headerlink" href="#id55" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id60">
+<h3>Post-Conditions<a class="headerlink" href="#id60" title="Permalink to this headline">¶</a></h3>
 <p>None.</p>
 </div>
-<div class="section" id="id56">
-<h3>Extension Points<a class="headerlink" href="#id56" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id61">
+<h3>Extension Points<a class="headerlink" href="#id61" title="Permalink to this headline">¶</a></h3>
 <p>If the Maintainer approve the proposal, proceed into the Update use case.</p>
 </div>
 </div>
 <div class="section" id="update">
 <h2>Update<a class="headerlink" href="#update" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id57">
-<h3>Brief Description<a class="headerlink" href="#id57" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="id58">
-<h3>Flow of Events<a class="headerlink" href="#id58" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id59">
-<h4>Basic Flow<a class="headerlink" href="#id59" title="Permalink to this headline">¶</a></h4>
-</div>
-<div class="section" id="id60">
-<h4>Alternative Flows<a class="headerlink" href="#id60" title="Permalink to this headline">¶</a></h4>
-</div>
-</div>
-<div class="section" id="id61">
-<h3>Special Requirements<a class="headerlink" href="#id61" title="Permalink to this headline">¶</a></h3>
-</div>
 <div class="section" id="id62">
-<h3>Pre-Conditions<a class="headerlink" href="#id62" title="Permalink to this headline">¶</a></h3>
+<h3>Brief Description<a class="headerlink" href="#id62" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="id63">
-<h3>Post-Conditions<a class="headerlink" href="#id63" title="Permalink to this headline">¶</a></h3>
-</div>
+<h3>Flow of Events<a class="headerlink" href="#id63" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="id64">
-<h3>Extension Points<a class="headerlink" href="#id64" title="Permalink to this headline">¶</a></h3>
+<h4>Basic Flow<a class="headerlink" href="#id64" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="id65">
+<h4>Alternative Flows<a class="headerlink" href="#id65" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="id66">
+<h3>Special Requirements<a class="headerlink" href="#id66" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id67">
+<h3>Pre-Conditions<a class="headerlink" href="#id67" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id68">
+<h3>Post-Conditions<a class="headerlink" href="#id68" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id69">
+<h3>Extension Points<a class="headerlink" href="#id69" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
 </div>
@@ -535,7 +575,6 @@ or dismiss proposals presuming it has them.</p>
           <ul>
 <li><a class="reference internal" href="#">Use-Case Model</a><ul>
 <li><a class="reference internal" href="#download">Download</a><ul>
-<li><a class="reference internal" href="#brief-description">Brief Description</a></li>
 <li><a class="reference internal" href="#flow-of-events">Flow of Events</a><ul>
 <li><a class="reference internal" href="#basic-flow">Basic Flow</a></li>
 <li><a class="reference internal" href="#alternative-flows">Alternative Flows</a></li>
@@ -548,107 +587,107 @@ or dismiss proposals presuming it has them.</p>
 </ul>
 </li>
 <li><a class="reference internal" href="#query">Query</a><ul>
-<li><a class="reference internal" href="#id1">Brief Description</a></li>
-<li><a class="reference internal" href="#id2">Flow of Events</a><ul>
-<li><a class="reference internal" href="#id3">Basic Flow</a></li>
-<li><a class="reference internal" href="#id4">Alternative Flows</a></li>
+<li><a class="reference internal" href="#brief-description">Brief Description</a></li>
+<li><a class="reference internal" href="#id1">Flow of Events</a><ul>
+<li><a class="reference internal" href="#id2">Basic Flow</a></li>
+<li><a class="reference internal" href="#id3">Alternative Flows</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id5">Special Requirements</a></li>
-<li><a class="reference internal" href="#id6">Pre-Conditions</a></li>
-<li><a class="reference internal" href="#id7">Post-Conditions</a></li>
-<li><a class="reference internal" href="#id8">Extension Points</a></li>
+<li><a class="reference internal" href="#id10">Special Requirements</a></li>
+<li><a class="reference internal" href="#id11">Pre-Conditions</a></li>
+<li><a class="reference internal" href="#id12">Post-Conditions</a></li>
+<li><a class="reference internal" href="#id13">Extension Points</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#register">Register</a><ul>
-<li><a class="reference internal" href="#id9">Brief Description</a></li>
-<li><a class="reference internal" href="#id10">Flow of Events</a><ul>
-<li><a class="reference internal" href="#id11">Basic Flow</a></li>
-<li><a class="reference internal" href="#id12">Alternative Flows</a></li>
+<li><a class="reference internal" href="#id14">Brief Description</a></li>
+<li><a class="reference internal" href="#id15">Flow of Events</a><ul>
+<li><a class="reference internal" href="#id16">Basic Flow</a></li>
+<li><a class="reference internal" href="#id17">Alternative Flows</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id13">Special Requirements</a></li>
-<li><a class="reference internal" href="#id14">Pre-Conditions</a></li>
-<li><a class="reference internal" href="#id15">Post-Conditions</a></li>
-<li><a class="reference internal" href="#id16">Extension Points</a></li>
+<li><a class="reference internal" href="#id18">Special Requirements</a></li>
+<li><a class="reference internal" href="#id19">Pre-Conditions</a></li>
+<li><a class="reference internal" href="#id20">Post-Conditions</a></li>
+<li><a class="reference internal" href="#id21">Extension Points</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#login">Login</a><ul>
-<li><a class="reference internal" href="#id17">Brief Description</a></li>
-<li><a class="reference internal" href="#id18">Flow of Events</a><ul>
-<li><a class="reference internal" href="#id19">Basic Flow</a></li>
-<li><a class="reference internal" href="#id20">Alternative Flows</a></li>
+<li><a class="reference internal" href="#id22">Brief Description</a></li>
+<li><a class="reference internal" href="#id23">Flow of Events</a><ul>
+<li><a class="reference internal" href="#id24">Basic Flow</a></li>
+<li><a class="reference internal" href="#id25">Alternative Flows</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id21">Special Requirements</a></li>
-<li><a class="reference internal" href="#id22">Pre-Conditions</a></li>
-<li><a class="reference internal" href="#id23">Post-Conditions</a></li>
-<li><a class="reference internal" href="#id24">Extension Points</a></li>
+<li><a class="reference internal" href="#id26">Special Requirements</a></li>
+<li><a class="reference internal" href="#id27">Pre-Conditions</a></li>
+<li><a class="reference internal" href="#id28">Post-Conditions</a></li>
+<li><a class="reference internal" href="#id29">Extension Points</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#vote-for-new-maintainers">Vote for New Maintainers</a><ul>
-<li><a class="reference internal" href="#id25">Brief Description</a></li>
-<li><a class="reference internal" href="#id26">Flow of Events</a><ul>
-<li><a class="reference internal" href="#id27">Basic Flow</a></li>
-<li><a class="reference internal" href="#id28">Alternative Flows</a></li>
+<li><a class="reference internal" href="#id30">Brief Description</a></li>
+<li><a class="reference internal" href="#id31">Flow of Events</a><ul>
+<li><a class="reference internal" href="#id32">Basic Flow</a></li>
+<li><a class="reference internal" href="#id33">Alternative Flows</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id29">Special Requirements</a></li>
-<li><a class="reference internal" href="#id30">Pre-Conditions</a></li>
-<li><a class="reference internal" href="#id31">Post-Conditions</a></li>
-<li><a class="reference internal" href="#id32">Extension Points</a></li>
+<li><a class="reference internal" href="#id34">Special Requirements</a></li>
+<li><a class="reference internal" href="#id35">Pre-Conditions</a></li>
+<li><a class="reference internal" href="#id36">Post-Conditions</a></li>
+<li><a class="reference internal" href="#id37">Extension Points</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#propose-package-update">Propose Package Update</a><ul>
-<li><a class="reference internal" href="#id33">Brief Description</a></li>
-<li><a class="reference internal" href="#id34">Flow of Events</a><ul>
-<li><a class="reference internal" href="#id35">Basic Flow</a></li>
-<li><a class="reference internal" href="#id36">Alternative Flows</a></li>
+<li><a class="reference internal" href="#id38">Brief Description</a></li>
+<li><a class="reference internal" href="#id39">Flow of Events</a><ul>
+<li><a class="reference internal" href="#id40">Basic Flow</a></li>
+<li><a class="reference internal" href="#id41">Alternative Flows</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id37">Special Requirements</a></li>
-<li><a class="reference internal" href="#id38">Pre-Conditions</a></li>
-<li><a class="reference internal" href="#id39">Post-Conditions</a></li>
-<li><a class="reference internal" href="#id40">Extension Points</a></li>
+<li><a class="reference internal" href="#id42">Special Requirements</a></li>
+<li><a class="reference internal" href="#id43">Pre-Conditions</a></li>
+<li><a class="reference internal" href="#id44">Post-Conditions</a></li>
+<li><a class="reference internal" href="#id45">Extension Points</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#check-against-conflicts">Check against Conflicts</a><ul>
-<li><a class="reference internal" href="#id41">Brief Description</a></li>
-<li><a class="reference internal" href="#id42">Flow of Events</a><ul>
-<li><a class="reference internal" href="#id43">Basic Flow</a></li>
-<li><a class="reference internal" href="#id44">Alternative Flows</a></li>
+<li><a class="reference internal" href="#id46">Brief Description</a></li>
+<li><a class="reference internal" href="#id47">Flow of Events</a><ul>
+<li><a class="reference internal" href="#id48">Basic Flow</a></li>
+<li><a class="reference internal" href="#id49">Alternative Flows</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id45">Special Requirements</a></li>
-<li><a class="reference internal" href="#id46">Pre-Conditions</a></li>
-<li><a class="reference internal" href="#id47">Post-Conditions</a></li>
-<li><a class="reference internal" href="#id48">Extension Points</a></li>
+<li><a class="reference internal" href="#id50">Special Requirements</a></li>
+<li><a class="reference internal" href="#id51">Pre-Conditions</a></li>
+<li><a class="reference internal" href="#id52">Post-Conditions</a></li>
+<li><a class="reference internal" href="#id53">Extension Points</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#review-proposal">Review Proposal</a><ul>
-<li><a class="reference internal" href="#id49">Brief Description</a></li>
-<li><a class="reference internal" href="#id50">Flow of Events</a><ul>
-<li><a class="reference internal" href="#id51">Basic Flow</a></li>
-<li><a class="reference internal" href="#id52">Alternative Flows</a></li>
+<li><a class="reference internal" href="#id54">Brief Description</a></li>
+<li><a class="reference internal" href="#id55">Flow of Events</a><ul>
+<li><a class="reference internal" href="#id56">Basic Flow</a></li>
+<li><a class="reference internal" href="#id57">Alternative Flows</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id53">Special Requirements</a></li>
-<li><a class="reference internal" href="#id54">Pre-Conditions</a></li>
-<li><a class="reference internal" href="#id55">Post-Conditions</a></li>
-<li><a class="reference internal" href="#id56">Extension Points</a></li>
+<li><a class="reference internal" href="#id58">Special Requirements</a></li>
+<li><a class="reference internal" href="#id59">Pre-Conditions</a></li>
+<li><a class="reference internal" href="#id60">Post-Conditions</a></li>
+<li><a class="reference internal" href="#id61">Extension Points</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#update">Update</a><ul>
-<li><a class="reference internal" href="#id57">Brief Description</a></li>
-<li><a class="reference internal" href="#id58">Flow of Events</a><ul>
-<li><a class="reference internal" href="#id59">Basic Flow</a></li>
-<li><a class="reference internal" href="#id60">Alternative Flows</a></li>
+<li><a class="reference internal" href="#id62">Brief Description</a></li>
+<li><a class="reference internal" href="#id63">Flow of Events</a><ul>
+<li><a class="reference internal" href="#id64">Basic Flow</a></li>
+<li><a class="reference internal" href="#id65">Alternative Flows</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id61">Special Requirements</a></li>
-<li><a class="reference internal" href="#id62">Pre-Conditions</a></li>
-<li><a class="reference internal" href="#id63">Post-Conditions</a></li>
-<li><a class="reference internal" href="#id64">Extension Points</a></li>
+<li><a class="reference internal" href="#id66">Special Requirements</a></li>
+<li><a class="reference internal" href="#id67">Pre-Conditions</a></li>
+<li><a class="reference internal" href="#id68">Post-Conditions</a></li>
+<li><a class="reference internal" href="#id69">Extension Points</a></li>
 </ul>
 </li>
 </ul>

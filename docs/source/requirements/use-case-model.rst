@@ -47,7 +47,6 @@ Download
 Brief Description
 ^^^^^^^^^^^^^^^^^
 
-This use case started with the user sending his/her request to download his/her desired package,presumbably after Query use case for searching, from the distributed file system
 
 
 Flow of Events
@@ -56,23 +55,30 @@ Flow of Events
 Basic Flow
 """"""""""
 
+This use case started with the user sending his/her request to download his/her desired package, presumbably after Query use case for searching from the distributed file system.
 
-1.The system requires that the request fulfilling all both criterias
+1. The system requires that the request fulfilling all both criterias
 
 *  The package
   
 *  The package's version
 
-2.Once the request is successfully sent from the user to the IPFS,it will send the file to the user
+2. Once the request is successfully sent from the user to the IPFS,it will send the file to the user
 
 
 Alternative Flows
 """""""""""""""""
+
 **Full Storage Warning**
+
 * Before the download,if the remaining disk storage is not enough for the package downloaded,a warning would be sent. The user has the choice to go ahead or abort the download.
+
 **Internet Connection Broken**
+
 * If the user's internet connection is broken during the download,the system will display an error message.The user will have the option to either retry or abort.
+
 **Full Storage Error**
+
 * User's disk storage is full:If the user's internet connection is broken during the download,the system will display an error message.The user can either choose to retry or abort.
 
 Special Requirements
@@ -99,7 +105,7 @@ Query
 Brief Description
 ^^^^^^^^^^^^^^^^^
 
-This use case allows the user to search for the package in the database of files in IPFS,possibly for the Download Use Case.
+This use case allows the user to search for the package in the database of files in IPFS, possibly for the Download Use Case.
 
 Flow of Events
 ^^^^^^^^^^^^^^
@@ -109,15 +115,16 @@ Basic Flow
 
 This use case starts with the user sending a query for his/her desired files in the database. 
 
-1.A list of search results that are significantly simillar to the input of the user (either matching name,description or dependencies' name) will appear.
+1. A list of search results that are significantly simillar to the input of the user (either matching name,description or dependencies' name) will appear.
 
-2.The user clicks into a result
+2. The user clicks into a result
 
-3.A page of the result's package's information appears,showing its name,id,version,description,its shorterned name and a list of its dependencies
+3. A page of the result's package's information appears,showing its name,id,version,description,its shorterned name and a list of its dependencies
 
 
 Alternative Flows
 """""""""""""""""
+
 **Changing pages**
 
 * There will be a limit of results in a page,so the user may have to go to other pages for his/her files.The user goes to another page of the query results.

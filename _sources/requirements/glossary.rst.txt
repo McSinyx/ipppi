@@ -78,8 +78,9 @@ Glossary
 
    Python Package Index (PyPI)
 
-      PyPI_ is the default :term:`Package Index` for the Python community. It is open to all Python developers to
-      consume and distribute their distributions.
+      PyPI_ is the default :term:`Package Index` for the Python community.
+      It is open to all Python developers to consume and distribute
+      their distributions.
 
    Release
 
@@ -98,7 +99,7 @@ Glossary
       recommended installer, allows various forms of specification
       that can all be considered a *requirement*.
 
-   Source Distribution (or "sdist")
+   Source Distribution (or *sdist*)
 
       A :term:`distribution <Distribution Package>` format (usually generated
       using ``python setup.py sdist``) that provides metadata and the

@@ -66,12 +66,15 @@ This use case started with the user sending his/her request to download his/her 
 Alternative Flows
 """""""""""""""""
 **Full Storage Warning**
+
 * Before the download,if the remaining disk storage is not enough for the package downloaded,a warning would be sent. The user has the choice to go ahead or abort the download.
 
 **Internet Connection Broken**
+
 * If the user's internet connection is broken during the download,the system will display an error message.The user will have the option to either retry or abort.
 
 **Full Storage Error**
+
 * If the user's internet connection is broken during the download,the system will display an error message.The user can either choose to retry or abort.
 
 Special Requirements
@@ -111,8 +114,8 @@ Alternative Flows
 *There will be a limit of results in a page,so the user may have to go to other pages for his/her files.The user goes to another page of the query results.
 
 *If the query result is 100% simillar to the package name in the database plus the version number, the user will be directed directly to the package's page
-*If the input is too dissimilar from the name of any input from the package, an error dialog will appear,asking the user to input better
 
+*If the input is too dissimilar from the name of any input from the package, an error dialog will appear,asking the user to input better
 
 Special Requirements
 ^^^^^^^^^^^^^^^^^^^^

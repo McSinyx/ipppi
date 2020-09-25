@@ -272,26 +272,44 @@ Vote for New Maintainers
 Brief Description
 ^^^^^^^^^^^^^^^^^
 
+The maintainers of the database will vote for new maintainer
+from existing contributors.
+
 Flow of Events
 ^^^^^^^^^^^^^^
 
 Basic Flow
 """"""""""
 
+#. Contributor/Maintainer nominate a Contributor as a new Maintainer.
+#. System notify existing Maintainers for a vote.
+#. Maintainers vote.
+#. System update permission of Contributor to Maintainer if over 50% approved.
+
 Alternative Flows
 """""""""""""""""
+
+None.
 
 Special Requirements
 ^^^^^^^^^^^^^^^^^^^^
 
+None.
+
 Pre-Conditions
 ^^^^^^^^^^^^^^
+
+None.
 
 Post-Conditions
 ^^^^^^^^^^^^^^^
 
+None.
+
 Extension Points
 ^^^^^^^^^^^^^^^^
+
+None.
 
 Propose Package Update
 ----------------------
@@ -452,23 +470,40 @@ Update
 Brief Description
 ^^^^^^^^^^^^^^^^^
 
+This use case describes how an update operate.
+
 Flow of Events
 ^^^^^^^^^^^^^^
 
 Basic Flow
 """"""""""
 
+The use case starts when Maintainer approves a proposal.
+
+#. System checks proposed packages against conflicts.
+#. System add updated distribution packages to IPFS.
+
 Alternative Flows
 """""""""""""""""
+
+If conflicts found, report error and cancel operation.
 
 Special Requirements
 ^^^^^^^^^^^^^^^^^^^^
 
+None.
+
 Pre-Conditions
 ^^^^^^^^^^^^^^
+
+None.
 
 Post-Conditions
 ^^^^^^^^^^^^^^^
 
+None.
+
 Extension Points
 ^^^^^^^^^^^^^^^^
+
+None.

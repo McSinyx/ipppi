@@ -357,27 +357,40 @@ If perse doesn’t have an account, perse can create a new one.</p>
 <h2>Vote for New Maintainers<a class="headerlink" href="#vote-for-new-maintainers" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id25">
 <h3>Brief Description<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h3>
+<p>The maintainers of the database will vote for new maintainer
+from existing contributors.</p>
 </div>
 <div class="section" id="id26">
 <h3>Flow of Events<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="id27">
 <h4>Basic Flow<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h4>
+<ol class="arabic simple">
+<li><p>Contributor/Maintainer nominate a Contributor as a new Maintainer.</p></li>
+<li><p>System notify existing Maintainers for a vote.</p></li>
+<li><p>Maintainers vote.</p></li>
+<li><p>System update permission of Contributor to Maintainer if over 50% approved.</p></li>
+</ol>
 </div>
 <div class="section" id="id28">
 <h4>Alternative Flows<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h4>
+<p>None.</p>
 </div>
 </div>
 <div class="section" id="id29">
 <h3>Special Requirements<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h3>
+<p>None.</p>
 </div>
 <div class="section" id="id30">
 <h3>Pre-Conditions<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h3>
+<p>None.</p>
 </div>
 <div class="section" id="id31">
 <h3>Post-Conditions<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h3>
+<p>None.</p>
 </div>
 <div class="section" id="id32">
 <h3>Extension Points<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h3>
+<p>None.</p>
 </div>
 </div>
 <div class="section" id="propose-package-update">
@@ -520,27 +533,38 @@ or dismiss proposals presuming it has them.</p>
 <h2>Update<a class="headerlink" href="#update" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id57">
 <h3>Brief Description<a class="headerlink" href="#id57" title="Permalink to this headline">¶</a></h3>
+<p>This use case describes how an update operate.</p>
 </div>
 <div class="section" id="id58">
 <h3>Flow of Events<a class="headerlink" href="#id58" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="id59">
 <h4>Basic Flow<a class="headerlink" href="#id59" title="Permalink to this headline">¶</a></h4>
+<p>The use case starts when Maintainer approves a proposal.</p>
+<ol class="arabic simple">
+<li><p>System checks proposed packages against conflicts.</p></li>
+<li><p>System add updated distribution packages to IPFS.</p></li>
+</ol>
 </div>
 <div class="section" id="id60">
 <h4>Alternative Flows<a class="headerlink" href="#id60" title="Permalink to this headline">¶</a></h4>
+<p>If conflicts found, report error and cancel operation.</p>
 </div>
 </div>
 <div class="section" id="id61">
 <h3>Special Requirements<a class="headerlink" href="#id61" title="Permalink to this headline">¶</a></h3>
+<p>None.</p>
 </div>
 <div class="section" id="id62">
 <h3>Pre-Conditions<a class="headerlink" href="#id62" title="Permalink to this headline">¶</a></h3>
+<p>None.</p>
 </div>
 <div class="section" id="id63">
 <h3>Post-Conditions<a class="headerlink" href="#id63" title="Permalink to this headline">¶</a></h3>
+<p>None.</p>
 </div>
 <div class="section" id="id64">
 <h3>Extension Points<a class="headerlink" href="#id64" title="Permalink to this headline">¶</a></h3>
+<p>None.</p>
 </div>
 </div>
 </div>

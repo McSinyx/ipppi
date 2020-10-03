@@ -48,4 +48,4 @@ the candidates will be promoted.
 .. _performance penalties: https://github.com/pypa/pip/issues/8664
 .. _its complexity being NP-Hard: https://medium.com/@nex3/pubgrub-2fb6470504f
 .. _simple project API:
-   https://warehouse.readthedocs.io/api-reference/legacy/#simple-project-api
+   https://warehouse.readthedocs.io/api-reference/legacy.html#simple-project-api

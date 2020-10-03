@@ -3,13 +3,13 @@ Use-Case Model
 
 .. uml::
 
-   actor User
+   actor "End-User" as User
    actor Contributor
    actor Maintainer
    actor "Distributed File System" as IPFS
 
-   usecase Download
-   usecase Query
+   usecase "Download Packages" as Download
+   usecase "Query Packages" as Query
 
    usecase Register
    usecase Login
@@ -18,7 +18,7 @@ Use-Case Model
    usecase "Propose Package Update" as Propose
    usecase "Check against Conflicts" as Check
    usecase "Review Proposal" as Review
-   usecase Update
+   usecase "Update Packages" as Update
 
    User --> Query
    User --> Download
@@ -41,97 +41,90 @@ Use-Case Model
    Update ..> Check : <<include>>
    Update --> IPFS
 
-Download
---------
+Download Packages
+-----------------
 
 Brief Description
 ^^^^^^^^^^^^^^^^^
 
-This use case allows the user to download his/her desired package from the
-distributed file system 
+This use case allows an End-User to download per desired packages
+from the distributed file system.
 
 Flow of Events
 ^^^^^^^^^^^^^^
 
-This use case started with the user sending his/her request to download his/her
-desired package,presumbably after Query use case for searching, from the
-distributed file system
-
 Basic Flow
 """"""""""
 
-This use case started with the user sending his/her request to download his/her desired package, presumbably after Query use case for searching from the distributed file system.
-
-1. The system requires that the request fulfilling all both criterias
-
-   * The package
-   *  The package's version
-
-2. Once the request is successfully sent from the user to the IPFS,it will send the file to the user
+1. The End-User request for a set of packages
+2. The system process the request and redirect to the Distributed File System
+3. The Distributed File System deliver the packages to the End-User
 
 Alternative Flows
 """""""""""""""""
 
-**Full Storage Warning**
-   Before the download,if the remaining disk storage is not enough for the
-   package downloaded,a warning would be sent. The user has the choice to go
-   ahead or abort the download.
+Package Unavailable
+   In step 2, if a requested package is not found in the system's database,
+   the system should response appropriately.
 
-**Internet Connection Broken**
-   If the user's internet connection is broken during the download,the system
-   will display an error message.The user will have the option to either retry
-   or abort.
-
-**Full Storage Error**
-   If the user's internet connection is broken during the download,the system
-   will display an error message.The user can either choose to retry or abort.
+Package Not Pinned
+   In step 2, if a requested package is in the database but takes
+   an indefinite amount of time be found in the distributed file system,
+   the system should send a timeout response to the End-User.
 
 Special Requirements
 ^^^^^^^^^^^^^^^^^^^^
 
-None
+The system must support download through the `simple project API`_.
 
 Pre-Conditions
 ^^^^^^^^^^^^^^
 
-The user has internet connection
+None.
 
 Post-Conditions
 ^^^^^^^^^^^^^^^
 
-The package is successfully downloaded
+The system state is unchanged by this use case.
 
 Extension Points
 ^^^^^^^^^^^^^^^^
 
 None.
 
-Query
------
+Query Packages
+--------------
 
 Brief Description
 ^^^^^^^^^^^^^^^^^
 
-This use case allows the user to search for the package in the database of files in IPFS,possibly for the Download Use Case.
+This use case allows an End-User to search and inspect packages
+within the system's database.
 
 Flow of Events
 ^^^^^^^^^^^^^^
 
-This use case starts with the user sending a query for his/her desired files in the database. 
-
 Basic Flow
 """"""""""
 
-1. A list of search results that are significantly simillar to the input of the user (either matching name,description or dependencies' name) will appear.
-2. The user clicks into a result
-3. A page of the result's package's information appears,showing its name,id,version,description,its shorterned name and a list of its dependencies
+1. The End-User send a search query to the system.
+2. The system convert the query to use it to look up packages in the database.
+3. The system send the End-User the list of matching packages.
+4. The End-User select a package to inspect.
+5. The system responds with the metadata of the package.
 
 Alternative Flows
 """""""""""""""""
 
-* There will be a limit of results in a page,so the user may have to go to other pages for his/her files.The user goes to another page of the query results.
-* If the query result is 100% simillar to the package name in the database plus the version number, the user will be directed directly to the package's page
-* If the input is too dissimilar from the name of any input from the package, an error dialog will appear,asking the user to input better
+Too Many Matches
+   In step 3, if the number of matches exceeds a certain threshold,
+   the system only send a fraction of the list at a time.
+   In the following step, the End-User may choose to either get
+   the next slice of matches or proceed to step 4 in the basic flow.
+
+Zero Match
+   In step 2, if no package in the database matches the provided pattern,
+   the system responses appropriately and the use case ends.
 
 Special Requirements
 ^^^^^^^^^^^^^^^^^^^^
@@ -141,12 +134,12 @@ None.
 Pre-Conditions
 ^^^^^^^^^^^^^^
 
-The user has internet connection.
+None.
 
 Post-Conditions
 ^^^^^^^^^^^^^^^
 
-The user finds the information of his/her desired package.
+The system state is unchanged by this use case.
 
 Extension Points
 ^^^^^^^^^^^^^^^^
@@ -464,13 +457,14 @@ Extension Points
 
 If the Maintainer approve the proposal, proceed into the Update use case.
 
-Update
-------
+Update Packages
+---------------
 
 Brief Description
 ^^^^^^^^^^^^^^^^^
 
-This use case describes how an update operate.
+This use case update the database and the package index
+based on an approved proposal.
 
 Flow of Events
 ^^^^^^^^^^^^^^
@@ -478,15 +472,18 @@ Flow of Events
 Basic Flow
 """"""""""
 
-The use case starts when Maintainer approves a proposal.
+The use case starts when a Maintainer approves a proposal.
 
-#. System checks proposed packages against conflicts.
-#. System add updated distribution packages to IPFS.
+1. The system checks proposed package updates against conflicts.
+2. The system updates packages metadata in the database accordingly.
+3. The system updates distribution packages in the distributed file system.
 
 Alternative Flows
 """""""""""""""""
 
-If conflicts found, report error and cancel operation.
+Update Causes Conflicts
+   In the first step of the basic flow, if the proposed update causes conflicts,
+   the system aborts the operation and the use-case ends.
 
 Special Requirements
 ^^^^^^^^^^^^^^^^^^^^
@@ -496,14 +493,18 @@ None.
 Pre-Conditions
 ^^^^^^^^^^^^^^
 
-None.
+The considered proposal is approved by at least one Maintainer.
 
 Post-Conditions
 ^^^^^^^^^^^^^^^
 
-None.
+If no conflict is found, the database and the distributed file system
+must be updated accordingly.
 
 Extension Points
 ^^^^^^^^^^^^^^^^
 
 None.
+
+.. _simple project API:
+   https://warehouse.readthedocs.io/api-reference/legacy.html#simple-project-api

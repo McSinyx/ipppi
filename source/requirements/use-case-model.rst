@@ -42,6 +42,7 @@ Use-Case Model
    Update ..> Check : <<include>>
    Update --> IPFS
 
+
 Download Packages
 -----------------
 
@@ -92,6 +93,7 @@ Extension Points
 ^^^^^^^^^^^^^^^^
 
 None.
+
 
 Query Packages
 --------------
@@ -146,6 +148,7 @@ Extension Points
 ^^^^^^^^^^^^^^^^
 
 None.
+
 
 Register
 --------
@@ -202,6 +205,7 @@ Extension Points
 
 None.
 
+
 Login
 -----
 
@@ -255,6 +259,7 @@ Extension Points
 
 None.
 
+
 Change Status
 -------------
 
@@ -305,6 +310,7 @@ Extension Points
 
 None.
 
+
 Propose Package Update
 ----------------------
 
@@ -324,25 +330,27 @@ Basic Flow
 This use case starts when the Contributor wishes to create
 a *Package Update Proposal*.
 
-#. The system requests that the Contributor specify
+1. The system requests that the Contributor specify
    the name of packages to be updated.
-#. Once the Contributor selects the package names, the system requests
-   that the Contributor provide the :term:`release <Release>` to be pinned.
-   The Contributor may leave the field blank to remove the package
-   from the index.
-#. The system notify the Maintainer to review the proposal,
-   while at the same time automatically check for conflicts
+2. The Contributor selects the package names.
+3. The system requests the Contributor
+   to provide the :term:`release <Release>` to be pinned.
+4. The Contributor choose the release for each package,
+   or leave the field blank to remove the package from the index.
+5. The system automatically :ref:`check for conflicts <check>`
    within the new set of distributions.
-#. If the Maintainer request changes or the automated check fails,
-   the previous step is repeated.
+6. The system notifies the Maintainers to review the proposal.
 
 Alternative Flows
 """""""""""""""""
 
 Requested Information Unavailable
-   If, in the Basic Flow, no package name is provided, the system will
-   display an error message.  The Contributor can choose to either
-   cancel the operation or provide at least one package name.
+   If, after step 2, no package name is provided, the system will
+   report an error.  The Contributor can choose to either cancel the operation
+   or provide at least one package name.
+
+Failed Checks
+   In step 5, if the automated check fails, go back to step 3.
 
 Special Requirements
 ^^^^^^^^^^^^^^^^^^^^
@@ -357,14 +365,15 @@ The Contributor must be logged onto the system before this use case begin.
 Post-Conditions
 ^^^^^^^^^^^^^^^
 
-Success: The new proposal is either dismissed or approved.
-
-Failure: The system state is unchanged.
+The system state is unchanged.
 
 Extension Points
 ^^^^^^^^^^^^^^^^
 
 None.
+
+
+.. _check:
 
 Check against Conflicts
 -----------------------
@@ -373,7 +382,7 @@ Brief Description
 ^^^^^^^^^^^^^^^^^
 
 This use case checks for the compatibility between the packages presuming
-the proposal is accepted.
+a proposal is accepted.
 
 Flow of Events
 ^^^^^^^^^^^^^^
@@ -381,11 +390,12 @@ Flow of Events
 Basic Flow
 """"""""""
 
-This use case starts when distribution packages are submitted by contributors.
+This use case starts when a proposal is submitted by a Contributor
+or approved by a Maintainer.
 
-#. Check if the requirements of each package if they do not conflict
-   with each other.
-#. If there exists conflict, report failure, otherwise report success.
+#. Check the requirements of each package
+   if they do not conflict with each other.
+#. Report the result accordingly.
 
 Alternative Flows
 """""""""""""""""
@@ -411,6 +421,7 @@ Extension Points
 ^^^^^^^^^^^^^^^^
 
 None.
+
 
 Review Proposal
 ---------------
@@ -429,9 +440,9 @@ Basic Flow
 
 Use case starts when a proposal is uploaded.
 
-#. Maintainer checks for available proposals.
-#. Maintainer decide whether to dismiss or approve the proposal.
-#. System update the database accordingly.
+1. The Maintainer checks for available proposals.
+2. The Maintainer decides whether to dismiss or approve the proposal.
+3. The System updates the database accordingly.
 
 Alternative Flows
 """""""""""""""""
@@ -446,17 +457,21 @@ None.
 Pre-Conditions
 ^^^^^^^^^^^^^^
 
-None.
+The Maintainer must be logged onto the system before this use case begins.
 
 Post-Conditions
 ^^^^^^^^^^^^^^^
 
-None.
+The proposal database is updated according to the Maintainer's review.
 
 Extension Points
 ^^^^^^^^^^^^^^^^
 
-If the Maintainer approve the proposal, proceed into the Update use case.
+If the Maintainer approves the proposal,
+proceed into the :ref:`Update <update>` use case.
+
+
+.. _update:
 
 Update Packages
 ---------------

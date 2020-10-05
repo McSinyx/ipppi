@@ -19,7 +19,8 @@ functional requirements that are common across a number of use cases.
 References
 ----------
 
-None.
+:pep:`503`
+   Simple Repository API
 
 Functionality
 -------------
@@ -29,9 +30,9 @@ None.
 Usability
 ---------
 
-The package index to be provided to end-users should behave analogous to PyPI.
-Package installers like ``pip`` should have no problem using an index provided
-by our project.
+The package index to be provided to end-users should behave analogous to PyPI
+and support the `simple project API`_.  Package installers like ``pip``
+should have no problem using an index provided by our project.
 
 Reliability
 -----------
@@ -73,3 +74,6 @@ Design Constraints
 
 The system shall integrate with the distributed file system IPFS to serve
 package distributions.
+
+.. _simple project API:
+   https://warehouse.readthedocs.io/api-reference/legacy.html#simple-project-api

@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="prev" title="Supplementary Specification" href="supplementary-specification.html" />
 
-    <meta name="generator" content="sphinx-3.2.1, furo 2020.09.28.beta8"/>
+    <meta name="generator" content="sphinx-3.2.1, furo 2020.10.05.beta9"/>
         <title>Use-Case Model - ipppi  documentation</title>
-      <link rel="stylesheet" href="../_static/styles/default.css">
-    <link rel="stylesheet" href="../_static/pygments.css">
+      <link rel="stylesheet" href="../_static/styles/default.css?4c5c80e773d223f1b91e18f8">
+    <link rel="stylesheet" href="../_static/pygments.css?4c5c80e773d223f1b91e18f8">
     
 <style>
   :root {
@@ -21,7 +21,7 @@
         <script src="../_static/doctools.js" defer></script>
       
         <script src="../_static/language_data.js" defer></script>
-      <script src="../_static/scripts/main.js"></script></head>
+      <script src="../_static/scripts/main.js?4c5c80e773d223f1b91e18f8"></script></head>
   <body dir="">
     
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -104,126 +104,122 @@
         <div class="section" id="use-case-model">
 <h1>Use-Case Model<a class="headerlink" href="#use-case-model" title="Permalink to this headline">¶</a></h1>
 <p class="plantuml">
-<img alt='actor User
+<img alt='left to right direction
+
+actor "End-User" as User
 actor Contributor
 actor Maintainer
 actor "Distributed File System" as IPFS
 
-usecase Download
-usecase Query
+usecase "Download Packages" as Download
+usecase "Query Packages" as Query
 
 usecase Register
 usecase Login
-usecase "Vote for New Maintainers" as Vote
+usecase "Change Status" as Change
 
 usecase "Propose Package Update" as Propose
 usecase "Check against Conflicts" as Check
 usecase "Review Proposal" as Review
-usecase Update
+usecase "Update Packages" as Update
 
 User --&gt; Query
 User --&gt; Download
 Download --&gt; IPFS
 
-Maintainer --&gt; Vote
-Vote ..&gt; Login : &lt;&lt;include&gt;&gt;
-
-Maintainer --|&gt; Contributor
 Contributor --&gt; Register
+Contributor --&gt; Login
 
 Contributor --&gt; Propose
-Propose ..&gt; Login : &lt;&lt;include&gt;&gt;
 Propose ..&gt; Check : &lt;&lt;include&gt;&gt;
 
+Contributor --&gt; Change
+Change -- Maintainer
+
+Maintainer --|&gt; Contributor
 Maintainer --&gt; Review
-Review ..&gt; Login : &lt;&lt;include&gt;&gt;
 
 Update ..&gt; Review : &lt;&lt;extend&gt;&gt;
 Update ..&gt; Check : &lt;&lt;include&gt;&gt;
-Update --&gt; IPFS' src="../_images/plantuml-c549b96e42c12ec9e5126e947f853ca9711d7fca.svg"/></p>
-<div class="section" id="download">
-<h2>Download<a class="headerlink" href="#download" title="Permalink to this headline">¶</a></h2>
+Update --&gt; IPFS' src="../_images/plantuml-4febd4bc12fd3ab03820f35c70a7f1235dc1080a.svg"/></p>
+<div class="section" id="download-packages">
+<h2>Download Packages<a class="headerlink" href="#download-packages" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="brief-description">
 <h3>Brief Description<a class="headerlink" href="#brief-description" title="Permalink to this headline">¶</a></h3>
-<p>This use case allows the user to download his/her desired package from the
-distributed file system</p>
+<p>This use case allows an End-User to download per desired packages
+from the distributed file system.</p>
 </div>
 <div class="section" id="flow-of-events">
 <h3>Flow of Events<a class="headerlink" href="#flow-of-events" title="Permalink to this headline">¶</a></h3>
-<p>This use case started with the user sending his/her request to download his/her
-desired package,presumbably after Query use case for searching, from the
-distributed file system</p>
 <div class="section" id="basic-flow">
 <h4>Basic Flow<a class="headerlink" href="#basic-flow" title="Permalink to this headline">¶</a></h4>
-<p>This use case started with the user sending his/her request to download his/her desired package, presumbably after Query use case for searching from the distributed file system.</p>
 <ol class="arabic simple">
-<li><p>The system requires that the request fulfilling all both criterias</p>
-<ul class="simple">
-<li><p>The package</p></li>
-<li><p>The package’s version</p></li>
-</ul>
-</li>
-<li><p>Once the request is successfully sent from the user to the IPFS,it will send the file to the user</p></li>
+<li><p>The End-User request for a set of packages</p></li>
+<li><p>The system process the request and redirect to the Distributed File System</p></li>
+<li><p>The Distributed File System deliver the packages to the End-User</p></li>
 </ol>
 </div>
 <div class="section" id="alternative-flows">
 <h4>Alternative Flows<a class="headerlink" href="#alternative-flows" title="Permalink to this headline">¶</a></h4>
 <dl class="simple">
-<dt><strong>Full Storage Warning</strong></dt><dd><p>Before the download,if the remaining disk storage is not enough for the
-package downloaded,a warning would be sent. The user has the choice to go
-ahead or abort the download.</p>
+<dt>Package Unavailable</dt><dd><p>In step 2, if a requested package is not found in the system’s database,
+the system should response appropriately.</p>
 </dd>
-<dt><strong>Internet Connection Broken</strong></dt><dd><p>If the user’s internet connection is broken during the download,the system
-will display an error message.The user will have the option to either retry
-or abort.</p>
-</dd>
-<dt><strong>Full Storage Error</strong></dt><dd><p>If the user’s internet connection is broken during the download,the system
-will display an error message.The user can either choose to retry or abort.</p>
+<dt>Package Not Pinned</dt><dd><p>In step 2, if a requested package is in the database but takes
+an indefinite amount of time be found in the distributed file system,
+the system should send a timeout response to the End-User.</p>
 </dd>
 </dl>
 </div>
 </div>
 <div class="section" id="special-requirements">
 <h3>Special Requirements<a class="headerlink" href="#special-requirements" title="Permalink to this headline">¶</a></h3>
-<p>None</p>
+<p>The system must support download through the <a class="reference external" href="https://warehouse.readthedocs.io/api-reference/legacy.html#simple-project-api">simple project API</a>.</p>
 </div>
 <div class="section" id="pre-conditions">
 <h3>Pre-Conditions<a class="headerlink" href="#pre-conditions" title="Permalink to this headline">¶</a></h3>
-<p>The user has internet connection</p>
+<p>None.</p>
 </div>
 <div class="section" id="post-conditions">
 <h3>Post-Conditions<a class="headerlink" href="#post-conditions" title="Permalink to this headline">¶</a></h3>
-<p>The package is successfully downloaded</p>
+<p>The system state is unchanged by this use case.</p>
 </div>
 <div class="section" id="extension-points">
 <h3>Extension Points<a class="headerlink" href="#extension-points" title="Permalink to this headline">¶</a></h3>
 <p>None.</p>
 </div>
 </div>
-<div class="section" id="query">
-<h2>Query<a class="headerlink" href="#query" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="query-packages">
+<h2>Query Packages<a class="headerlink" href="#query-packages" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id1">
 <h3>Brief Description<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<p>This use case allows the user to search for the package in the database of files in IPFS,possibly for the Download Use Case.</p>
+<p>This use case allows an End-User to search and inspect packages
+within the system’s database.</p>
 </div>
 <div class="section" id="id2">
 <h3>Flow of Events<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
-<p>This use case starts with the user sending a query for his/her desired files in the database.</p>
 <div class="section" id="id3">
 <h4>Basic Flow<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
 <ol class="arabic simple">
-<li><p>A list of search results that are significantly simillar to the input of the user (either matching name,description or dependencies’ name) will appear.</p></li>
-<li><p>The user clicks into a result</p></li>
-<li><p>A page of the result’s package’s information appears,showing its name,id,version,description,its shorterned name and a list of its dependencies</p></li>
+<li><p>The End-User send a search query to the system.</p></li>
+<li><p>The system convert the query to use it to look up packages in the database.</p></li>
+<li><p>The system send the End-User the list of matching packages.</p></li>
+<li><p>The End-User select a package to inspect.</p></li>
+<li><p>The system responds with the metadata of the package.</p></li>
 </ol>
 </div>
 <div class="section" id="id4">
 <h4>Alternative Flows<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
-<ul class="simple">
-<li><p>There will be a limit of results in a page,so the user may have to go to other pages for his/her files.The user goes to another page of the query results.</p></li>
-<li><p>If the query result is 100% simillar to the package name in the database plus the version number, the user will be directed directly to the package’s page</p></li>
-<li><p>If the input is too dissimilar from the name of any input from the package, an error dialog will appear,asking the user to input better</p></li>
-</ul>
+<dl class="simple">
+<dt>Too Many Matches</dt><dd><p>In step 3, if the number of matches exceeds a certain threshold,
+the system only send a fraction of the list at a time.
+In the following step, the End-User may choose to either get
+the next slice of matches or proceed to step 4 in the basic flow.</p>
+</dd>
+<dt>Zero Match</dt><dd><p>In step 2, if no package in the database matches the provided pattern,
+the system responses appropriately and the use case ends.</p>
+</dd>
+</dl>
 </div>
 </div>
 <div class="section" id="id5">
@@ -232,11 +228,11 @@ will display an error message.The user can either choose to retry or abort.</p>
 </div>
 <div class="section" id="id6">
 <h3>Pre-Conditions<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
-<p>The user has internet connection.</p>
+<p>None.</p>
 </div>
 <div class="section" id="id7">
 <h3>Post-Conditions<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
-<p>The user finds the information of his/her desired package.</p>
+<p>The system state is unchanged by this use case.</p>
 </div>
 <div class="section" id="id8">
 <h3>Extension Points<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
@@ -247,135 +243,128 @@ will display an error message.The user can either choose to retry or abort.</p>
 <h2>Register<a class="headerlink" href="#register" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id9">
 <h3>Brief Description<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
-<p>This use case describes how a user creates an account.</p>
-<p>Actor: New contributor/Contributor with no account (Guest)</p>
+<p>This use case lets a Contributor create an account.</p>
 </div>
 <div class="section" id="id10">
 <h3>Flow of Events<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
-<p>The use case starts when a contributor visits the login page.
-If perse doesn’t have an account, perse can create a new one.</p>
 <div class="section" id="id11">
 <h4>Basic Flow<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h4>
+<p>The use case starts when a Contributor tries to login but does not have an account
+and wishes to create a new one.</p>
 <ol class="arabic simple">
-<li><p>The contributor select the registration option on the login page.</p></li>
-<li><p>The System prompts contributor for registration information: Username, Password, etc</p></li>
-<li><p>The contributor enters the information.</p></li>
-<li><p>System verifies information and creates account.</p></li>
-<li><p>The use case ends.</p></li>
+<li><p>The Contributor chooses to create a new account.</p></li>
+<li><p>The system prompts for authentication information.</p></li>
+<li><p>The Contributor enters the requested information.</p></li>
+<li><p>The system verifies information.</p></li>
+<li><p>The system creates an account accordingly.</p></li>
 </ol>
 </div>
 <div class="section" id="id12">
 <h4>Alternative Flows<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h4>
-<ul class="simple">
-<li><p><strong>Cancel Registration</strong></p>
-<ul>
-<li><p>The contributor select the cancel option.</p></li>
-<li><p>The system returns the contributor to the login page, all information entered is deleted.</p></li>
-</ul>
-</li>
-<li><p><strong>Invalid entered information</strong></p>
-<ul>
-<li><p>Contributor finishes the registration form.</p></li>
-<li><p>The system checks and shows the invalid information</p></li>
-<li><p>Contributor re-enters the invalid information.</p></li>
-</ul>
-</li>
-</ul>
+<dl class="simple">
+<dt>Registration Cancelled</dt><dd><p>In step 3, if the Contributor chooses to cancel the registration instead,
+the use case ends.</p>
+</dd>
+<dt>Invalid Entered Information</dt><dd><p>In step 4, if the information is invalid, the system reports error
+and goes back to step 2.</p>
+</dd>
+</dl>
 </div>
 </div>
 <div class="section" id="id13">
 <h3>Special Requirements<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
-<p>No special requirements.</p>
+<p>None.</p>
 </div>
 <div class="section" id="id14">
 <h3>Pre-Conditions<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
-<p>No pre-conditions.</p>
+<p>None.</p>
 </div>
 <div class="section" id="id15">
 <h3>Post-Conditions<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><p><strong>Success</strong>: The contributor now has had his/her own account and can use it to log in.</p></li>
-<li><p><strong>Failure</strong>: The contributor is returned to the home page and continues to be a guest.</p></li>
-</ul>
+<p>If registration was cancelled, the system state is unchanged by this use case.
+Otherwise a new account is added to the authentication database.</p>
 </div>
 <div class="section" id="id16">
 <h3>Extension Points<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
-<p>No extension points.</p>
+<p>None.</p>
 </div>
 </div>
 <div class="section" id="login">
 <h2>Login<a class="headerlink" href="#login" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id17">
 <h3>Brief Description<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
-<p>This use case describes how a contributor logs into the system.</p>
-<p>Actor: Contributor with created account</p>
+<p>This use case authenticates a Contributor to allow per
+to access functions modifying the system’s database.</p>
 </div>
 <div class="section" id="id18">
 <h3>Flow of Events<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
-<p>The use case starts when a contributor is not logged in to the system and goes to the login page.</p>
 <div class="section" id="id19">
 <h4>Basic Flow<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h4>
+<p>The use case starts when a Contributor wishes to login
+to perform actions that requires authentication.</p>
 <ol class="arabic simple">
-<li><p>The contributor enters his/her username and password.</p></li>
-<li><p>The system validates the entered username and password.</p></li>
-<li><p>The contributor is signed in and returned to the home page as a Logged In Contributor.</p></li>
-<li><p>The use case ends.</p></li>
+<li><p>The system prompt for authentication information.</p></li>
+<li><p>The Contributor enters per authentication information.</p></li>
+<li><p>The system validates the entered authentication information.</p></li>
+<li><p>The system temporary logs the Contributor in.</p></li>
 </ol>
 </div>
 <div class="section" id="id20">
 <h4>Alternative Flows<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h4>
-<ul class="simple">
-<li><p><strong>Wrong username/password</strong></p>
-<ul>
-<li><p>The system shows why the contributor is not authenticated.</p></li>
-<li><p>The contributor re-enters the information.</p></li>
-<li><p>The Basic Flow continues after the contributor enters the information (From step 2).</p></li>
-</ul>
-</li>
-</ul>
+<dl class="simple">
+<dt>Invalid Authentication Information</dt><dd><p>After step 3, if the authentication information is invalid,
+the system reports error.  The Contributor can choose to either
+cancel the operation or go back to step 1.</p>
+</dd>
+</dl>
 </div>
 </div>
 <div class="section" id="id21">
 <h3>Special Requirements<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
-<p>No special requirements.</p>
+<p>To avoid <a class="reference external" href="https://en.wikipedia.org/wiki/Brute-force_attack">brute-force attacks</a>,
+there should be timeouts upon invalid authentication requests.</p>
 </div>
 <div class="section" id="id22">
 <h3>Pre-Conditions<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
-<p>No pre-conditions.</p>
+<p>The Contributor must not be logged onto the system before this use case begins.</p>
 </div>
 <div class="section" id="id23">
 <h3>Post-Conditions<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><p><strong>Success</strong>: The contributor is logged in and is able to to do specific actions.</p></li>
-<li><p><strong>Failure</strong>: The contributor continues to be a guest.</p></li>
-</ul>
+<p>If login was cancelled, the system state is unchanged by this use case.
+Otherwise the Contributor is now logged into the system.</p>
 </div>
 <div class="section" id="id24">
 <h3>Extension Points<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h3>
-<p>No extension points.</p>
+<p>None.</p>
 </div>
 </div>
-<div class="section" id="vote-for-new-maintainers">
-<h2>Vote for New Maintainers<a class="headerlink" href="#vote-for-new-maintainers" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="change-status">
+<h2>Change Status<a class="headerlink" href="#change-status" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id25">
 <h3>Brief Description<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h3>
-<p>The maintainers of the database will vote for new maintainer
-from existing contributors.</p>
+<p>This use case democratically turns a Contributor into a Maintainer.</p>
 </div>
 <div class="section" id="id26">
 <h3>Flow of Events<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="id27">
 <h4>Basic Flow<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h4>
 <ol class="arabic simple">
-<li><p>Contributor/Maintainer nominate a Contributor as a new Maintainer.</p></li>
-<li><p>System notify existing Maintainers for a vote.</p></li>
-<li><p>Maintainers vote.</p></li>
-<li><p>System update permission of Contributor to Maintainer if over 50% approved.</p></li>
+<li><p>A Contributor request a change of status.</p></li>
+<li><p>The system notifies existing Maintainers about the request.</p></li>
+<li><p>At least one Maintainer advocates for the self-promoted Contributor.</p></li>
+<li><p>The system keeps the application pending for a period of time
+for potential objections.</p></li>
+<li><p>The system promotes the Contributor to a Maintainer.</p></li>
 </ol>
 </div>
 <div class="section" id="id28">
 <h4>Alternative Flows<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h4>
-<p>None.</p>
+<dl class="simple">
+<dt>Objected Request</dt><dd><p>In step 4, any objection from any Contributor will be notified
+to Maintainers.  If at the end of the pending period, all objections
+are not resolved/dismissed, the use case ends.</p>
+</dd>
+</dl>
 </div>
 </div>
 <div class="section" id="id29">
@@ -384,11 +373,12 @@ from existing contributors.</p>
 </div>
 <div class="section" id="id30">
 <h3>Pre-Conditions<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h3>
-<p>None.</p>
+<p>Participating Contributors and Maintainers must be logged in.</p>
 </div>
 <div class="section" id="id31">
 <h3>Post-Conditions<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h3>
-<p>None.</p>
+<p>If at the end of the pending period no objection remains, the account
+of the self-promoted Contributor is changed into type Maintainer.</p>
 </div>
 <div class="section" id="id32">
 <h3>Extension Points<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h3>
@@ -412,23 +402,24 @@ a <em>Package Update Proposal</em>.</p>
 <ol class="arabic simple">
 <li><p>The system requests that the Contributor specify
 the name of packages to be updated.</p></li>
-<li><p>Once the Contributor selects the package names, the system requests
-that the Contributor provide the <a class="reference internal" href="glossary.html#term-Release"><span class="xref std std-term">release</span></a> to be pinned.
-The Contributor may leave the field blank to remove the package
-from the index.</p></li>
-<li><p>The system notify the Maintainer to review the proposal,
-while at the same time automatically check for conflicts
+<li><p>The Contributor selects the package names.</p></li>
+<li><p>The system requests the Contributor
+to provide the <a class="reference internal" href="glossary.html#term-Release"><span class="xref std std-term">release</span></a> to be pinned.</p></li>
+<li><p>The Contributor choose the release for each package,
+or leave the field blank to remove the package from the index.</p></li>
+<li><p>The system automatically <a class="reference internal" href="#check"><span class="std std-ref">check for conflicts</span></a>
 within the new set of distributions.</p></li>
-<li><p>If the Maintainer request changes or the automated check fails,
-the previous step is repeated.</p></li>
+<li><p>The system notifies the Maintainers to review the proposal.</p></li>
 </ol>
 </div>
 <div class="section" id="id36">
 <h4>Alternative Flows<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h4>
 <dl class="simple">
-<dt>Requested Information Unavailable</dt><dd><p>If, in the Basic Flow, no package name is provided, the system will
-display an error message.  The Contributor can choose to either
-cancel the operation or provide at least one package name.</p>
+<dt>Requested Information Unavailable</dt><dd><p>If, after step 2, no package name is provided, the system will
+report an error.  The Contributor can choose to either cancel the operation
+or provide at least one package name.</p>
+</dd>
+<dt>Failed Checks</dt><dd><p>In step 5, if the automated check fails, go back to step 3.</p>
 </dd>
 </dl>
 </div>
@@ -443,8 +434,7 @@ cancel the operation or provide at least one package name.</p>
 </div>
 <div class="section" id="id39">
 <h3>Post-Conditions<a class="headerlink" href="#id39" title="Permalink to this headline">¶</a></h3>
-<p>Success: The new proposal is either dismissed or approved.</p>
-<p>Failure: The system state is unchanged.</p>
+<p>The system state is unchanged.</p>
 </div>
 <div class="section" id="id40">
 <h3>Extension Points<a class="headerlink" href="#id40" title="Permalink to this headline">¶</a></h3>
@@ -452,21 +442,22 @@ cancel the operation or provide at least one package name.</p>
 </div>
 </div>
 <div class="section" id="check-against-conflicts">
-<h2>Check against Conflicts<a class="headerlink" href="#check-against-conflicts" title="Permalink to this headline">¶</a></h2>
+<span id="check"></span><h2>Check against Conflicts<a class="headerlink" href="#check-against-conflicts" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id41">
 <h3>Brief Description<a class="headerlink" href="#id41" title="Permalink to this headline">¶</a></h3>
 <p>This use case checks for the compatibility between the packages presuming
-the proposal is accepted.</p>
+a proposal is accepted.</p>
 </div>
 <div class="section" id="id42">
 <h3>Flow of Events<a class="headerlink" href="#id42" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="id43">
 <h4>Basic Flow<a class="headerlink" href="#id43" title="Permalink to this headline">¶</a></h4>
-<p>This use case starts when distribution packages are submitted by contributors.</p>
+<p>This use case starts when a proposal is submitted by a Contributor
+or approved by a Maintainer.</p>
 <ol class="arabic simple">
-<li><p>Check if the requirements of each package if they do not conflict
-with each other.</p></li>
-<li><p>If there exists conflict, report failure, otherwise report success.</p></li>
+<li><p>Check the requirements of each package
+if they do not conflict with each other.</p></li>
+<li><p>Report the result accordingly.</p></li>
 </ol>
 </div>
 <div class="section" id="id44">
@@ -504,9 +495,9 @@ or dismiss proposals presuming it has them.</p>
 <h4>Basic Flow<a class="headerlink" href="#id51" title="Permalink to this headline">¶</a></h4>
 <p>Use case starts when a proposal is uploaded.</p>
 <ol class="arabic simple">
-<li><p>Maintainer checks for available proposals.</p></li>
-<li><p>Maintainer decide whether to dismiss or approve the proposal.</p></li>
-<li><p>System update the database accordingly.</p></li>
+<li><p>The Maintainer checks for available proposals.</p></li>
+<li><p>The Maintainer decides whether to dismiss or approve the proposal.</p></li>
+<li><p>The System updates the database accordingly.</p></li>
 </ol>
 </div>
 <div class="section" id="id52">
@@ -520,36 +511,43 @@ or dismiss proposals presuming it has them.</p>
 </div>
 <div class="section" id="id54">
 <h3>Pre-Conditions<a class="headerlink" href="#id54" title="Permalink to this headline">¶</a></h3>
-<p>None.</p>
+<p>The Maintainer must be logged onto the system before this use case begins.</p>
 </div>
 <div class="section" id="id55">
 <h3>Post-Conditions<a class="headerlink" href="#id55" title="Permalink to this headline">¶</a></h3>
-<p>None.</p>
+<p>The proposal database is updated according to the Maintainer’s review.</p>
 </div>
 <div class="section" id="id56">
 <h3>Extension Points<a class="headerlink" href="#id56" title="Permalink to this headline">¶</a></h3>
-<p>If the Maintainer approve the proposal, proceed into the Update use case.</p>
+<p>If the Maintainer approves the proposal,
+proceed into the <a class="reference internal" href="#update"><span class="std std-ref">Update</span></a> use case.</p>
 </div>
 </div>
-<div class="section" id="update">
-<h2>Update<a class="headerlink" href="#update" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="update-packages">
+<span id="update"></span><h2>Update Packages<a class="headerlink" href="#update-packages" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id57">
 <h3>Brief Description<a class="headerlink" href="#id57" title="Permalink to this headline">¶</a></h3>
-<p>This use case describes how an update operate.</p>
+<p>This use case update the database and the package index
+based on an approved proposal.</p>
 </div>
 <div class="section" id="id58">
 <h3>Flow of Events<a class="headerlink" href="#id58" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="id59">
 <h4>Basic Flow<a class="headerlink" href="#id59" title="Permalink to this headline">¶</a></h4>
-<p>The use case starts when Maintainer approves a proposal.</p>
+<p>The use case starts when a Maintainer approves a proposal.</p>
 <ol class="arabic simple">
-<li><p>System checks proposed packages against conflicts.</p></li>
-<li><p>System add updated distribution packages to IPFS.</p></li>
+<li><p>The system checks proposed package updates against conflicts.</p></li>
+<li><p>The system updates packages metadata in the database accordingly.</p></li>
+<li><p>The system updates distribution packages in the distributed file system.</p></li>
 </ol>
 </div>
 <div class="section" id="id60">
 <h4>Alternative Flows<a class="headerlink" href="#id60" title="Permalink to this headline">¶</a></h4>
-<p>If conflicts found, report error and cancel operation.</p>
+<dl class="simple">
+<dt>Update Causes Conflicts</dt><dd><p>In the first step of the basic flow, if the proposed update causes conflicts,
+the system aborts the operation and the use-case ends.</p>
+</dd>
+</dl>
 </div>
 </div>
 <div class="section" id="id61">
@@ -558,11 +556,12 @@ or dismiss proposals presuming it has them.</p>
 </div>
 <div class="section" id="id62">
 <h3>Pre-Conditions<a class="headerlink" href="#id62" title="Permalink to this headline">¶</a></h3>
-<p>None.</p>
+<p>The considered proposal is approved by at least one Maintainer.</p>
 </div>
 <div class="section" id="id63">
 <h3>Post-Conditions<a class="headerlink" href="#id63" title="Permalink to this headline">¶</a></h3>
-<p>None.</p>
+<p>If no conflict is found, the database and the distributed file system
+must be updated accordingly.</p>
 </div>
 <div class="section" id="id64">
 <h3>Extension Points<a class="headerlink" href="#id64" title="Permalink to this headline">¶</a></h3>
@@ -610,7 +609,7 @@ or dismiss proposals presuming it has them.</p>
         <div class="toc-tree">
           <ul>
 <li><a class="reference internal" href="#">Use-Case Model</a><ul>
-<li><a class="reference internal" href="#download">Download</a><ul>
+<li><a class="reference internal" href="#download-packages">Download Packages</a><ul>
 <li><a class="reference internal" href="#brief-description">Brief Description</a></li>
 <li><a class="reference internal" href="#flow-of-events">Flow of Events</a><ul>
 <li><a class="reference internal" href="#basic-flow">Basic Flow</a></li>
@@ -623,7 +622,7 @@ or dismiss proposals presuming it has them.</p>
 <li><a class="reference internal" href="#extension-points">Extension Points</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#query">Query</a><ul>
+<li><a class="reference internal" href="#query-packages">Query Packages</a><ul>
 <li><a class="reference internal" href="#id1">Brief Description</a></li>
 <li><a class="reference internal" href="#id2">Flow of Events</a><ul>
 <li><a class="reference internal" href="#id3">Basic Flow</a></li>
@@ -662,7 +661,7 @@ or dismiss proposals presuming it has them.</p>
 <li><a class="reference internal" href="#id24">Extension Points</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#vote-for-new-maintainers">Vote for New Maintainers</a><ul>
+<li><a class="reference internal" href="#change-status">Change Status</a><ul>
 <li><a class="reference internal" href="#id25">Brief Description</a></li>
 <li><a class="reference internal" href="#id26">Flow of Events</a><ul>
 <li><a class="reference internal" href="#id27">Basic Flow</a></li>
@@ -714,7 +713,7 @@ or dismiss proposals presuming it has them.</p>
 <li><a class="reference internal" href="#id56">Extension Points</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#update">Update</a><ul>
+<li><a class="reference internal" href="#update-packages">Update Packages</a><ul>
 <li><a class="reference internal" href="#id57">Brief Description</a></li>
 <li><a class="reference internal" href="#id58">Flow of Events</a><ul>
 <li><a class="reference internal" href="#id59">Basic Flow</a></li>

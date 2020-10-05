@@ -3,135 +3,131 @@ Use-Case Model
 
 .. uml::
 
-   actor User
+   left to right direction
+
+   actor "End-User" as User
    actor Contributor
    actor Maintainer
    actor "Distributed File System" as IPFS
 
-   usecase Download
-   usecase Query
+   usecase "Download Packages" as Download
+   usecase "Query Packages" as Query
 
    usecase Register
    usecase Login
-   usecase "Vote for New Maintainers" as Vote
+   usecase "Change Status" as Change
 
    usecase "Propose Package Update" as Propose
    usecase "Check against Conflicts" as Check
    usecase "Review Proposal" as Review
-   usecase Update
+   usecase "Update Packages" as Update
 
    User --> Query
    User --> Download
    Download --> IPFS
 
-   Maintainer --> Vote
-   Vote ..> Login : <<include>>
-
-   Maintainer --|> Contributor
    Contributor --> Register
+   Contributor --> Login
 
    Contributor --> Propose
-   Propose ..> Login : <<include>>
    Propose ..> Check : <<include>>
 
+   Contributor --> Change
+   Change -- Maintainer
+
+   Maintainer --|> Contributor
    Maintainer --> Review
-   Review ..> Login : <<include>>
 
    Update ..> Review : <<extend>>
    Update ..> Check : <<include>>
    Update --> IPFS
 
-Download
---------
+
+Download Packages
+-----------------
 
 Brief Description
 ^^^^^^^^^^^^^^^^^
 
-This use case allows the user to download his/her desired package from the
-distributed file system 
+This use case allows an End-User to download per desired packages
+from the distributed file system.
 
 Flow of Events
 ^^^^^^^^^^^^^^
 
-This use case started with the user sending his/her request to download his/her
-desired package,presumbably after Query use case for searching, from the
-distributed file system
-
 Basic Flow
 """"""""""
 
-This use case started with the user sending his/her request to download his/her desired package, presumbably after Query use case for searching from the distributed file system.
-
-1. The system requires that the request fulfilling all both criterias
-
-   * The package
-   *  The package's version
-
-2. Once the request is successfully sent from the user to the IPFS,it will send the file to the user
+1. The End-User request for a set of packages
+2. The system process the request and redirect to the Distributed File System
+3. The Distributed File System deliver the packages to the End-User
 
 Alternative Flows
 """""""""""""""""
 
-**Full Storage Warning**
-   Before the download,if the remaining disk storage is not enough for the
-   package downloaded,a warning would be sent. The user has the choice to go
-   ahead or abort the download.
+Package Unavailable
+   In step 2, if a requested package is not found in the system's database,
+   the system should response appropriately.
 
-**Internet Connection Broken**
-   If the user's internet connection is broken during the download,the system
-   will display an error message.The user will have the option to either retry
-   or abort.
-
-**Full Storage Error**
-   If the user's internet connection is broken during the download,the system
-   will display an error message.The user can either choose to retry or abort.
+Package Not Pinned
+   In step 2, if a requested package is in the database but takes
+   an indefinite amount of time be found in the distributed file system,
+   the system should send a timeout response to the End-User.
 
 Special Requirements
 ^^^^^^^^^^^^^^^^^^^^
 
-None
+The system must support download through the `simple project API`_.
 
 Pre-Conditions
 ^^^^^^^^^^^^^^
 
-The user has internet connection
+None.
 
 Post-Conditions
 ^^^^^^^^^^^^^^^
 
-The package is successfully downloaded
+The system state is unchanged by this use case.
 
 Extension Points
 ^^^^^^^^^^^^^^^^
 
 None.
 
-Query
------
+
+Query Packages
+--------------
 
 Brief Description
 ^^^^^^^^^^^^^^^^^
 
-This use case allows the user to search for the package in the database of files in IPFS,possibly for the Download Use Case.
+This use case allows an End-User to search and inspect packages
+within the system's database.
 
 Flow of Events
 ^^^^^^^^^^^^^^
 
-This use case starts with the user sending a query for his/her desired files in the database. 
-
 Basic Flow
 """"""""""
 
-1. A list of search results that are significantly simillar to the input of the user (either matching name,description or dependencies' name) will appear.
-2. The user clicks into a result
-3. A page of the result's package's information appears,showing its name,id,version,description,its shorterned name and a list of its dependencies
+1. The End-User send a search query to the system.
+2. The system convert the query to use it to look up packages in the database.
+3. The system send the End-User the list of matching packages.
+4. The End-User select a package to inspect.
+5. The system responds with the metadata of the package.
 
 Alternative Flows
 """""""""""""""""
 
-* There will be a limit of results in a page,so the user may have to go to other pages for his/her files.The user goes to another page of the query results.
-* If the query result is 100% simillar to the package name in the database plus the version number, the user will be directed directly to the package's page
-* If the input is too dissimilar from the name of any input from the package, an error dialog will appear,asking the user to input better
+Too Many Matches
+   In step 3, if the number of matches exceeds a certain threshold,
+   the system only send a fraction of the list at a time.
+   In the following step, the End-User may choose to either get
+   the next slice of matches or proceed to step 4 in the basic flow.
+
+Zero Match
+   In step 2, if no package in the database matches the provided pattern,
+   the system responses appropriately and the use case ends.
 
 Special Requirements
 ^^^^^^^^^^^^^^^^^^^^
@@ -141,17 +137,18 @@ None.
 Pre-Conditions
 ^^^^^^^^^^^^^^
 
-The user has internet connection.
+None.
 
 Post-Conditions
 ^^^^^^^^^^^^^^^
 
-The user finds the information of his/her desired package.
+The system state is unchanged by this use case.
 
 Extension Points
 ^^^^^^^^^^^^^^^^
 
 None.
+
 
 Register
 --------
@@ -159,59 +156,55 @@ Register
 Brief Description
 ^^^^^^^^^^^^^^^^^
 
-This use case describes how a user creates an account.
-
-Actor: New contributor/Contributor with no account (Guest)
+This use case lets a Contributor create an account.
 
 Flow of Events
 ^^^^^^^^^^^^^^
 
-The use case starts when a contributor visits the login page.
-If perse doesn't have an account, perse can create a new one.
-
 Basic Flow
 """"""""""
 
-1. The contributor select the registration option on the login page.
-2. The System prompts contributor for registration information: Username, Password, etc
-3. The contributor enters the information.
-4. System verifies information and creates account.
-5. The use case ends.
+The use case starts when a Contributor tries to login but does not have an account
+and wishes to create a new one.
+
+1. The Contributor chooses to create a new account.
+2. The system prompts for authentication information.
+3. The Contributor enters the requested information.
+4. The system verifies information.
+5. The system creates an account accordingly.
 
 Alternative Flows
 """""""""""""""""
 
-* **Cancel Registration**
+Registration Cancelled
+   In step 3, if the Contributor chooses to cancel the registration instead,
+   the use case ends.
 
-  * The contributor select the cancel option.
-  * The system returns the contributor to the login page, all information entered is deleted.
-
-* **Invalid entered information**
-
-  * Contributor finishes the registration form.
-  * The system checks and shows the invalid information
-  * Contributor re-enters the invalid information.
+Invalid Entered Information
+   In step 4, if the information is invalid, the system reports error
+   and goes back to step 2.
 
 Special Requirements
 ^^^^^^^^^^^^^^^^^^^^
 
-No special requirements.
+None.
 
 Pre-Conditions
 ^^^^^^^^^^^^^^
 
-No pre-conditions.
+None.
 
 Post-Conditions
 ^^^^^^^^^^^^^^^
 
-* **Success**: The contributor now has had his/her own account and can use it to log in.
-* **Failure**: The contributor is returned to the home page and continues to be a guest.
+If registration was cancelled, the system state is unchanged by this use case.
+Otherwise a new account is added to the authentication database.
 
 Extension Points
 ^^^^^^^^^^^^^^^^
 
-No extension points.
+None.
+
 
 Login
 -----
@@ -219,61 +212,61 @@ Login
 Brief Description
 ^^^^^^^^^^^^^^^^^
 
-This use case describes how a contributor logs into the system.
-
-Actor: Contributor with created account 
+This use case authenticates a Contributor to allow per
+to access functions modifying the system's database.
 
 Flow of Events
 ^^^^^^^^^^^^^^
 
-The use case starts when a contributor is not logged in to the system and goes to the login page. 
-
 Basic Flow
 """"""""""
 
-1. The contributor enters his/her username and password.
-2. The system validates the entered username and password.
-3. The contributor is signed in and returned to the home page as a Logged In Contributor.
-4. The use case ends.
+The use case starts when a Contributor wishes to login
+to perform actions that requires authentication.
+
+1. The system prompt for authentication information.
+2. The Contributor enters per authentication information.
+3. The system validates the entered authentication information.
+4. The system temporary logs the Contributor in.
 
 Alternative Flows
 """""""""""""""""
 
-* **Wrong username/password**
-
-  * The system shows why the contributor is not authenticated.
-  * The contributor re-enters the information.
-  * The Basic Flow continues after the contributor enters the information (From step 2).
+Invalid Authentication Information
+   After step 3, if the authentication information is invalid,
+   the system reports error.  The Contributor can choose to either
+   cancel the operation or go back to step 1.
 
 Special Requirements
 ^^^^^^^^^^^^^^^^^^^^
 
-No special requirements.
+To avoid `brute-force attacks`_,
+there should be timeouts upon invalid authentication requests.
 
 Pre-Conditions
 ^^^^^^^^^^^^^^
 
-No pre-conditions.
+The Contributor must not be logged onto the system before this use case begins.
 
 Post-Conditions
 ^^^^^^^^^^^^^^^
 
-* **Success**: The contributor is logged in and is able to to do specific actions.
-* **Failure**: The contributor continues to be a guest.
+If login was cancelled, the system state is unchanged by this use case.
+Otherwise the Contributor is now logged into the system.
 
 Extension Points
 ^^^^^^^^^^^^^^^^
 
-No extension points.
+None.
 
-Vote for New Maintainers
-------------------------
+
+Change Status
+-------------
 
 Brief Description
 ^^^^^^^^^^^^^^^^^
 
-The maintainers of the database will vote for new maintainer
-from existing contributors.
+This use case democratically turns a Contributor into a Maintainer.
 
 Flow of Events
 ^^^^^^^^^^^^^^
@@ -281,15 +274,20 @@ Flow of Events
 Basic Flow
 """"""""""
 
-#. Contributor/Maintainer nominate a Contributor as a new Maintainer.
-#. System notify existing Maintainers for a vote.
-#. Maintainers vote.
-#. System update permission of Contributor to Maintainer if over 50% approved.
+1. A Contributor request a change of status.
+2. The system notifies existing Maintainers about the request.
+3. At least one Maintainer advocates for the self-promoted Contributor.
+4. The system keeps the application pending for a period of time
+   for potential objections.
+5. The system promotes the Contributor to a Maintainer.
 
 Alternative Flows
 """""""""""""""""
 
-None.
+Objected Request
+   In step 4, any objection from any Contributor will be notified
+   to Maintainers.  If at the end of the pending period, all objections
+   are not resolved/dismissed, the use case ends.
 
 Special Requirements
 ^^^^^^^^^^^^^^^^^^^^
@@ -299,17 +297,19 @@ None.
 Pre-Conditions
 ^^^^^^^^^^^^^^
 
-None.
+Participating Contributors and Maintainers must be logged in.
 
 Post-Conditions
 ^^^^^^^^^^^^^^^
 
-None.
+If at the end of the pending period no objection remains, the account
+of the self-promoted Contributor is changed into type Maintainer.
 
 Extension Points
 ^^^^^^^^^^^^^^^^
 
 None.
+
 
 Propose Package Update
 ----------------------
@@ -330,25 +330,27 @@ Basic Flow
 This use case starts when the Contributor wishes to create
 a *Package Update Proposal*.
 
-#. The system requests that the Contributor specify
+1. The system requests that the Contributor specify
    the name of packages to be updated.
-#. Once the Contributor selects the package names, the system requests
-   that the Contributor provide the :term:`release <Release>` to be pinned.
-   The Contributor may leave the field blank to remove the package
-   from the index.
-#. The system notify the Maintainer to review the proposal,
-   while at the same time automatically check for conflicts
+2. The Contributor selects the package names.
+3. The system requests the Contributor
+   to provide the :term:`release <Release>` to be pinned.
+4. The Contributor choose the release for each package,
+   or leave the field blank to remove the package from the index.
+5. The system automatically :ref:`check for conflicts <check>`
    within the new set of distributions.
-#. If the Maintainer request changes or the automated check fails,
-   the previous step is repeated.
+6. The system notifies the Maintainers to review the proposal.
 
 Alternative Flows
 """""""""""""""""
 
 Requested Information Unavailable
-   If, in the Basic Flow, no package name is provided, the system will
-   display an error message.  The Contributor can choose to either
-   cancel the operation or provide at least one package name.
+   If, after step 2, no package name is provided, the system will
+   report an error.  The Contributor can choose to either cancel the operation
+   or provide at least one package name.
+
+Failed Checks
+   In step 5, if the automated check fails, go back to step 3.
 
 Special Requirements
 ^^^^^^^^^^^^^^^^^^^^
@@ -363,14 +365,15 @@ The Contributor must be logged onto the system before this use case begin.
 Post-Conditions
 ^^^^^^^^^^^^^^^
 
-Success: The new proposal is either dismissed or approved.
-
-Failure: The system state is unchanged.
+The system state is unchanged.
 
 Extension Points
 ^^^^^^^^^^^^^^^^
 
 None.
+
+
+.. _check:
 
 Check against Conflicts
 -----------------------
@@ -379,7 +382,7 @@ Brief Description
 ^^^^^^^^^^^^^^^^^
 
 This use case checks for the compatibility between the packages presuming
-the proposal is accepted.
+a proposal is accepted.
 
 Flow of Events
 ^^^^^^^^^^^^^^
@@ -387,11 +390,12 @@ Flow of Events
 Basic Flow
 """"""""""
 
-This use case starts when distribution packages are submitted by contributors.
+This use case starts when a proposal is submitted by a Contributor
+or approved by a Maintainer.
 
-#. Check if the requirements of each package if they do not conflict
-   with each other.
-#. If there exists conflict, report failure, otherwise report success.
+#. Check the requirements of each package
+   if they do not conflict with each other.
+#. Report the result accordingly.
 
 Alternative Flows
 """""""""""""""""
@@ -417,6 +421,7 @@ Extension Points
 ^^^^^^^^^^^^^^^^
 
 None.
+
 
 Review Proposal
 ---------------
@@ -435,9 +440,9 @@ Basic Flow
 
 Use case starts when a proposal is uploaded.
 
-#. Maintainer checks for available proposals.
-#. Maintainer decide whether to dismiss or approve the proposal.
-#. System update the database accordingly.
+1. The Maintainer checks for available proposals.
+2. The Maintainer decides whether to dismiss or approve the proposal.
+3. The System updates the database accordingly.
 
 Alternative Flows
 """""""""""""""""
@@ -452,25 +457,30 @@ None.
 Pre-Conditions
 ^^^^^^^^^^^^^^
 
-None.
+The Maintainer must be logged onto the system before this use case begins.
 
 Post-Conditions
 ^^^^^^^^^^^^^^^
 
-None.
+The proposal database is updated according to the Maintainer's review.
 
 Extension Points
 ^^^^^^^^^^^^^^^^
 
-If the Maintainer approve the proposal, proceed into the Update use case.
+If the Maintainer approves the proposal,
+proceed into the :ref:`Update <update>` use case.
 
-Update
-------
+
+.. _update:
+
+Update Packages
+---------------
 
 Brief Description
 ^^^^^^^^^^^^^^^^^
 
-This use case describes how an update operate.
+This use case update the database and the package index
+based on an approved proposal.
 
 Flow of Events
 ^^^^^^^^^^^^^^
@@ -478,15 +488,18 @@ Flow of Events
 Basic Flow
 """"""""""
 
-The use case starts when Maintainer approves a proposal.
+The use case starts when a Maintainer approves a proposal.
 
-#. System checks proposed packages against conflicts.
-#. System add updated distribution packages to IPFS.
+1. The system checks proposed package updates against conflicts.
+2. The system updates packages metadata in the database accordingly.
+3. The system updates distribution packages in the distributed file system.
 
 Alternative Flows
 """""""""""""""""
 
-If conflicts found, report error and cancel operation.
+Update Causes Conflicts
+   In the first step of the basic flow, if the proposed update causes conflicts,
+   the system aborts the operation and the use-case ends.
 
 Special Requirements
 ^^^^^^^^^^^^^^^^^^^^
@@ -496,14 +509,19 @@ None.
 Pre-Conditions
 ^^^^^^^^^^^^^^
 
-None.
+The considered proposal is approved by at least one Maintainer.
 
 Post-Conditions
 ^^^^^^^^^^^^^^^
 
-None.
+If no conflict is found, the database and the distributed file system
+must be updated accordingly.
 
 Extension Points
 ^^^^^^^^^^^^^^^^
 
 None.
+
+.. _simple project API:
+   https://warehouse.readthedocs.io/api-reference/legacy.html#simple-project-api
+.. _brute-force attacks: https://en.wikipedia.org/wiki/Brute-force_attack

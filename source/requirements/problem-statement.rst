@@ -39,13 +39,16 @@ a login system will need to be employed.  Contributors will be able
 to submit new proposals and maintainers will have the authority to approve
 or dismiss them.  Maintainers will have the ability to upload proposals as well.
 
-New maintainers can be elected from the list of existing contributors.
-Contributors will be able to nominate (or self-nominate) candidates
-for new maintainers, but only maintainers can vote whether or not
-the candidates will be promoted.
+Contributors will be able to apply to be a maintainer become one
+if endorsed by existing maintainers.  The process should be simple
+and democratic, somewhere in between the Debian `New Maintainer`_
+and `New Member`_ process.
 
 .. _pip: https://pip.pypa.io
 .. _performance penalties: https://github.com/pypa/pip/issues/8664
 .. _its complexity being NP-Hard: https://medium.com/@nex3/pubgrub-2fb6470504f
 .. _simple project API:
    https://warehouse.readthedocs.io/api-reference/legacy.html#simple-project-api
+.. _New Maintainer:
+   https://wiki.debian.org/DebianMaintainer#Becoming_a_Debian_Maintainer
+.. _New Member: https://wiki.debian.org/DebianDeveloper/JoinTheProject/NewMember

@@ -3,6 +3,8 @@ Use-Case Model
 
 .. uml::
 
+   left to right direction
+
    actor "End-User" as User
    actor Contributor
    actor Maintainer
@@ -13,7 +15,7 @@ Use-Case Model
 
    usecase Register
    usecase Login
-   usecase "Vote for New Maintainers" as Vote
+   usecase "Change Status" as Change
 
    usecase "Propose Package Update" as Propose
    usecase "Check against Conflicts" as Check
@@ -24,18 +26,17 @@ Use-Case Model
    User --> Download
    Download --> IPFS
 
-   Maintainer --> Vote
-   Vote ..> Login : <<include>>
-
-   Maintainer --|> Contributor
    Contributor --> Register
+   Contributor --> Login
 
    Contributor --> Propose
-   Propose ..> Login : <<include>>
    Propose ..> Check : <<include>>
 
+   Contributor --> Change
+   Change -- Maintainer
+
+   Maintainer --|> Contributor
    Maintainer --> Review
-   Review ..> Login : <<include>>
 
    Update ..> Review : <<extend>>
    Update ..> Check : <<include>>
@@ -152,59 +153,54 @@ Register
 Brief Description
 ^^^^^^^^^^^^^^^^^
 
-This use case describes how a user creates an account.
-
-Actor: New contributor/Contributor with no account (Guest)
+This use case lets a Contributor create an account.
 
 Flow of Events
 ^^^^^^^^^^^^^^
 
-The use case starts when a contributor visits the login page.
-If perse doesn't have an account, perse can create a new one.
-
 Basic Flow
 """"""""""
 
-1. The contributor select the registration option on the login page.
-2. The System prompts contributor for registration information: Username, Password, etc
-3. The contributor enters the information.
-4. System verifies information and creates account.
-5. The use case ends.
+The use case starts when a Contributor tries to login but does not have an account
+and wishes to create a new one.
+
+1. The Contributor chooses to create a new account.
+2. The system prompts for authentication information.
+3. The Contributor enters the requested information.
+4. The system verifies information.
+5. The system creates an account accordingly.
 
 Alternative Flows
 """""""""""""""""
 
-* **Cancel Registration**
+Registration Cancelled
+   In step 3, if the Contributor chooses to cancel the registration instead,
+   the use case ends.
 
-  * The contributor select the cancel option.
-  * The system returns the contributor to the login page, all information entered is deleted.
-
-* **Invalid entered information**
-
-  * Contributor finishes the registration form.
-  * The system checks and shows the invalid information
-  * Contributor re-enters the invalid information.
+Invalid Entered Information
+   In step 4, if the information is invalid, the system reports error
+   and goes back to step 2.
 
 Special Requirements
 ^^^^^^^^^^^^^^^^^^^^
 
-No special requirements.
+None.
 
 Pre-Conditions
 ^^^^^^^^^^^^^^
 
-No pre-conditions.
+None.
 
 Post-Conditions
 ^^^^^^^^^^^^^^^
 
-* **Success**: The contributor now has had his/her own account and can use it to log in.
-* **Failure**: The contributor is returned to the home page and continues to be a guest.
+If registration was cancelled, the system state is unchanged by this use case.
+Otherwise a new account is added to the authentication database.
 
 Extension Points
 ^^^^^^^^^^^^^^^^
 
-No extension points.
+None.
 
 Login
 -----
@@ -212,61 +208,60 @@ Login
 Brief Description
 ^^^^^^^^^^^^^^^^^
 
-This use case describes how a contributor logs into the system.
-
-Actor: Contributor with created account 
+This use case authenticates a Contributor to allow per
+to access functions modifying the system's database.
 
 Flow of Events
 ^^^^^^^^^^^^^^
 
-The use case starts when a contributor is not logged in to the system and goes to the login page. 
-
 Basic Flow
 """"""""""
 
-1. The contributor enters his/her username and password.
-2. The system validates the entered username and password.
-3. The contributor is signed in and returned to the home page as a Logged In Contributor.
-4. The use case ends.
+The use case starts when a Contributor wishes to login
+to perform actions that requires authentication.
+
+1. The system prompt for authentication information.
+2. The Contributor enters per authentication information.
+3. The system validates the entered authentication information.
+4. The system temporary logs the Contributor in.
 
 Alternative Flows
 """""""""""""""""
 
-* **Wrong username/password**
-
-  * The system shows why the contributor is not authenticated.
-  * The contributor re-enters the information.
-  * The Basic Flow continues after the contributor enters the information (From step 2).
+Invalid Authentication Information
+   After step 3, if the authentication information is invalid,
+   the system reports error.  The Contributor can choose to either
+   cancel the operation or go back to step 1.
 
 Special Requirements
 ^^^^^^^^^^^^^^^^^^^^
 
-No special requirements.
+To avoid `brute-force attacks`_,
+there should be timeouts upon invalid authentication requests.
 
 Pre-Conditions
 ^^^^^^^^^^^^^^
 
-No pre-conditions.
+The Contributor must not be logged onto the system before this use case begins.
 
 Post-Conditions
 ^^^^^^^^^^^^^^^
 
-* **Success**: The contributor is logged in and is able to to do specific actions.
-* **Failure**: The contributor continues to be a guest.
+If login was cancelled, the system state is unchanged by this use case.
+Otherwise the Contributor is now logged into the system.
 
 Extension Points
 ^^^^^^^^^^^^^^^^
 
-No extension points.
+None.
 
-Vote for New Maintainers
-------------------------
+Change Status
+-------------
 
 Brief Description
 ^^^^^^^^^^^^^^^^^
 
-The maintainers of the database will vote for new maintainer
-from existing contributors.
+This use case democratically turns a Contributor into a Maintainer.
 
 Flow of Events
 ^^^^^^^^^^^^^^
@@ -274,15 +269,20 @@ Flow of Events
 Basic Flow
 """"""""""
 
-#. Contributor/Maintainer nominate a Contributor as a new Maintainer.
-#. System notify existing Maintainers for a vote.
-#. Maintainers vote.
-#. System update permission of Contributor to Maintainer if over 50% approved.
+1. A Contributor request a change of status.
+2. The system notifies existing Maintainers about the request.
+3. At least one Maintainer advocates for the self-promoted Contributor.
+4. The system keeps the application pending for a period of time
+   for potential objections.
+5. The system promotes the Contributor to a Maintainer.
 
 Alternative Flows
 """""""""""""""""
 
-None.
+Objected Request
+   In step 4, any objection from any Contributor will be notified
+   to Maintainers.  If at the end of the pending period, all objections
+   are not resolved/dismissed, the use case ends.
 
 Special Requirements
 ^^^^^^^^^^^^^^^^^^^^
@@ -292,12 +292,13 @@ None.
 Pre-Conditions
 ^^^^^^^^^^^^^^
 
-None.
+Participating Contributors and Maintainers must be logged in.
 
 Post-Conditions
 ^^^^^^^^^^^^^^^
 
-None.
+If at the end of the pending period no objection remains, the account
+of the self-promoted Contributor is changed into type Maintainer.
 
 Extension Points
 ^^^^^^^^^^^^^^^^
@@ -508,3 +509,4 @@ None.
 
 .. _simple project API:
    https://warehouse.readthedocs.io/api-reference/legacy.html#simple-project-api
+.. _brute-force attacks: https://en.wikipedia.org/wiki/Brute-force_attack

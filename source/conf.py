@@ -15,8 +15,8 @@ author = 'Group 11'
 # They can be extensions coming with Sphinx (named 'sphinx.ext.*')
 # or your custom ones.
 extensions = ['sphinx.ext.githubpages', 'sphinxcontrib.plantuml']
-plantuml = f"java -jar {join(dirname(__file__), 'plantuml.jar')}"
 plantuml_output_format = 'svg_img'
+plantuml_latex_output_format = 'pdf'
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = []
@@ -34,3 +34,9 @@ html_theme = 'furo'
 # static files, so a file named "default.css" will overwrite the builtin
 # "default.css".
 html_static_path = []
+
+# Options for LaTeX
+latex_elements = {
+    'papersize': 'a4paper', 'pointsize': '12pt',
+    'fontpkg': r'\usepackage{lmodern}',
+    'preamble': r'\usepackage{titlesec}\newcommand{\sectionbreak}{\clearpage}'}

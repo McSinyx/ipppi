@@ -1,6 +1,53 @@
 Use-Case Analysis
 =================
 
+Register
+----------------------
+
+Interaction Diagrams
+^^^^^^^^^^^^^^^^^^^^
+
+Basic Flow
+""""""""""
+
+.. uml::
+
+   actor Contributor
+   boundary "Login Page" as LP
+   control "Registration Controller" as RC
+   entity Database
+   boundary "Main Page" as MP
+
+   activate Contributor
+   Contributor -> LP : 1: request register
+
+   activate LP
+   LP -> LP : 2: prompt registration field
+   activate LP
+   Contributor -> LP : 3: register(input)
+
+   LP -> RC : 4: request input verification
+   activate RC
+   RC -> Database : 5: verify input
+   activate Database
+   Database --> RC : 6: return verification result
+   RC -> Database : 7: add new account 
+   deactivate Database
+   deactivate RC
+
+   deactivate LP
+   LP -> MP : redirect
+   activate MP
+   deactivate MP
+   deactivate LP
+   deactivate Contributor
+
+View of Participating Classes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. uml::
+
+
 Propose Package Update
 ----------------------
 
@@ -62,50 +109,4 @@ View of Participating Classes
    ProposalController "1" -- "1" MetadataSystem
    ProposalController "1" -- "1" NotificationSystem
 
-Register
-----------------------
 
-Interaction Diagrams
-^^^^^^^^^^^^^^^^^^^^
-
-Basic Flow
-""""""""""
-
-.. uml::
-
-   actor Contributor
-   boundary "Login Page" as LP
-   control "Registration Controller" as RC
-   entity Database
-   boundary "Main Page" as MP
-
-   activate Contributor
-   Contributor -> LP : 1: register
-
-   activate LP
-   LP -> LP : 2: prompt registration field
-   activate LP
-   Contributor -> LP : 3: enters the requested information
-
-   LP -> RC : 4: request verification
-   activate RC
-   RC -> Database : 5: verify information
-   activate Database
-   Database --> RC : 6: verification result
-   RC -> Database : 7: add new account 
-   deactivate Database
-   deactivate RC
-
-   deactivate LP
-   LP -> MP : redirection
-   activate MP
-   deactivate MP
-   deactivate LP
-   deactivate Contributor
-
-View of Participating Classes
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. uml::
-
-   

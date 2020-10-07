@@ -80,7 +80,7 @@ Basic Flow
    boundary "Main Page" as MP
 
    activate Contributor
-   Contributor -> LP : 1: choose to register
+   Contributor -> LP : 1: register
 
    activate LP
    LP -> LP : 2: prompt registration field

@@ -125,3 +125,67 @@ View of Participating Classes
    ProposalForm "0..*" -- "1" ProposalController
    ProposalController "1" -- "1" MetadataSystem
    ProposalController "1" -- "1" NotificationSystem
+
+Update
+------
+
+Interaction Diagrams
+^^^^^^^^^^^^^^^^^^^^
+
+Basic Flow
+""""""""""
+
+.. uml::
+
+   autonumber "#: //"
+   autoactivate on
+   hide footbox
+
+   actor System 
+   boundary UpdatedPackage
+   control UpdateControl    
+   entity MetadataSystem
+
+   activate System
+   System -> UpdatedPackage :review proposal package()
+   UpdatedPackage -> UpdateControl : update package()
+   UpdateControl -> MetadataSystem : upload package()
+   System -> System : reject proposal()
+   System -> UpdatedPackage :review other proposal
+   UpdatedPackage -> UpdateControl : update package()
+   UpdateControl -> MetadataSystem : upload package()
+   deactivate System
+   deactivate MetadataSystem
+   deactivate UpdateControl
+   deactivate UpdatedPackage
+
+View of Participating Classes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. uml::
+
+ class UpdatedPackage <<boundary>> {
+      //Display update()
+      //GetPackageInfo()
+      //Update()
+   }
+
+   class UpdateControl  <<control>> {
+      //UploadPackage()
+   }
+
+   class MetadataSystem <<entity>> {
+      //Store Update()
+      //Display Update()
+      //Update()
+   }
+
+   class System <<entity>> {
+      //Review Package()
+   }
+
+   UpdatedPackage "0..*" -- "1" UpdateControl
+   UpdateControl "1" -- "1" MetadataSystem
+   UpdateControl "1" -- "0..*" System
+
+

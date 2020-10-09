@@ -122,7 +122,7 @@ View of Participating Classes
    ProposalController "1" -- "1" MetadataSystem
    ProposalController "1" -- "1" NotificationSystem
    
-Download
+Login
 --------
 
 Interaction Diagrams

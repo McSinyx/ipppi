@@ -11,22 +11,23 @@ Basic Flow
 """"""""""
 
 .. uml::
-
+   
+   hide footbox
+   
    actor Contributor
-   boundary "Login Page" as LP
+   boundary "Login Interface" as LI
    control "Registration Controller" as RC
    entity Database
-   boundary "Main Page" as MP
 
    activate Contributor
-   Contributor -> LP : 1: request register
+   Contributor -> LI : 1: request register
 
-   activate LP
-   LP -> LP : 2: prompt registration field
-   activate LP
-   Contributor -> LP : 3: register(input)
+   activate LI
+   LI -> LI : 2: prompt registration field
+   activate LI
+   Contributor -> LI : 3: register(input)
 
-   LP -> RC : 4: request input verification
+   LI -> RC : 4: request input verification
    activate RC
    RC -> Database : 5: verify input
    activate Database
@@ -35,11 +36,8 @@ Basic Flow
    deactivate Database
    deactivate RC
 
-   deactivate LP
-   LP -> MP : redirect
-   activate MP
-   deactivate MP
-   deactivate LP
+   deactivate LI
+   deactivate LI
    deactivate Contributor
 
 View of Participating Classes
@@ -47,6 +45,24 @@ View of Participating Classes
 
 .. uml::
 
+   class LoginPage <<boundary>> {
+      request register()
+      prompt registration field()
+      register(input)
+   }
+
+   class RegistrationController <<control>> {
+      request input verification()      
+      return verification result()
+   }
+
+   class Database <<entity>> {
+      verify input()
+      add new account()
+   }
+
+   LoginPage "0..*" -- "1" RegistrationController
+   RegistrationController "1" -- "1" Database
 
 Propose Package Update
 ----------------------
@@ -108,5 +124,4 @@ View of Participating Classes
    ProposalForm "0..*" -- "1" ProposalController
    ProposalController "1" -- "1" MetadataSystem
    ProposalController "1" -- "1" NotificationSystem
-
-
+   

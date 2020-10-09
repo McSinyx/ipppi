@@ -142,16 +142,18 @@ Basic Flow
    control logincontroller
    entity login
 
-   loginform -> loginform: DisplayRequest
-   user -> loginform: Login
-   loginform -> logincontroller: SendAccountInfo
-   logincontroller->login:Verify
-   login->logincontroller:isValid(true)
-   logincontroller->loginform:allowAccess
-   loginform->loginform:DisplayAccess
-   loginform->user:Access
-
-
+   loginform -> loginform : DisplayRequest
+   Contributor -> loginform : Login
+   loginform -> logincontroller : SendAccountInfo
+   logincontroller -> login : Verify
+   login -> logincontroller : isValid(true)
+   logincontroller -> loginform : allowAccess
+   loginform -> loginform : DisplayAccess
+   loginform -> Contributor : Access
+   deactivate login
+   deactivate logincontroller
+   deactivate loginform
+   deactivate Contributor
 
 Alternate Flow
 """"""""""

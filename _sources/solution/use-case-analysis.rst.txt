@@ -62,7 +62,7 @@ View of Participating Classes
       add new account()
    }
 
-   LoginPage "0..*" -- "1" RegistrationController
+   RegistrationForm "0..*" -- "1" RegistrationController
    RegistrationController "1" -- "1" Database
 
 Propose Package Update

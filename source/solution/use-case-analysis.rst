@@ -131,7 +131,6 @@ Interaction Diagrams
 Basic Flow
 """"""""""
 .. uml::
-@startuml
 actor user
 boundary loginform
 control logincontroller
@@ -146,12 +145,12 @@ logincontroller->loginform:allowAccess
 loginform->loginform:DisplayAccess
 loginform->user:Access
 
-@enduml
+
 
 Alternate Flow
 """"""""""
 .. uml::
-@startuml
+
 actor user
 boundary loginform
 control logincontroller
@@ -166,12 +165,11 @@ logincontroller->loginform:Error
 loginform->loginform:DisplayRequest
 loginform->loginform:DisplayError
 user->loginform:Cancel
-@enduml
 
 VOPC
 """"""""""
 .. uml::
-@startuml
+
 user(actor) .. login(boundary)..logincontroller(control)..login(entity)
 class user(actor){
 username
@@ -197,4 +195,3 @@ error()
 class login(entity){
 isValid()
 }
-@enduml

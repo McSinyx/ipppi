@@ -121,3 +121,77 @@ View of Participating Classes
    ProposalForm "0..*" -- "1" ProposalController
    ProposalController "1" -- "1" MetadataSystem
    ProposalController "1" -- "1" NotificationSystem
+   
+Download
+--------
+
+Interaction Diagrams
+^^^^^^^^^^^^^^^^^^^^
+
+Basic Flow
+""""""""""
+@startuml
+actor user
+boundary loginform
+control logincontroller
+entity login
+
+loginform -> loginform: DisplayRequest
+user -> loginform: Login
+loginform -> logincontroller: SendAccountInfo
+logincontroller->login:Verify
+login->logincontroller:isValid(true)
+logincontroller->loginform:allowAccess
+loginform->loginform:DisplayAccess
+loginform->user:Access
+
+@enduml
+
+Alternate Flow
+""""""""""
+@startuml
+actor user
+boundary loginform
+control logincontroller
+entity login
+
+loginform -> loginform: DisplayRequest
+user -> loginform: Login
+loginform -> logincontroller: SendAccountInfo
+logincontroller->login:Verify
+login->logincontroller:isValid(false)
+logincontroller->loginform:Error
+loginform->loginform:DisplayRequest
+loginform->loginform:DisplayError
+user->loginform:Cancel
+@enduml
+
+VOPC
+""""""""""
+@startuml
+user(actor) .. login(boundary)..logincontroller(control)..login(entity)
+class user(actor){
+username
+password
+login()
+cancel()
+Access()
+}
+
+class login(boundary){
+DisplayRequest()
+DisplayError()
+SendAccountInfo()
+DisplayAccess()
+
+}
+class logincontroller(control){
+Verify()
+allowAccess()
+error()
+
+}
+class login(entity){
+isValid()
+}
+@enduml

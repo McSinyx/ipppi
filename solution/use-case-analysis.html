@@ -5,8 +5,8 @@
 
     <meta name="generator" content="sphinx-3.2.1, furo 2020.10.05.beta9"/>
         <title>Use-Case Analysis - ipppi  documentation</title>
-      <link rel="stylesheet" href="../_static/styles/default.css?f582e6789152622b3a0ae8f0">
-    <link rel="stylesheet" href="../_static/pygments.css?f582e6789152622b3a0ae8f0">
+      <link rel="stylesheet" href="../_static/styles/default.css?d12bdba0a2e998c062b75273">
+    <link rel="stylesheet" href="../_static/pygments.css?d12bdba0a2e998c062b75273">
     
 <style>
   :root {
@@ -21,7 +21,7 @@
         <script src="../_static/doctools.js" defer></script>
       
         <script src="../_static/language_data.js" defer></script>
-      <script src="../_static/scripts/main.js?f582e6789152622b3a0ae8f0"></script></head>
+      <script src="../_static/scripts/main.js?d12bdba0a2e998c062b75273"></script></head>
   <body dir="">
     
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -107,12 +107,72 @@
         </label>
         <div class="section" id="use-case-analysis">
 <h1>Use-Case Analysis<a class="headerlink" href="#use-case-analysis" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="propose-package-update">
-<h2>Propose Package Update<a class="headerlink" href="#propose-package-update" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="register">
+<h2>Register<a class="headerlink" href="#register" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="interaction-diagrams">
 <h3>Interaction Diagrams<a class="headerlink" href="#interaction-diagrams" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="basic-flow">
 <h4>Basic Flow<a class="headerlink" href="#basic-flow" title="Permalink to this headline">¶</a></h4>
+<p class="plantuml">
+<img alt='autonumber "#: //"
+hide footbox
+
+actor Contributor
+boundary "Registration Form" as RF
+control "Registration Controller" as RC
+entity Database
+
+activate Contributor
+Contributor -&gt; RF : request register
+
+activate RF
+RF -&gt; RF : prompt registration field
+activate RF
+Contributor -&gt; RF : register(input)
+
+RF -&gt; RC : request input verification
+activate RC
+RC -&gt; Database : verify input
+activate Database
+Database --&gt; RC : return verification result
+RC -&gt; Database : add new account
+deactivate Database
+deactivate RC
+
+deactivate RF
+deactivate RF
+deactivate Contributor' src="../_images/plantuml-90fe5c9279990b2b461e95b7b4c3139d6ef5e7bb.svg"/></p>
+</div>
+</div>
+<div class="section" id="view-of-participating-classes">
+<h3>View of Participating Classes<a class="headerlink" href="#view-of-participating-classes" title="Permalink to this headline">¶</a></h3>
+<p class="plantuml">
+<img alt='class RegistrationForm &lt;&lt;boundary&gt;&gt; {
+   request register()
+   prompt registration field()
+   register(input)
+}
+
+class RegistrationController &lt;&lt;control&gt;&gt; {
+   request input verification()
+   return verification result()
+}
+
+class Database &lt;&lt;entity&gt;&gt; {
+   verify input()
+   add new account()
+}
+
+LoginPage "0..*" -- "1" RegistrationController
+RegistrationController "1" -- "1" Database' src="../_images/plantuml-469b269dfeede5bf441463da499572adb438b52d.svg"/></p>
+</div>
+</div>
+<div class="section" id="propose-package-update">
+<h2>Propose Package Update<a class="headerlink" href="#propose-package-update" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>Interaction Diagrams<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id2">
+<h4>Basic Flow<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
 <p class="plantuml">
 <img alt='autonumber "#: //"
 autoactivate on
@@ -138,8 +198,8 @@ deactivate ProposalForm
 deactivate Contributor' src="../_images/plantuml-17056f243acb18c91b6587786e2cda1c0ce79bdc.svg"/></p>
 </div>
 </div>
-<div class="section" id="view-of-participating-classes">
-<h3>View of Participating Classes<a class="headerlink" href="#view-of-participating-classes" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id3">
+<h3>View of Participating Classes<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p class="plantuml">
 <img alt='class ProposalForm &lt;&lt;boundary&gt;&gt; {
    create package update proposal()
@@ -205,12 +265,20 @@ ProposalController "1" -- "1" NotificationSystem' src="../_images/plantuml-00e45
         <div class="toc-tree">
           <ul>
 <li><a class="reference internal" href="#">Use-Case Analysis</a><ul>
-<li><a class="reference internal" href="#propose-package-update">Propose Package Update</a><ul>
+<li><a class="reference internal" href="#register">Register</a><ul>
 <li><a class="reference internal" href="#interaction-diagrams">Interaction Diagrams</a><ul>
 <li><a class="reference internal" href="#basic-flow">Basic Flow</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#view-of-participating-classes">View of Participating Classes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#propose-package-update">Propose Package Update</a><ul>
+<li><a class="reference internal" href="#id1">Interaction Diagrams</a><ul>
+<li><a class="reference internal" href="#id2">Basic Flow</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id3">View of Participating Classes</a></li>
 </ul>
 </li>
 </ul>

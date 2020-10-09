@@ -1,6 +1,70 @@
 Use-Case Analysis
 =================
 
+Register
+----------------------
+
+Interaction Diagrams
+^^^^^^^^^^^^^^^^^^^^
+
+Basic Flow
+""""""""""
+
+.. uml::
+   
+   autonumber "#: //"
+   hide footbox
+   
+   actor Contributor
+   boundary "Registration Form" as RF
+   control "Registration Controller" as RC
+   entity Database
+
+   activate Contributor
+   Contributor -> RF : request register
+
+   activate RF
+   RF -> RF : prompt registration field
+   activate RF
+   Contributor -> RF : register(input)
+
+   RF -> RC : request input verification
+   activate RC
+   RC -> Database : verify input
+   activate Database
+   Database --> RC : return verification result
+   RC -> Database : add new account 
+   deactivate Database
+   deactivate RC
+
+   deactivate RF
+   deactivate RF
+   deactivate Contributor
+
+View of Participating Classes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. uml::
+
+   class RegistrationForm <<boundary>> {
+      request register()
+      prompt registration field()
+      register(input)
+   }
+
+   class RegistrationController <<control>> {
+      request input verification()      
+      return verification result()
+   }
+
+   class Database <<entity>> {
+      verify input()
+      add new account()
+   }
+
+   LoginPage "0..*" -- "1" RegistrationController
+   RegistrationController "1" -- "1" Database
+
 Propose Package Update
 ----------------------
 

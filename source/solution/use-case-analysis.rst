@@ -133,7 +133,11 @@ Basic Flow
 
 .. uml::
 
-   actor user
+   autonumber "#: //"
+   autoactivate on
+   hide footbox
+
+   actor Contributor
    boundary loginform
    control logincontroller
    entity login

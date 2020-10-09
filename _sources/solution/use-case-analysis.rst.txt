@@ -2,7 +2,7 @@ Use-Case Analysis
 =================
 
 Register
-----------------------
+--------
 
 Interaction Diagrams
 ^^^^^^^^^^^^^^^^^^^^
@@ -13,6 +13,7 @@ Basic Flow
 .. uml::
    
    autonumber "#: //"
+   autoactivate on
    hide footbox
    
    actor Contributor
@@ -22,22 +23,17 @@ Basic Flow
 
    activate Contributor
    Contributor -> RF : request register
-
-   activate RF
    RF -> RF : prompt registration field
-   activate RF
-   Contributor -> RF : register(input)
+   deactivate RF
 
+   Contributor -> RF : register(input)
    RF -> RC : request input verification
-   activate RC
    RC -> Database : verify input
-   activate Database
    Database --> RC : return verification result
+
    RC -> Database : add new account 
    deactivate Database
    deactivate RC
-
-   deactivate RF
    deactivate RF
    deactivate Contributor
 
@@ -47,19 +43,19 @@ View of Participating Classes
 .. uml::
 
    class RegistrationForm <<boundary>> {
-      request register()
-      prompt registration field()
-      register(input)
+      // request register()
+      // prompt registration field()
+      // register(input)
    }
 
    class RegistrationController <<control>> {
-      request input verification()      
-      return verification result()
+      // request input verification()
+      // return verification result()
    }
 
    class Database <<entity>> {
-      verify input()
-      add new account()
+      // verify input()
+      // add new account()
    }
 
    RegistrationForm "0..*" -- "1" RegistrationController
@@ -105,21 +101,21 @@ View of Participating Classes
 .. uml::
 
    class ProposalForm <<boundary>> {
-      create package update proposal()
-      prompt for package names()
-      prompt for update(package)
+      // create package update proposal()
+      // prompt for package names()
+      // prompt for update(package)
    }
 
    class ProposalController <<control>> {
-      add proposal(updates)
+      // add proposal(updates)
    }
 
    class MetadataSystem <<entity>> {
-      check for conflicts(updates)
+      // check for conflicts(updates)
    }
 
    class NotificationSystem <<boundary>> {
-      notify maintainers for reviews(updates)
+      // notify maintainers for reviews(updates)
    }
 
    ProposalForm "0..*" -- "1" ProposalController

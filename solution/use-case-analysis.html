@@ -5,8 +5,8 @@
 
     <meta name="generator" content="sphinx-3.2.1, furo 2020.10.05.beta9"/>
         <title>Use-Case Analysis - ipppi  documentation</title>
-      <link rel="stylesheet" href="../_static/styles/default.css?a61c19575611724185a0edc0">
-    <link rel="stylesheet" href="../_static/pygments.css?a61c19575611724185a0edc0">
+      <link rel="stylesheet" href="../_static/styles/default.css?a79d27a91317fa394e31fbc3">
+    <link rel="stylesheet" href="../_static/pygments.css?a79d27a91317fa394e31fbc3">
     
 <style>
   :root {
@@ -21,7 +21,7 @@
         <script src="../_static/doctools.js" defer></script>
       
         <script src="../_static/language_data.js" defer></script>
-      <script src="../_static/scripts/main.js?a61c19575611724185a0edc0"></script></head>
+      <script src="../_static/scripts/main.js?a79d27a91317fa394e31fbc3"></script></head>
   <body dir="">
     
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -115,6 +115,7 @@
 <h4>Basic Flow<a class="headerlink" href="#basic-flow" title="Permalink to this headline">¶</a></h4>
 <p class="plantuml">
 <img alt='autonumber "#: //"
+autoactivate on
 hide footbox
 
 actor Contributor
@@ -124,47 +125,42 @@ entity Database
 
 activate Contributor
 Contributor -&gt; RF : request register
-
-activate RF
 RF -&gt; RF : prompt registration field
-activate RF
-Contributor -&gt; RF : register(input)
+deactivate RF
 
+Contributor -&gt; RF : register(input)
 RF -&gt; RC : request input verification
-activate RC
 RC -&gt; Database : verify input
-activate Database
 Database --&gt; RC : return verification result
+
 RC -&gt; Database : add new account
 deactivate Database
 deactivate RC
-
 deactivate RF
-deactivate RF
-deactivate Contributor' src="../_images/plantuml-90fe5c9279990b2b461e95b7b4c3139d6ef5e7bb.svg"/></p>
+deactivate Contributor' src="../_images/plantuml-a71bbf634d428dde15aeb0ca3f013fdd9129a6e8.svg"/></p>
 </div>
 </div>
 <div class="section" id="view-of-participating-classes">
 <h3>View of Participating Classes<a class="headerlink" href="#view-of-participating-classes" title="Permalink to this headline">¶</a></h3>
 <p class="plantuml">
 <img alt='class RegistrationForm &lt;&lt;boundary&gt;&gt; {
-   request register()
-   prompt registration field()
-   register(input)
+   // request register()
+   // prompt registration field()
+   // register(input)
 }
 
 class RegistrationController &lt;&lt;control&gt;&gt; {
-   request input verification()
-   return verification result()
+   // request input verification()
+   // return verification result()
 }
 
 class Database &lt;&lt;entity&gt;&gt; {
-   verify input()
-   add new account()
+   // verify input()
+   // add new account()
 }
 
 RegistrationForm "0..*" -- "1" RegistrationController
-RegistrationController "1" -- "1" Database' src="../_images/plantuml-a9eae88c964329aab0b4c10a1a4fddb32175cf56.svg"/></p>
+RegistrationController "1" -- "1" Database' src="../_images/plantuml-b269134616043676175fd99a4e5acce538d74f11.svg"/></p>
 </div>
 </div>
 <div class="section" id="propose-package-update">
@@ -202,26 +198,26 @@ deactivate Contributor' src="../_images/plantuml-17056f243acb18c91b6587786e2cda1
 <h3>View of Participating Classes<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p class="plantuml">
 <img alt='class ProposalForm &lt;&lt;boundary&gt;&gt; {
-   create package update proposal()
-   prompt for package names()
-   prompt for update(package)
+   // create package update proposal()
+   // prompt for package names()
+   // prompt for update(package)
 }
 
 class ProposalController &lt;&lt;control&gt;&gt; {
-   add proposal(updates)
+   // add proposal(updates)
 }
 
 class MetadataSystem &lt;&lt;entity&gt;&gt; {
-   check for conflicts(updates)
+   // check for conflicts(updates)
 }
 
 class NotificationSystem &lt;&lt;boundary&gt;&gt; {
-   notify maintainers for reviews(updates)
+   // notify maintainers for reviews(updates)
 }
 
 ProposalForm "0..*" -- "1" ProposalController
 ProposalController "1" -- "1" MetadataSystem
-ProposalController "1" -- "1" NotificationSystem' src="../_images/plantuml-00e450788a1e078ece9febb52c4b7deef7cb5a27.svg"/></p>
+ProposalController "1" -- "1" NotificationSystem' src="../_images/plantuml-159c058c2ef50a746e9cb93515e42eac30a353df.svg"/></p>
 </div>
 </div>
 </div>

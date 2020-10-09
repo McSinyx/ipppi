@@ -130,6 +130,7 @@ Interaction Diagrams
 
 Basic Flow
 """"""""""
+.. uml::
 @startuml
 actor user
 boundary loginform
@@ -149,6 +150,7 @@ loginform->user:Access
 
 Alternate Flow
 """"""""""
+.. uml::
 @startuml
 actor user
 boundary loginform
@@ -168,6 +170,7 @@ user->loginform:Cancel
 
 VOPC
 """"""""""
+.. uml::
 @startuml
 user(actor) .. login(boundary)..logincontroller(control)..login(entity)
 class user(actor){

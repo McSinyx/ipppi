@@ -124,4 +124,3 @@ View of Participating Classes
    ProposalForm "0..*" -- "1" ProposalController
    ProposalController "1" -- "1" MetadataSystem
    ProposalController "1" -- "1" NotificationSystem
-   

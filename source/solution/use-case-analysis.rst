@@ -12,32 +12,33 @@ Basic Flow
 
 .. uml::
    
+   autonumber "#: //"
    hide footbox
    
    actor Contributor
-   boundary "Login Interface" as LI
+   boundary "Registration Form" as RF
    control "Registration Controller" as RC
    entity Database
 
    activate Contributor
-   Contributor -> LI : 1: request register
+   Contributor -> RF : request register
 
-   activate LI
-   LI -> LI : 2: prompt registration field
-   activate LI
-   Contributor -> LI : 3: register(input)
+   activate RF
+   RF -> RF : prompt registration field
+   activate RF
+   Contributor -> RF : register(input)
 
-   LI -> RC : 4: request input verification
+   RF -> RC : request input verification
    activate RC
-   RC -> Database : 5: verify input
+   RC -> Database : verify input
    activate Database
-   Database --> RC : 6: return verification result
-   RC -> Database : 7: add new account 
+   Database --> RC : return verification result
+   RC -> Database : add new account 
    deactivate Database
    deactivate RC
 
-   deactivate LI
-   deactivate LI
+   deactivate RF
+   deactivate RF
    deactivate Contributor
 
 View of Participating Classes
@@ -45,7 +46,7 @@ View of Participating Classes
 
 .. uml::
 
-   class LoginPage <<boundary>> {
+   class RegistrationForm <<boundary>> {
       request register()
       prompt registration field()
       register(input)

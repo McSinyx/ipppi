@@ -130,68 +130,72 @@ Interaction Diagrams
 
 Basic Flow
 """"""""""
-.. uml::
-actor user
-boundary loginform
-control logincontroller
-entity login
 
-loginform -> loginform: DisplayRequest
-user -> loginform: Login
-loginform -> logincontroller: SendAccountInfo
-logincontroller->login:Verify
-login->logincontroller:isValid(true)
-logincontroller->loginform:allowAccess
-loginform->loginform:DisplayAccess
-loginform->user:Access
+.. uml::
+
+   actor user
+   boundary loginform
+   control logincontroller
+   entity login
+
+   loginform -> loginform: DisplayRequest
+   user -> loginform: Login
+   loginform -> logincontroller: SendAccountInfo
+   logincontroller->login:Verify
+   login->logincontroller:isValid(true)
+   logincontroller->loginform:allowAccess
+   loginform->loginform:DisplayAccess
+   loginform->user:Access
 
 
 
 Alternate Flow
 """"""""""
+
 .. uml::
 
-actor user
-boundary loginform
-control logincontroller
-entity login
+   actor user
+   boundary loginform
+   control logincontroller
+   entity login
 
-loginform -> loginform: DisplayRequest
-user -> loginform: Login
-loginform -> logincontroller: SendAccountInfo
-logincontroller->login:Verify
-login->logincontroller:isValid(false)
-logincontroller->loginform:Error
-loginform->loginform:DisplayRequest
-loginform->loginform:DisplayError
-user->loginform:Cancel
+   loginform -> loginform: DisplayRequest
+   user -> loginform: Login
+   loginform -> logincontroller: SendAccountInfo
+   logincontroller->login:Verify
+   login->logincontroller:isValid(false)
+   logincontroller->loginform:Error
+   loginform->loginform:DisplayRequest
+   loginform->loginform:DisplayError
+   user->loginform:Cancel
 
 VOPC
 """"""""""
+
 .. uml::
+   
+   user(actor) .. login(boundary)..logincontroller(control)..login(entity)
+   class user(actor){
+   username
+   password
+   login()
+   cancel()
+   Access()
+   }
 
-user(actor) .. login(boundary)..logincontroller(control)..login(entity)
-class user(actor){
-username
-password
-login()
-cancel()
-Access()
-}
+   class login(boundary){
+   DisplayRequest()
+   DisplayError()
+   SendAccountInfo()
+   DisplayAccess()
+   }
 
-class login(boundary){
-DisplayRequest()
-DisplayError()
-SendAccountInfo()
-DisplayAccess()
-
-}
-class logincontroller(control){
-Verify()
-allowAccess()
-error()
-
-}
-class login(entity){
-isValid()
-}
+   class logincontroller(control){
+   Verify()
+   allowAccess()
+   error()
+   }
+   
+   class login(entity){
+   isValid()
+   }

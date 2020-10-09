@@ -141,51 +141,46 @@ Basic Flow
    autoactivate on
    hide footbox
 
-   actor System 
-   boundary UpdatedPackage
+   entity MegadataSystem 
    control UpdateControl    
-   entity MetadataSystem
-
-   activate System
-   System -> UpdatedPackage :review proposal package()
-   UpdatedPackage -> UpdateControl : update package()
-   UpdateControl -> MetadataSystem : upload package()
-   System -> System : reject proposal()
-   System -> UpdatedPackage :review other proposal
-   UpdatedPackage -> UpdateControl : update package()
-   UpdateControl -> MetadataSystem : upload package()
-   deactivate System
-   deactivate MetadataSystem
+   actor DistributedFileSystem
+   boundary NotificationSystem
+   
+   activate MegadataSystem
+   MegadataSystem -> UpdateControl : Check against conflict()
+   UpdateControl -> MegadataSystem : Approve update()
+   MegadataSystem -> DistributedFileSystem : Update to distributed file system()
+   UpdateControl -> MegadataSystem : Abort update()
+   MegadataSystem -> NotificationSystem : alert maintainer for abort update()
+   deactivate MegadataSystem
    deactivate UpdateControl
-   deactivate UpdatedPackage
+   deactivate NotificationSystem
+   deactivate DistributedFileSystem
 
 View of Participating Classes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. uml::
 
- class UpdatedPackage <<boundary>> {
-      //Display update()
-      //GetPackageInfo()
-      //Update()
+class NotificationSystem <<boundary>> {
+      //Display notification
    }
 
    class UpdateControl  <<control>> {
-      //UploadPackage()
+      //ApprovePackage()
+      //AbortPackage()
    }
 
    class MetadataSystem <<entity>> {
-      //Store Update()
-      //Display Update()
-      //Update()
+      //Storepackage()
+      //CheckConflict()
+      //UpdatePackage()
+      //Alert()
    }
 
-   class System <<entity>> {
-      //Review Package()
+   class Distributedfilesystem <<entity>> {
+      //Storepackage()
    }
 
-   UpdatedPackage "0..*" -- "1" UpdateControl
+   Distributedfilesystem "1" -- "1" UpdateControl
    UpdateControl "1" -- "1" MetadataSystem
-   UpdateControl "1" -- "0..*" System
-
-

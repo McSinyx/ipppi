@@ -141,20 +141,17 @@ Basic Flow
    autoactivate on
    hide footbox
 
-   entity MegadataSystem 
    control UpdateControl    
+   entity MegadataSystem 
+   boundary DFSConnector
    actor DistributedFileSystem
-   boundary NotificationSystem
    
-   activate MegadataSystem
-   MegadataSystem -> UpdateControl : Check against conflict()
-   UpdateControl -> MegadataSystem : Approve update()
-   MegadataSystem -> DistributedFileSystem : Update to distributed file system()
-   UpdateControl -> MegadataSystem : Abort update()
-   MegadataSystem -> NotificationSystem : alert maintainer for abort update()
+   activate UpdateControl
+   UpdateControl -> MegadataSystem : Check against conflict()
+   UpdateControl -> DFSConnector : Update package
+   DFSConnector -> DistributedFileSystem :update to Distributed file system
    deactivate MegadataSystem
    deactivate UpdateControl
-   deactivate NotificationSystem
    deactivate DistributedFileSystem
 
 View of Participating Classes
@@ -162,25 +159,23 @@ View of Participating Classes
 
 .. uml::
 
-class NotificationSystem <<boundary>> {
-      //Display notification
+   class DFSConnector <<boundary>> {
+      //UpdatetoDFS()
    }
 
-   class UpdateControl  <<control>> {
-      //ApprovePackage()
-      //AbortPackage()
+   class UpdateControl <<control>> {
+      //CheckConflict()
+      //UpdatePackage()
    }
 
    class MetadataSystem <<entity>> {
       //Storepackage()
-      //CheckConflict()
-      //UpdatePackage()
-      //Alert()
    }
 
    class Distributedfilesystem <<entity>> {
-      //Storepackage()
+      //StorePackage()
+      //UploadPackage()
    }
 
-   Distributedfilesystem "1" -- "1" UpdateControl
-   UpdateControl "1" -- "1" MetadataSystem
+   DFSConnector "1" -- "1" UpdateControl
+   UpdateControl "1" -- "1" Distributedfilesystem

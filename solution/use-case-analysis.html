@@ -5,8 +5,8 @@
 
     <meta name="generator" content="sphinx-3.2.1, furo 2020.10.05.beta9"/>
         <title>Use-Case Analysis - ipppi  documentation</title>
-      <link rel="stylesheet" href="../_static/styles/default.css?a79d27a91317fa394e31fbc3">
-    <link rel="stylesheet" href="../_static/pygments.css?a79d27a91317fa394e31fbc3">
+      <link rel="stylesheet" href="../_static/styles/default.css?066abe9ac2b5bb4c659059c2">
+    <link rel="stylesheet" href="../_static/pygments.css?066abe9ac2b5bb4c659059c2">
     
 <style>
   :root {
@@ -21,7 +21,7 @@
         <script src="../_static/doctools.js" defer></script>
       
         <script src="../_static/language_data.js" defer></script>
-      <script src="../_static/scripts/main.js?a79d27a91317fa394e31fbc3"></script></head>
+      <script src="../_static/scripts/main.js?066abe9ac2b5bb4c659059c2"></script></head>
   <body dir="">
     
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -220,6 +220,58 @@ ProposalController "1" -- "1" MetadataSystem
 ProposalController "1" -- "1" NotificationSystem' src="../_images/plantuml-159c058c2ef50a746e9cb93515e42eac30a353df.svg"/></p>
 </div>
 </div>
+<div class="section" id="login">
+<h2>Login<a class="headerlink" href="#login" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id4">
+<h3>Interaction Diagrams<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id5">
+<h4>Basic Flow<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<p class="plantuml">
+<img alt='autonumber "#: //"
+autoactivate on
+hide footbox
+
+actor Contributor
+boundary loginform
+control logincontroller
+entity login
+
+loginform -&gt; loginform : DisplayRequest
+Contributor -&gt; loginform : Login
+loginform -&gt; logincontroller : SendAccountInfo
+logincontroller -&gt; login : Verify
+login -&gt; logincontroller : isValid(true)
+logincontroller -&gt; loginform : allowAccess
+loginform -&gt; loginform : DisplayAccess
+loginform -&gt; Contributor : Access
+deactivate login
+deactivate logincontroller
+deactivate loginform
+deactivate Contributor' src="../_images/plantuml-4beb36fe92598947daead4a166498fd53541014d.svg"/></p>
+</div>
+<div class="section" id="alternate-flow">
+<h4>Alternate Flow<a class="headerlink" href="#alternate-flow" title="Permalink to this headline">¶</a></h4>
+<p class="plantuml">
+<img alt="actor user
+boundary loginform
+control logincontroller
+entity login
+
+loginform -&gt; loginform: DisplayRequest
+user -&gt; loginform: Login
+loginform -&gt; logincontroller: SendAccountInfo
+logincontroller-&gt;login:Verify
+login-&gt;logincontroller:isValid(false)
+logincontroller-&gt;loginform:Error
+loginform-&gt;loginform:DisplayRequest
+loginform-&gt;loginform:DisplayError
+user-&gt;loginform:Cancel" src="../_images/plantuml-3bae4756c8ee0a18bdd7ed407bcb7e192e29a74e.svg"/></p>
+</div>
+<div class="section" id="vopc">
+<h4>VOPC<a class="headerlink" href="#vopc" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+</div>
 </div>
 
       </article>
@@ -275,6 +327,15 @@ ProposalController "1" -- "1" NotificationSystem' src="../_images/plantuml-159c0
 </ul>
 </li>
 <li><a class="reference internal" href="#id3">View of Participating Classes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#login">Login</a><ul>
+<li><a class="reference internal" href="#id4">Interaction Diagrams</a><ul>
+<li><a class="reference internal" href="#id5">Basic Flow</a></li>
+<li><a class="reference internal" href="#alternate-flow">Alternate Flow</a></li>
+<li><a class="reference internal" href="#vopc">VOPC</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

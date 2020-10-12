@@ -10,4 +10,5 @@ against malicious intentions and dependency conflicts.
    :maxdepth: 2
 
    requirements/index
+   architecture/index
    solution/index

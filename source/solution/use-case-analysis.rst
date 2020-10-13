@@ -77,56 +77,55 @@ Basic Flow
    autoactivate on
    hide footbox
 
-   actor contributor
-   boundary loginform
-   control logincontroller
-   entity account
+   actor Contributor
+   boundary LoginForm
+   control LoginController
+   entity Account
 	
-   contributor -> loginform: access
-   loginform -> loginform : display request
-   deactivate loginform
-   contributor -> loginform : input
-   loginform -> logincontroller : send account info
-   logincontroller -> account :  verification request
-   account->logincontroller: return verification result
-   logincontroller -> loginform : allow access
-   loginform -> loginform : display access
-   deactivate account
-   deactivate logincontroller
-   deactivate loginform
-   deactivate contributor
+   Contributor -> LoginForm : access
+   LoginForm -> LoginForm : display request
+   deactivate LoginForm
+   Contributor -> LoginForm : input
+   LoginForm -> LoginController : send account info
+   LoginController -> Account :  verification request
+   Account -> LoginController : return verification result
+   LoginController -> LoginForm : allow access
+   LoginForm -> LoginForm : display access
+   deactivate Account
+   deactivate LoginController
+   deactivate LoginForm
+   deactivate Contributor
 
 Alternate Flow
 """"""""""""""
 
 .. uml::
 
-   actor contributor
-   boundary loginform
-   control logincontroller
-   entity account
+   actor Contributor
+   boundary LoginForm
+   control LoginController
+   entity Account
 
-   contributor -> loginform:access
-   loginform -> loginform : display request
-   contributor -> loginform : input
-   loginform -> logincontroller : send account info
-   logincontroller -> account : verify request
-   account -> logincontroller : return verification result
-   logincontroller -> loginform : send error
-   loginform -> loginform : display request
-   loginform -> loginform : display error
-   contributor -> loginform : cancel
-   deactivate account
-   deactivate logincontroller
-   deactivate loginform
-   deactivate contributor
+   Contributor -> LoginForm : access
+   LoginForm -> LoginForm : display request
+   Contributor -> LoginForm : input
+   LoginForm -> LoginController : send account info
+   LoginController -> Account : verify request
+   Account -> LoginController : return verification result
+   LoginController -> LoginForm : send error
+   LoginForm -> LoginForm : display request
+   LoginForm -> LoginForm : display error
+   Contributor -> LoginForm : cancel
+   deactivate Accountt
+   deactivate LoginController
+   deactivate LoginForm
+   deactivate Contributor
 
 View of Participating Classes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. uml::
    
-   contributor(actor) .. login(boundary)..logincontroller(control)..account(entity)
    class contributor <<actor>> {
       username
       password

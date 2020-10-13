@@ -21,11 +21,12 @@ Verification Subsystem
   class AccountData <<entity>>
     
   LoginController "0..1" - "0..1" Verification
-
-
+  IVerification --> AccountData
+  Verification --> AccountData
 
 Subsystem Interface Descriptions:
-----------------------
+-------------------------------------
+
 IVerification: Encapsulates communications with external databases
 
 verify: Sending a query to the database to check if the login information is valid or not

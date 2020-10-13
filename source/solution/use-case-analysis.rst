@@ -26,6 +26,7 @@ Basic Flow
    Contributor -> RF : request register()
    RF -> RF : prompt registration field()
    deactivate RF
+   deactivate RF
 
    Contributor -> RF : register(input)
    RF -> RC : request input verification()
@@ -64,6 +65,65 @@ View of Participating Classes
    RegistrationForm "0..*" -- "1" RegistrationController
    RegistrationController "1" -- "1" Database
 
+Login
+-----
+
+Interaction Diagrams
+^^^^^^^^^^^^^^^^^^^^
+
+Basic Flow
+""""""""""
+
+.. uml::
+
+   skinparam defaultFontColor #a80036
+   autonumber "#: //"
+   autoactivate on
+   hide footbox
+
+   actor Contributor
+   boundary LoginForm
+   control LoginController
+   entity Account
+
+   activate Contributor
+   Contributor -> LoginForm: start logging in()
+   LoginForm -> LoginForm: prompt for authentication information()
+   deactivate LoginForm
+   deactivate LoginForm
+
+   Contributor -> LoginForm: enter(authentication information)
+   LoginForm -> LoginController: log in(authentication information)
+   LoginController -> Account: verify(authentication information)
+   deactivate Account
+   deactivate LoginController
+   deactivate LoginForm
+   deactivate Contributor
+
+View of Participating Classes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. uml::
+
+   skinparam defaultFontColor #a80036
+
+   class LoginForm <<boundary>> {
+      start logging in()
+      prompt for authentication information()
+      enter(authentication information)
+   }
+
+   class LoginController <<control>> {
+      log in(authentication information)
+   }
+
+   class Account <<entity>> {
+      verify(authentication information)
+   }
+
+   LoginForm "0..*" -- "1" LoginController
+   LoginController "1" -- "1" Account
+
 Propose Package Update
 ----------------------
 
@@ -84,7 +144,7 @@ Basic Flow
    boundary ProposalForm
    control ProposalController
    entity MetadataSystem
-   boundary NotificationSystem
+   entity NotificationSystem
 
    activate Contributor
    Contributor -> ProposalForm : create package update proposal()
@@ -120,7 +180,7 @@ View of Participating Classes
       // check for conflicts(updates)
    }
 
-   class NotificationSystem <<boundary>> {
+   class NotificationSystem <<entity>> {
       // notify maintainers for reviews(updates)
    }
 
@@ -181,67 +241,3 @@ View of Participating Classes
 
    UpdateControl "1" -- "1" DFSConnector
    UpdateControl "1" -- "1" MetadataSystem
-
-Login
---------
-
-Interaction Diagrams
-^^^^^^^^^^^^^^^^^^^^
-
-Basic Flow
-""""""""""
-
-.. uml::
-
-   autonumber "#: //"
-   autoactivate on
-   hide footbox
-
-   actor User
-   boundary LoginForm
-   control LoginController
-   entity Account
-	
-   User -> Loginform: access
-   LoginForm -> LoginForm : display request
-   LoginController -> LoginForm : allow access
-   Loginform -> LoginForm : display access
-   deactivate Account
-   deactivate LoginController
-   deactivate LoginForm
-   deactivate User
-
-Alternate Flow
-""""""""""
-
-.. uml::
-
-   actor User
-   boundary LoginForm
-   control LoginController
-   entity Account
-
-   User -> LoginForm:access
-   LoginForm -> LoginForm: display request
-   LoginController->LoginForm:send error
-   LoginForm->LoginForm:display request
-   Loginform->LoginForm:display error
-   User->LoginForm:cancel
-
-VOPC
-""""""""""
-
-.. uml::
-   
-   LoginForm "0..*" -- "1" LoginController
-   LoginController"1"-- "1"Account
-
-   class LoginForm<<boundary>>{
-   display request()
-   display error()
-   display access()
-   }
-   class LoginController<<control>>{
-   allow access()
-   send error()	
-   } 

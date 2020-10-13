@@ -1,12 +1,12 @@
 <!doctype html>
 <html class="no-js">
   <head><meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width,initial-scale=1"/><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Architectural Mechanisms" href="arch-mechanisms.html" /><link rel="prev" title="Use-Case Model" href="../requirements/use-case-model.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1"/><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="System Solution" href="../solution/index.html" /><link rel="prev" title="Architectural Mechanisms" href="arch-mechanisms.html" />
 
     <meta name="generator" content="sphinx-3.2.1, furo 2020.10.13.beta12"/>
-        <title>Architecture Handbook - IPPPI Analysis and Design</title>
+        <title>Process View - IPPPI Analysis and Design</title>
       <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css" />
-    <link rel="stylesheet" href="../_static/styles/default.css?082738b88e8ae89bd0c188e8">
+    <link rel="stylesheet" href="../_static/styles/default.css?bcbe2d8bf0682b39ca86f075">
     <link rel="stylesheet" href="../_static/pygments.css">
     <link media="(prefers-color-scheme: dark)" rel="stylesheet" href="../_static/pygments_dark.css">
     
@@ -34,7 +34,7 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/language_data.js"></script>
-    <script src="../_static/scripts/main.js?082738b88e8ae89bd0c188e8"></script></head>
+    <script src="../_static/scripts/main.js?bcbe2d8bf0682b39ca86f075"></script></head>
   <body dir="">
     
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -101,9 +101,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../requirements/use-case-model.html">Use-Case Model</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current has-children current-page"><a class="current reference internal" href="#">Architecture Handbook</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label for="toctree-checkbox-2"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">Architecture Handbook</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label for="toctree-checkbox-2"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="arch-mechanisms.html">Architectural Mechanisms</a></li>
-<li class="toctree-l2"><a class="reference internal" href="process.html">Process View</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Process View</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../solution/index.html">System Solution</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label for="toctree-checkbox-3"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -124,25 +124,44 @@
   <main class="main">
     <div class="content">
       <article role="main">
-        <label class="toc-overlay-icon no-toc" for="__toc">
+        <label class="toc-overlay-icon" for="__toc">
           <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
         </label>
-        <div class="section" id="architecture-handbook">
-<h1>Architecture Handbook<a class="headerlink" href="#architecture-handbook" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
+        <div class="section" id="process-view">
+<h1>Process View<a class="headerlink" href="#process-view" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="processes">
+<h2>Processes<a class="headerlink" href="#processes" title="Permalink to this headline">¶</a></h2>
+<p>The processes for IPPPI will be the following:</p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="arch-mechanisms.html">Architectural Mechanisms</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="arch-mechanisms.html#analysis-mechanisms">Analysis Mechanisms</a></li>
-<li class="toctree-l2"><a class="reference internal" href="arch-mechanisms.html#analysis-to-design-to-implementation-mechanisms-map">Analysis-to-Design-to-Implementation Mechanisms Map</a></li>
-<li class="toctree-l2"><a class="reference internal" href="arch-mechanisms.html#implementation-mechanisms">Implementation Mechanisms</a></li>
+<li><p>One process for the forms, which runs on client-side.</p></li>
+<li><p>One process per business service controller:</p>
+<ul class="simple">
+<li><p>RegistrationControllerProcess</p></li>
+<li><p>LoginControllerProcess</p></li>
+<li><p>ProposalControllerProcess</p></li>
+<li><p>UpdateControllerProcess</p></li>
 </ul>
+<p>There is one process per controller because these activities
+will need to run concurrently with each other.</p>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="process.html">Process View</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="process.html#processes">Processes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="process.html#design-element-to-process-mapping">Design Element to Process Mapping</a></li>
+<li><p>One process per external system:</p>
+<ul class="simple">
+<li><p>MetadataDBAccess</p></li>
+<li><p>ProposalDBAccess</p></li>
+<li><p>DistributedFileSystemConnector</p></li>
 </ul>
+<p>There is one process per external system.  These processes manage access to
+those systems.  Such access may be slow, so this allows other functionality
+to continue while the external system processes wait on the external system.
+These processes also synchronize access to the external systems
+from the other system processes.</p>
 </li>
 </ul>
+<p>In general, the above processes and threads were defined
+to support faster response times and take advantage of multiple processors.</p>
+</div>
+<div class="section" id="design-element-to-process-mapping">
+<h2>Design Element to Process Mapping<a class="headerlink" href="#design-element-to-process-mapping" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -150,23 +169,23 @@
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="arch-mechanisms.html">
+          <a class="next-page" href="../solution/index.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Architectural Mechanisms</div>
+                <div class="title">System Solution</div>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="../requirements/use-case-model.html">
+          <a class="prev-page" href="arch-mechanisms.html">
               <svg><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Use-Case Model</div>
+                <div class="title">Architectural Mechanisms</div>
                 
               </div>
             </a>
@@ -181,8 +200,26 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree">
+          <ul>
+<li><a class="reference internal" href="#">Process View</a><ul>
+<li><a class="reference internal" href="#processes">Processes</a></li>
+<li><a class="reference internal" href="#design-element-to-process-mapping">Design Element to Process Mapping</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
       
       
     </aside>

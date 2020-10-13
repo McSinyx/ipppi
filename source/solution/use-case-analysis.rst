@@ -83,6 +83,7 @@ Basic Flow
 	
    contributor -> loginform: access
    loginform -> loginform : display request
+   deactivate loginform
    contributor -> loginform : input
    loginform -> logincontroller : send account info
    logincontroller -> account :  verification request

@@ -197,55 +197,51 @@ Basic Flow
    autoactivate on
    hide footbox
 
-   actor user
-   boundary loginform
-   control logincontroller
-   entity account
+   actor User
+   boundary LoginForm
+   control LoginController
+   entity Account
 	
-   user -> loginform: access
-   loginform -> loginform : display request
-   user -> loginform : input
-   loginform -> logincontroller : send account info
-   logincontroller -> account :  verification request
-   account->logincontroller: return verification result
-   logincontroller -> loginform : allow access
-   loginform -> loginform : display access
-   deactivate account
-   deactivate logincontroller
-   deactivate loginform
-   deactivate user
+   User -> Loginform: access
+   LoginForm -> LoginForm : display request
+   LoginController -> LoginForm : allow access
+   Loginform -> LoginForm : display access
+   deactivate Account
+   deactivate LoginController
+   deactivate LoginForm
+   deactivate User
 
 Alternate Flow
 """"""""""
 
 .. uml::
 
-   actor user
-   boundary loginform
-   control logincontroller
-   entity account
+   actor User
+   boundary LoginForm
+   control LoginController
+   entity Account
 
-   user -> loginform:access
-   loginform -> loginform: display request
-   user -> loginform: input
-   loginform -> logincontroller: send account info
-   logincontroller->account:verify request
-   account->logincontroller:return verification result
-   logincontroller->loginform:send error
-   loginform->loginform:display request
-   loginform->loginform:display error
-   user->loginform:cancel
+   User -> LoginForm:access
+   LoginForm -> LoginForm: display request
+   LoginController->LoginForm:send error
+   LoginForm->LoginForm:display request
+   Loginform->LoginForm:display error
+   User->LoginForm:cancel
 
 VOPC
 """"""""""
 
 .. uml::
    
-   login(boundary)"0..*" -- "1"logincontroller(control)"1" -- "1"account(entity)
+   LoginForm "0..*" -- "1" LoginController
+   LoginController"1"-- "1"Account
 
-   class login(boundary){
+   class LoginForm<<boundary>>{
    display request()
    display error()
-   send account info()
    display access()
    }
+   class LoginController<<control>>{
+   allow access()
+   send error()	
+   } 

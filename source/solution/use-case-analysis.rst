@@ -128,6 +128,72 @@ View of Participating Classes
    ProposalController "1" -- "1" MetadataSystem
    ProposalController "1" -- "1" NotificationSystem
 
+Review Proposal
+---------------
+
+Interaction Diagrams
+^^^^^^^^^^^^^^^^^^^^
+
+Basic Flow
+""""""""""
+
+.. uml::
+
+   skinparam defaultFontColor #a80036
+   autonumber "#: //"
+   autoactivate on
+   hide footbox
+
+   actor Maintainer
+   boundary ReviewForm
+   control UpdateControl
+   entity Proposal
+
+   activate Maintainer
+   Maintainer -> ReviewForm : check proposal ()
+   ReviewForm -> UpdateControl : request proposal ()
+   UpdateControl -> Proposal : get proposal ()
+   deactivate UpdateControl
+   deactivate Proposal
+   ReviewForm -> ReviewForm : display proposal ()
+   deactivate ReviewForm
+   deactivate ReviewForm
+   Maintainer -> ReviewForm : approve proposal ()
+   ReviewForm -> UpdateControl :approve proposal ()
+   UpdateControl -> Proposal : change status to approved ()
+   deactivate ReviewForm
+   deactivate ReviewForm
+   deactivate UpdateControl
+   deactivate Maintainer
+   deactivate ReviewForm
+   deactivate Proposal
+
+View of Participating Classes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. uml::
+
+   skinparam defaultFontColor #a80036
+
+   class ReviewForm <<boundary>> {
+      // check proposal ()
+      // display proposal ()
+      // approve proposal ()
+   }
+
+   class UpdateControl <<control>> {
+      // get proposal ()
+      // change status to approved ()
+   }
+
+   class Proposal <<entity>> {
+      // change status()
+      // get proposal()
+   }
+
+   ReviewForm "0..*" -- "1" UpdateControl
+   UpdateControl "1" -- "1" Proposal
+
 Update
 ------
 

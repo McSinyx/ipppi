@@ -6,7 +6,7 @@
     <meta name="generator" content="sphinx-3.2.1, furo 2020.10.13.beta12"/>
         <title>Design Elements - IPPPI Analysis and Design</title>
       <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css" />
-    <link rel="stylesheet" href="../_static/styles/default.css?fe51014d6e7661076209b393">
+    <link rel="stylesheet" href="../_static/styles/default.css?2f464f4da318a6f7609a7e46">
     <link rel="stylesheet" href="../_static/pygments.css">
     <link media="(prefers-color-scheme: dark)" rel="stylesheet" href="../_static/pygments_dark.css">
     
@@ -34,7 +34,7 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/language_data.js"></script>
-    <script src="../_static/scripts/main.js?fe51014d6e7661076209b393"></script></head>
+    <script src="../_static/scripts/main.js?2f464f4da318a6f7609a7e46"></script></head>
   <body dir="">
     
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -132,10 +132,32 @@
 <h2>Subsystem Context Diagrams<a class="headerlink" href="#subsystem-context-diagrams" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="verification-subsystem">
 <h3>Verification Subsystem<a class="headerlink" href="#verification-subsystem" title="Permalink to this headline">¶</a></h3>
+<p class="plantuml">
+<img alt='skinparam defaultFontColor #a80036
+
+class LoginController &lt;&lt;control&gt;&gt;
+
+class RegistrationController &lt;&lt;control&gt;&gt;
+
+class IVerification &lt;&lt;interface&gt;&gt; {
+   verify(username,password)
+}
+
+class Verification &lt;&lt;subsystem proxy&gt;&gt; extends IVerification {
+   verify(username,password)
+}
+
+class AccountData &lt;&lt;entity&gt;&gt;
+
+LoginController "0..1" --&gt; "0..1" Verification
+RegistrationController "0..1" --&gt; "0..1" Verification
+IVerification --&gt; AccountData
+Verification --&gt; AccountData' src="../_images/plantuml-248313f2ecbf518e8dbb4358fcdee624c0f8de1b.svg"/></p>
 <div class="section" id="subsystem-interface-descriptions">
-<h4>Subsystem Interface Descriptions:<a class="headerlink" href="#subsystem-interface-descriptions" title="Permalink to this headline">¶</a></h4>
-<p>IVerification: Encapsulates communications with external databases</p>
-<p>verify: Sending a query to the database to check if the login/registration information is valid or not</p>
+<h4>Subsystem Interface Descriptions<a class="headerlink" href="#subsystem-interface-descriptions" title="Permalink to this headline">¶</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">IVerification</span></code>: Encapsulates communications with external databases</p>
+<p><code class="docutils literal notranslate"><span class="pre">verify</span></code>: Sending a query to the database to check if the login/registration
+information is valid or not</p>
 </div>
 </div>
 </div>
@@ -190,7 +212,7 @@
 <li><a class="reference internal" href="#">Design Elements</a><ul>
 <li><a class="reference internal" href="#subsystem-context-diagrams">Subsystem Context Diagrams</a><ul>
 <li><a class="reference internal" href="#verification-subsystem">Verification Subsystem</a><ul>
-<li><a class="reference internal" href="#subsystem-interface-descriptions">Subsystem Interface Descriptions:</a></li>
+<li><a class="reference internal" href="#subsystem-interface-descriptions">Subsystem Interface Descriptions</a></li>
 </ul>
 </li>
 </ul>

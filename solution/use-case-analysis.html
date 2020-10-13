@@ -4,9 +4,9 @@
     <meta name="viewport" content="width=device-width,initial-scale=1"/><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Design Elements" href="design-elements.html" /><link rel="prev" title="System Solution" href="index.html" />
 
     <meta name="generator" content="sphinx-3.2.1, furo 2020.10.13.beta12"/>
-        <title>Use-Case Analysis - ipppi  documentation</title>
+        <title>Use-Case Analysis - IPPPI Analysis and Design</title>
       <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css" />
-    <link rel="stylesheet" href="../_static/styles/default.css?662d085f1767f17402ce1ff8">
+    <link rel="stylesheet" href="../_static/styles/default.css?c3e14170b409dba247e119fd">
     <link rel="stylesheet" href="../_static/pygments.css">
     <link media="(prefers-color-scheme: dark)" rel="stylesheet" href="../_static/pygments_dark.css">
     
@@ -14,6 +14,12 @@
   :root {
     --color-code-background: #f8f8f8;
     --color-code-foreground: black;
+  
+  
+    --color-brand-primary: #a80036;
+  
+    --color-brand-content: #a80036;
+  
   
   }
   @media (prefers-color-scheme: dark) {
@@ -28,7 +34,7 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/language_data.js"></script>
-    <script src="../_static/scripts/main.js?662d085f1767f17402ce1ff8"></script></head>
+    <script src="../_static/scripts/main.js?c3e14170b409dba247e119fd"></script></head>
   <body dir="">
     
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -73,7 +79,7 @@
     <label class="header-left nav-overlay-icon" for="__navigation">
       <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
     </label>
-    <div class="header-center"><div class="brand">ipppi  documentation</div></div>
+    <div class="header-center"><div class="brand">IPPPI Analysis and Design</div></div>
     <div class="header-right"></div>
   </header>
   <aside class="sidebar-drawer">
@@ -81,7 +87,7 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
   
-  <span class="sidebar-brand-text">ipppi  documentation</span>
+  <span class="sidebar-brand-text">IPPPI Analysis and Design</span>
 </a><form class="sidebar-search-container" method="get" action="../search.html">
   <input class="sidebar-search" placeholder="Search" name="q">
   <input type="hidden" name="check_keywords" value="yes">
@@ -137,7 +143,7 @@ hide footbox
 actor Contributor
 boundary "Registration Form" as RF
 control "Registration Controller" as RC
-entity Database
+entity AccountData
 
 activate Contributor
 Contributor -&gt; RF : request register()
@@ -147,14 +153,14 @@ deactivate RF
 
 Contributor -&gt; RF : register(input)
 RF -&gt; RC : request input verification()
-RC -&gt; Database : verify input()
-Database --&gt; RC : return verification result()
+RC -&gt; AccountData : verify input()
+AccountData --&gt; RC : return verification result()
 
-RC -&gt; Database : add new account()
-deactivate Database
+RC -&gt; AccountData : add new account()
+deactivate AccountData
 deactivate RC
 deactivate RF
-deactivate Contributor' src="../_images/plantuml-098fda1a7300679bef90fb6a7b8bf1ee7c1b0ea6.svg"/></p>
+deactivate Contributor' src="../_images/plantuml-dcb7645f5a4de333177b505840e190065083be07.svg"/></p>
 </div>
 </div>
 <div class="section" id="view-of-participating-classes">
@@ -173,13 +179,13 @@ class RegistrationController &lt;&lt;control&gt;&gt; {
    // return verification result()
 }
 
-class Database &lt;&lt;entity&gt;&gt; {
+class AccountData &lt;&lt;entity&gt;&gt; {
    // verify input()
    // add new account()
 }
 
 RegistrationForm "0..*" -- "1" RegistrationController
-RegistrationController "1" -- "1" Database' src="../_images/plantuml-08fcecd9dad4e88ff2061196ade90d91e14049a5.svg"/></p>
+RegistrationController "1" -- "1" AccountData' src="../_images/plantuml-967608302af76ef54d8dbcf9162145f4d045227b.svg"/></p>
 </div>
 </div>
 <div class="section" id="login">
@@ -197,7 +203,7 @@ hide footbox
 actor Contributor
 boundary LoginForm
 control LoginController
-entity Account
+entity AccountData
 
 activate Contributor
 Contributor -&gt; LoginForm: start logging in()
@@ -207,11 +213,11 @@ deactivate LoginForm
 
 Contributor -&gt; LoginForm: enter(authentication information)
 LoginForm -&gt; LoginController: log in(authentication information)
-LoginController -&gt; Account: verify(authentication information)
-deactivate Account
+LoginController -&gt; AccountData: verify(authentication information)
+deactivate AccountData
 deactivate LoginController
 deactivate LoginForm
-deactivate Contributor' src="../_images/plantuml-6a14b2235cfa023522a1fc370b6012e74629ba0d.svg"/></p>
+deactivate Contributor' src="../_images/plantuml-646e71d49d8cd0616943ea24237e13284649b65b.svg"/></p>
 </div>
 </div>
 <div class="section" id="id3">
@@ -229,12 +235,12 @@ class LoginController &lt;&lt;control&gt;&gt; {
    log in(authentication information)
 }
 
-class Account &lt;&lt;entity&gt;&gt; {
+class AccountData &lt;&lt;entity&gt;&gt; {
    verify(authentication information)
 }
 
 LoginForm "0..*" -- "1" LoginController
-LoginController "1" -- "1" Account' src="../_images/plantuml-e999797dd4c96ebd150abf4ab7a2e0a217708c67.svg"/></p>
+LoginController "1" -- "1" AccountData' src="../_images/plantuml-9e048f337c12d13bead2518c47e8245f9f3698fb.svg"/></p>
 </div>
 </div>
 <div class="section" id="propose-package-update">

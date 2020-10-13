@@ -170,9 +170,9 @@ View of Participating Classes
       //UpdatePackage()
    }
 
-   class MetadataSystem <<entity>> {
+   class MegadataSystem <<entity>> {
       //Storepackage()
    }
 
    UpdateControl "1" -- "1" DFSConnector
-   UpdateControl "1" -- "1" MetadataSystem
+   UpdateControl "1" -- "1" MegadataSystem

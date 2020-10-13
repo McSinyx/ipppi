@@ -161,17 +161,17 @@ View of Participating Classes
 .. uml::
 
    class DFSConnector <<boundary>> {
-      //updatetoDFS()
-      //updatetoMetadata()
+      //update to DFS()
+      //update to Metadata()
    }
 
    class UpdateControl <<control>> {
-      //checkagainstConflict()
-      //updatePackage()
+      //check against conflict()
+      //update package()
    }
 
    class MetadataSystem <<entity>> {
-      //storepackage()
+      //store package()
    }
 
    UpdateControl "1" -- "1" DFSConnector

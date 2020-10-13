@@ -3,32 +3,39 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Design Elements" href="design-elements.html" /><link rel="prev" title="System Solution" href="index.html" />
 
-    <meta name="generator" content="sphinx-3.2.1, furo 2020.10.05.beta9"/>
+    <meta name="generator" content="sphinx-3.2.1, furo 2020.10.13.beta12"/>
         <title>Use-Case Analysis - ipppi  documentation</title>
-      <link rel="stylesheet" href="../_static/styles/default.css?e75a0bd23e8a4baa6fa480d5">
-    <link rel="stylesheet" href="../_static/pygments.css?e75a0bd23e8a4baa6fa480d5">
+      <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css" />
+    <link rel="stylesheet" href="../_static/styles/default.css?ce8ec6ca8a19b0079625a347">
+    <link rel="stylesheet" href="../_static/pygments.css">
+    <link media="(prefers-color-scheme: dark)" rel="stylesheet" href="../_static/pygments_dark.css">
     
 <style>
   :root {
     --color-code-background: #f8f8f8;
-    --color-code-foreground: #000000;
+    --color-code-foreground: black;
   
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+    --color-code-background: #202020;
+    --color-code-foreground: #d0d0d0;
+      
+    }
   }
 </style>
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script><script src="../_static/jquery.js"></script>
-      <script src="../_static/underscore.js"></script>
-      
-        <script src="../_static/doctools.js" defer></script>
-      
-        <script src="../_static/language_data.js" defer></script>
-      <script src="../_static/scripts/main.js?e75a0bd23e8a4baa6fa480d5"></script></head>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/scripts/main.js?ce8ec6ca8a19b0079625a347"></script></head>
   <body dir="">
     
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="svg-toc" viewBox="0 0 24 24">
     <title>Contents</title>
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-      stroke-width="1.5" stroke="#101010" stroke-linecap="round" stroke-linejoin="round">
+      stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
       <path stroke="none" d="M0 0h24v24H0z"/>
       <line x1="4" y1="6" x2="20" y2="6" />
       <line x1="10" y1="12" x2="20" y2="12" />
@@ -228,6 +235,53 @@ ProposalController "1" -- "1" MetadataSystem
 ProposalController "1" -- "1" NotificationSystem' src="../_images/plantuml-159c058c2ef50a746e9cb93515e42eac30a353df.svg"/></p>
 </div>
 </div>
+<div class="section" id="update">
+<h2>Update<a class="headerlink" href="#update" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id4">
+<h3>Interaction Diagrams<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id5">
+<h4>Basic Flow<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<p class="plantuml">
+<img alt='autonumber "#: //"
+autoactivate on
+hide footbox
+
+control UpdateControl
+entity MetadataSystem
+boundary DFSConnector
+actor DistributedFileSystem
+
+activate UpdateControl
+UpdateControl -&gt; MetadataSystem : check against conflict
+UpdateControl -&gt; DFSConnector : update package
+DFSConnector -&gt; MetadataSystem : update to Metadata
+DFSConnector -&gt; DistributedFileSystem : update to DFS
+deactivate MetadataSystem
+deactivate UpdateControl
+deactivate DistributedFileSystem' src="../_images/plantuml-1ce298b4d59daa9fd322917a1cbc298ef9f89d5f.svg"/></p>
+</div>
+</div>
+<div class="section" id="id6">
+<h3>View of Participating Classes<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p class="plantuml">
+<img alt='class DFSConnector &lt;&lt;boundary&gt;&gt; {
+   //update to DFS()
+   //update to Metadata()
+}
+
+class UpdateControl &lt;&lt;control&gt;&gt; {
+   //check against conflict()
+   //update package()
+}
+
+class MetadataSystem &lt;&lt;entity&gt;&gt; {
+   //store package()
+}
+
+UpdateControl "1" -- "1" DFSConnector
+UpdateControl "1" -- "1" MetadataSystem' src="../_images/plantuml-332ffd36afe99d1a4d6432c67986dfd3ec41d1ba.svg"/></p>
+</div>
+</div>
 </div>
 
       </article>
@@ -291,6 +345,14 @@ ProposalController "1" -- "1" NotificationSystem' src="../_images/plantuml-159c0
 </ul>
 </li>
 <li><a class="reference internal" href="#id3">View of Participating Classes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#update">Update</a><ul>
+<li><a class="reference internal" href="#id4">Interaction Diagrams</a><ul>
+<li><a class="reference internal" href="#id5">Basic Flow</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id6">View of Participating Classes</a></li>
 </ul>
 </li>
 </ul>

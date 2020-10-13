@@ -137,23 +137,23 @@ Basic Flow
    autoactivate on
    hide footbox
 
-   actor Contributor
+   actor user
    boundary loginform
    control logincontroller
-   entity login
-
-   loginform -> loginform : DisplayRequest
-   Contributor -> loginform : Login
-   loginform -> logincontroller : SendAccountInfo
-   logincontroller -> login : Verify
-   login -> logincontroller : isValid(true)
-   logincontroller -> loginform : allowAccess
-   loginform -> loginform : DisplayAccess
-   loginform -> Contributor : Access
-   deactivate login
+   entity account
+	
+   user -> loginform: access
+   loginform -> loginform : display request
+   user -> loginform : input
+   loginform -> logincontroller : send account info
+   logincontroller -> account :  verification request
+   account->logincontroller: return verification result
+   logincontroller -> loginform : allow access
+   loginform -> loginform : display access
+   deactivate account
    deactivate logincontroller
    deactivate loginform
-   deactivate Contributor
+   deactivate user
 
 Alternate Flow
 """"""""""
@@ -163,45 +163,47 @@ Alternate Flow
    actor user
    boundary loginform
    control logincontroller
-   entity login
+   entity account
 
-   loginform -> loginform: DisplayRequest
-   user -> loginform: Login
-   loginform -> logincontroller: SendAccountInfo
-   logincontroller->login:Verify
-   login->logincontroller:isValid(false)
-   logincontroller->loginform:Error
-   loginform->loginform:DisplayRequest
-   loginform->loginform:DisplayError
-   user->loginform:Cancel
+   user -> loginform:access
+   loginform -> loginform: display request
+   user -> loginform: input
+   loginform -> logincontroller: send account info
+   logincontroller->account:verify request
+   account->logincontroller:return verification result
+   logincontroller->loginform:send error
+   loginform->loginform:display request
+   loginform->loginform:display error
+   user->loginform:cancel
 
 VOPC
 """"""""""
 
 .. uml::
    
-   user(actor) .. login(boundary)..logincontroller(control)..login(entity)
+   user(actor) .. login(boundary)..logincontroller(control)..account(entity)
    class user(actor){
    username
    password
-   login()
+   input()
    cancel()
-   Access()
+   access()
    }
 
    class login(boundary){
-   DisplayRequest()
-   DisplayError()
-   SendAccountInfo()
-   DisplayAccess()
+   display request()
+   display error()
+   send account info()
+   display access()
    }
 
    class logincontroller(control){
-   Verify()
-   allowAccess()
-   error()
+   verify request()
+   allow access()
+   send error()
+   allow access()
    }
    
-   class login(entity){
-   isValid()
+   class account(entity){
+   return verification result()
    }

@@ -17,8 +17,11 @@ Verification Subsystem
   class Verification<<subsystem proxy>> extends IVerification {
   verify(username,password)
   }
+  
+  class AccountData <<entity>>
     
   LoginController "0..1" - "0..1" Verification
+
 
 
 Subsystem Interface Descriptions:

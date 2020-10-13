@@ -382,3 +382,90 @@ View of Participating Classes
 
    UpdateControl "1" -- "1" DFSConnector
    UpdateControl "1" -- "1" MetadataSystem
+   
+   
+Login
+--------
+
+Interaction Diagrams
+^^^^^^^^^^^^^^^^^^^^
+
+Basic Flow
+""""""""""
+
+.. uml::
+
+   autonumber "#: //"
+   autoactivate on
+   hide footbox
+
+   actor user
+   boundary loginform
+   control logincontroller
+   entity account
+	
+   user -> loginform: access
+   loginform -> loginform : display request
+   user -> loginform : input
+   loginform -> logincontroller : send account info
+   logincontroller -> account :  verification request
+   account->logincontroller: return verification result
+   logincontroller -> loginform : allow access
+   loginform -> loginform : display access
+   deactivate account
+   deactivate logincontroller
+   deactivate loginform
+   deactivate user
+
+Alternate Flow
+""""""""""
+
+.. uml::
+
+   actor user
+   boundary loginform
+   control logincontroller
+   entity account
+
+   user -> loginform:access
+   loginform -> loginform: display request
+   user -> loginform: input
+   loginform -> logincontroller: send account info
+   logincontroller->account:verify request
+   account->logincontroller:return verification result
+   logincontroller->loginform:send error
+   loginform->loginform:display request
+   loginform->loginform:display error
+   user->loginform:cancel
+
+VOPC
+""""""""""
+
+.. uml::
+   
+   user(actor) .. login(boundary)..logincontroller(control)..account(entity)
+   class user(actor){
+   username
+   password
+   input()
+   cancel()
+   access()
+   }
+
+   class login(boundary){
+   display request()
+   display error()
+   send account info()
+   display access()
+   }
+
+   class logincontroller(control){
+   verify request()
+   allow access()
+   send error()
+   allow access()
+   }
+   
+   class account(entity){
+   return verification result()
+   }

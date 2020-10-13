@@ -147,9 +147,10 @@ Basic Flow
    actor DistributedFileSystem
    
    activate UpdateControl
-   UpdateControl -> MegadataSystem : Check against conflict()
+   UpdateControl -> MegadataSystem : Check against conflict
    UpdateControl -> DFSConnector : Update package
-   DFSConnector -> DistributedFileSystem :update to Distributed file system
+   DFSConnector -> MegadataSystem : Update to Megadata 
+   DFSConnector -> DistributedFileSystem :Update to DFS
    deactivate MegadataSystem
    deactivate UpdateControl
    deactivate DistributedFileSystem
@@ -161,6 +162,7 @@ View of Participating Classes
 
    class DFSConnector <<boundary>> {
       //UpdatetoDFS()
+      //UpdatetoMegadata()
    }
 
    class UpdateControl <<control>> {
@@ -172,10 +174,5 @@ View of Participating Classes
       //Storepackage()
    }
 
-   class Distributedfilesystem <<entity>> {
-      //StorePackage()
-      //UploadPackage()
-   }
-
-   DFSConnector "1" -- "1" UpdateControl
-   UpdateControl "1" -- "1" Distributedfilesystem
+   UpdateControl "1" -- "1" DFSConnector
+   UpdateControl "1" -- "1" MetadataSystem

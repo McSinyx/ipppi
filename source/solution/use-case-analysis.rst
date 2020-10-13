@@ -60,6 +60,96 @@ View of Participating Classes
 
    RegistrationForm "0..*" -- "1" RegistrationController
    RegistrationController "1" -- "1" Database
+   
+Login
+-----
+
+Interaction Diagrams
+^^^^^^^^^^^^^^^^^^^^
+
+Basic Flow
+""""""""""
+
+.. uml::
+
+   autonumber "#: //"
+   autoactivate on
+   hide footbox
+
+   actor contributor
+   boundary loginform
+   control logincontroller
+   entity account
+	
+   contributor -> loginform: access
+   loginform -> loginform : display request
+   contributor -> loginform : input
+   loginform -> logincontroller : send account info
+   logincontroller -> account :  verification request
+   account->logincontroller: return verification result
+   logincontroller -> loginform : allow access
+   loginform -> loginform : display access
+   deactivate account
+   deactivate logincontroller
+   deactivate loginform
+   deactivate contributor
+
+Alternate Flow
+""""""""""""""
+
+.. uml::
+
+   actor contributor
+   boundary loginform
+   control logincontroller
+   entity account
+
+   contributor -> loginform:access
+   loginform -> loginform : display request
+   contributor -> loginform : input
+   loginform -> logincontroller : send account info
+   logincontroller -> account : verify request
+   account -> logincontroller : return verification result
+   logincontroller -> loginform : send error
+   loginform -> loginform : display request
+   loginform -> loginform : display error
+   contributor -> loginform : cancel
+   deactivate account
+   deactivate logincontroller
+   deactivate loginform
+   deactivate contributor
+
+View of Participating Classes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. uml::
+   
+   contributor(actor) .. login(boundary)..logincontroller(control)..account(entity)
+   class contributor <<actor>> {
+      username
+      password
+      input()
+      cancel()
+      access()
+   }
+
+   class Login <<boundary>> {
+      // display request()
+      // display error()
+      // send account info()
+      // display access()
+   }
+
+   class Logincontroller <<control>> {
+      // verify request()
+      // allow access()
+      // send error()
+      // allow access()
+   }
+   
+   class Account <<entity>> {
+      // return verification result()
+   }   
 
 Propose Package Update
 ----------------------

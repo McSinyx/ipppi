@@ -142,16 +142,16 @@ Basic Flow
    hide footbox
 
    control UpdateControl    
-   entity MegadataSystem 
+   entity MetadataSystem 
    boundary DFSConnector
    actor DistributedFileSystem
    
    activate UpdateControl
-   UpdateControl -> MegadataSystem : Check against conflict
-   UpdateControl -> DFSConnector : Update package
-   DFSConnector -> MegadataSystem : Update to Megadata 
-   DFSConnector -> DistributedFileSystem :Update to DFS
-   deactivate MegadataSystem
+   UpdateControl -> MetadataSystem : check against conflict
+   UpdateControl -> DFSConnector : update package
+   DFSConnector -> MetadataSystem : update to Metadata 
+   DFSConnector -> DistributedFileSystem : update to DFS
+   deactivate MetadataSystem
    deactivate UpdateControl
    deactivate DistributedFileSystem
 
@@ -161,18 +161,18 @@ View of Participating Classes
 .. uml::
 
    class DFSConnector <<boundary>> {
-      //UpdatetoDFS()
-      //UpdatetoMegadata()
+      //updatetoDFS()
+      //updatetoMetadata()
    }
 
    class UpdateControl <<control>> {
-      //CheckConflict()
-      //UpdatePackage()
+      //checkagainstConflict()
+      //updatePackage()
    }
 
-   class MegadataSystem <<entity>> {
-      //Storepackage()
+   class MetadataSystem <<entity>> {
+      //storepackage()
    }
 
    UpdateControl "1" -- "1" DFSConnector
-   UpdateControl "1" -- "1" MegadataSystem
+   UpdateControl "1" -- "1" MetadataSystem

@@ -6,7 +6,7 @@
     <meta name="generator" content="sphinx-3.2.1, furo 2020.10.13.beta12"/>
         <title>Use-Case Analysis - ipppi  documentation</title>
       <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css" />
-    <link rel="stylesheet" href="../_static/styles/default.css?24051f13909b05e52f352ac1">
+    <link rel="stylesheet" href="../_static/styles/default.css?d1e7a378eea0d8adda9f8a68">
     <link rel="stylesheet" href="../_static/pygments.css">
     <link media="(prefers-color-scheme: dark)" rel="stylesheet" href="../_static/pygments_dark.css">
     
@@ -28,7 +28,7 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/language_data.js"></script>
-    <script src="../_static/scripts/main.js?24051f13909b05e52f352ac1"></script></head>
+    <script src="../_static/scripts/main.js?d1e7a378eea0d8adda9f8a68"></script></head>
   <body dir="">
     
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -241,12 +241,74 @@ ProposalController "1" -- "1" MetadataSystem
 ProposalController "1" -- "1" NotificationSystem' src="../_images/plantuml-88b05869c4ddd11410f23c1f90402df8f960346c.svg"/></p>
 </div>
 </div>
-<div class="section" id="update">
-<h2>Update<a class="headerlink" href="#update" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="review-proposal">
+<h2>Review Proposal<a class="headerlink" href="#review-proposal" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id4">
 <h3>Interaction Diagrams<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="id5">
 <h4>Basic Flow<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<p class="plantuml">
+<img alt='skinparam defaultFontColor #a80036
+autonumber "#: //"
+autoactivate on
+hide footbox
+
+actor Maintainer
+boundary ReviewForm
+control UpdateControl
+entity Proposal
+
+activate Maintainer
+Maintainer -&gt; ReviewForm : check proposal ()
+ReviewForm -&gt; UpdateControl : request proposal ()
+UpdateControl -&gt; Proposal : get proposal ()
+deactivate UpdateControl
+deactivate Proposal
+ReviewForm -&gt; ReviewForm : display proposal ()
+deactivate ReviewForm
+deactivate ReviewForm
+Maintainer -&gt; ReviewForm : approve proposal ()
+ReviewForm -&gt; UpdateControl :approve proposal ()
+UpdateControl -&gt; Proposal : change status to approved ()
+deactivate ReviewForm
+deactivate ReviewForm
+deactivate UpdateControl
+deactivate Maintainer
+deactivate ReviewForm
+deactivate Proposal' src="../_images/plantuml-8dbd32ae07d4a923a92e5bd912bcfabffc1dcd16.svg"/></p>
+</div>
+</div>
+<div class="section" id="id6">
+<h3>View of Participating Classes<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p class="plantuml">
+<img alt='skinparam defaultFontColor #a80036
+
+class ReviewForm &lt;&lt;boundary&gt;&gt; {
+   // check proposal ()
+   // display proposal ()
+   // approve proposal ()
+}
+
+class UpdateControl &lt;&lt;control&gt;&gt; {
+   // get proposal ()
+   // change status to approved ()
+}
+
+class Proposal &lt;&lt;entity&gt;&gt; {
+   // change status()
+   // get proposal()
+}
+
+ReviewForm "0..*" -- "1" UpdateControl
+UpdateControl "1" -- "1" Proposal' src="../_images/plantuml-4e48abbdaf7c2d12ee9daf8df885eb1c71cc6398.svg"/></p>
+</div>
+</div>
+<div class="section" id="update">
+<h2>Update<a class="headerlink" href="#update" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id7">
+<h3>Interaction Diagrams<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id8">
+<h4>Basic Flow<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
 <p class="plantuml">
 <img alt='skinparam defaultFontColor #a80036
 autonumber "#: //"
@@ -268,8 +330,8 @@ deactivate UpdateControl
 deactivate DistributedFileSystem' src="../_images/plantuml-4957e9aa8f4f23220c5ddf6cbe809bff89930878.svg"/></p>
 </div>
 </div>
-<div class="section" id="id6">
-<h3>View of Participating Classes<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id9">
+<h3>View of Participating Classes<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
 <p class="plantuml">
 <img alt='skinparam defaultFontColor #a80036
 
@@ -356,12 +418,20 @@ UpdateControl "1" -- "1" MetadataSystem' src="../_images/plantuml-cb8ec56d714461
 <li><a class="reference internal" href="#id3">View of Participating Classes</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#update">Update</a><ul>
+<li><a class="reference internal" href="#review-proposal">Review Proposal</a><ul>
 <li><a class="reference internal" href="#id4">Interaction Diagrams</a><ul>
 <li><a class="reference internal" href="#id5">Basic Flow</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#id6">View of Participating Classes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#update">Update</a><ul>
+<li><a class="reference internal" href="#id7">Interaction Diagrams</a><ul>
+<li><a class="reference internal" href="#id8">Basic Flow</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id9">View of Participating Classes</a></li>
 </ul>
 </li>
 </ul>

@@ -121,3 +121,54 @@ View of Participating Classes
    ProposalForm "0..*" -- "1" ProposalController
    ProposalController "1" -- "1" MetadataSystem
    ProposalController "1" -- "1" NotificationSystem
+
+Update
+------
+
+Interaction Diagrams
+^^^^^^^^^^^^^^^^^^^^
+
+Basic Flow
+""""""""""
+
+.. uml::
+
+   autonumber "#: //"
+   autoactivate on
+   hide footbox
+
+   control UpdateControl    
+   entity MetadataSystem 
+   boundary DFSConnector
+   actor DistributedFileSystem
+   
+   activate UpdateControl
+   UpdateControl -> MetadataSystem : check against conflict
+   UpdateControl -> DFSConnector : update package
+   DFSConnector -> MetadataSystem : update to Metadata 
+   DFSConnector -> DistributedFileSystem : update to DFS
+   deactivate MetadataSystem
+   deactivate UpdateControl
+   deactivate DistributedFileSystem
+
+View of Participating Classes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. uml::
+
+   class DFSConnector <<boundary>> {
+      //update to DFS()
+      //update to Metadata()
+   }
+
+   class UpdateControl <<control>> {
+      //check against conflict()
+      //update package()
+   }
+
+   class MetadataSystem <<entity>> {
+      //store package()
+   }
+
+   UpdateControl "1" -- "1" DFSConnector
+   UpdateControl "1" -- "1" MetadataSystem

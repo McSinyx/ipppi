@@ -28,6 +28,10 @@ exclude_patterns = []
 
 # Options for HTML output
 html_theme = 'furo'
+html_theme_options = {'css_variables': {
+    'color-brand-primary': '#a80036', 'color-brand-content': '#a80036'}}
+
+html_title = 'IPPPI Analysis and Design'
 
 # Add any paths that contain custom static files (such as style sheets)
 # here, relative to this directory.  They are copied after the builtin

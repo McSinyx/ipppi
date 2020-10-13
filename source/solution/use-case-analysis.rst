@@ -20,7 +20,7 @@ Basic Flow
    actor Contributor
    boundary "Registration Form" as RF
    control "Registration Controller" as RC
-   entity Database
+   entity AccountData
 
    activate Contributor
    Contributor -> RF : request register()
@@ -30,11 +30,11 @@ Basic Flow
 
    Contributor -> RF : register(input)
    RF -> RC : request input verification()
-   RC -> Database : verify input()
-   Database --> RC : return verification result()
+   RC -> AccountData : verify input()
+   AccountData --> RC : return verification result()
 
-   RC -> Database : add new account()
-   deactivate Database
+   RC -> AccountData : add new account()
+   deactivate AccountData
    deactivate RC
    deactivate RF
    deactivate Contributor
@@ -57,13 +57,13 @@ View of Participating Classes
       // return verification result()
    }
 
-   class Database <<entity>> {
+   class AccountData <<entity>> {
       // verify input()
       // add new account()
    }
 
    RegistrationForm "0..*" -- "1" RegistrationController
-   RegistrationController "1" -- "1" Database
+   RegistrationController "1" -- "1" AccountData
 
 Login
 -----
@@ -84,7 +84,7 @@ Basic Flow
    actor Contributor
    boundary LoginForm
    control LoginController
-   entity Account
+   entity AccountData
 
    activate Contributor
    Contributor -> LoginForm: start logging in()
@@ -94,8 +94,8 @@ Basic Flow
 
    Contributor -> LoginForm: enter(authentication information)
    LoginForm -> LoginController: log in(authentication information)
-   LoginController -> Account: verify(authentication information)
-   deactivate Account
+   LoginController -> AccountData: verify(authentication information)
+   deactivate AccountData
    deactivate LoginController
    deactivate LoginForm
    deactivate Contributor
@@ -117,12 +117,12 @@ View of Participating Classes
       log in(authentication information)
    }
 
-   class Account <<entity>> {
+   class AccountData <<entity>> {
       verify(authentication information)
    }
 
    LoginForm "0..*" -- "1" LoginController
-   LoginController "1" -- "1" Account
+   LoginController "1" -- "1" AccountData
 
 Propose Package Update
 ----------------------

@@ -11,27 +11,28 @@ Basic Flow
 """"""""""
 
 .. uml::
-   
+
+   skinparam defaultFontColor #a80036
    autonumber "#: //"
    autoactivate on
    hide footbox
-   
+
    actor Contributor
    boundary "Registration Form" as RF
    control "Registration Controller" as RC
    entity Database
 
    activate Contributor
-   Contributor -> RF : request register
-   RF -> RF : prompt registration field
+   Contributor -> RF : request register()
+   RF -> RF : prompt registration field()
    deactivate RF
 
    Contributor -> RF : register(input)
-   RF -> RC : request input verification
-   RC -> Database : verify input
-   Database --> RC : return verification result
+   RF -> RC : request input verification()
+   RC -> Database : verify input()
+   Database --> RC : return verification result()
 
-   RC -> Database : add new account 
+   RC -> Database : add new account()
    deactivate Database
    deactivate RC
    deactivate RF
@@ -41,6 +42,8 @@ View of Participating Classes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. uml::
+
+   skinparam defaultFontColor #a80036
 
    class RegistrationForm <<boundary>> {
       // request register()
@@ -72,6 +75,7 @@ Basic Flow
 
 .. uml::
 
+   skinparam defaultFontColor #a80036
    autonumber "#: //"
    autoactivate on
    hide footbox
@@ -99,6 +103,8 @@ View of Participating Classes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. uml::
+
+   skinparam defaultFontColor #a80036
 
    class ProposalForm <<boundary>> {
       // create package update proposal()
@@ -133,20 +139,21 @@ Basic Flow
 
 .. uml::
 
+   skinparam defaultFontColor #a80036
    autonumber "#: //"
    autoactivate on
    hide footbox
 
-   control UpdateControl    
-   entity MetadataSystem 
+   control UpdateControl
+   entity MetadataSystem
    boundary DFSConnector
    actor DistributedFileSystem
-   
+
    activate UpdateControl
-   UpdateControl -> MetadataSystem : check against conflict
-   UpdateControl -> DFSConnector : update package
-   DFSConnector -> MetadataSystem : update to Metadata 
-   DFSConnector -> DistributedFileSystem : update to DFS
+   UpdateControl -> MetadataSystem : check against conflict()
+   UpdateControl -> DFSConnector : update package()
+   DFSConnector -> MetadataSystem : update to Metadata()
+   DFSConnector -> DistributedFileSystem : update to DFS()
    deactivate MetadataSystem
    deactivate UpdateControl
    deactivate DistributedFileSystem
@@ -156,18 +163,20 @@ View of Participating Classes
 
 .. uml::
 
+   skinparam defaultFontColor #a80036
+
    class DFSConnector <<boundary>> {
-      //update to DFS()
-      //update to Metadata()
+      // update to DFS()
+      // update to Metadata()
    }
 
    class UpdateControl <<control>> {
-      //check against conflict()
-      //update package()
+      // check against conflict()
+      // update package()
    }
 
    class MetadataSystem <<entity>> {
-      //store package()
+      // store package()
    }
 
    UpdateControl "1" -- "1" DFSConnector

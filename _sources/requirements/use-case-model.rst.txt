@@ -3,6 +3,7 @@ Use-Case Model
 
 .. uml::
 
+   skinparam defaultFontColor #a80036
    left to right direction
 
    actor "End-User" as User

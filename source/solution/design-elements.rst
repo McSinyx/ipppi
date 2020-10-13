@@ -1,7 +1,9 @@
 Design Elements
 ===============
+
 LoginController
 ----------------------
+
 Verification Subsystem
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -20,12 +22,12 @@ Verification Subsystem
   
   class AccountData <<entity>>
     
-  LoginController "0..1" - "0..1" Verification
+  LoginController "0..1" --> "0..1" Verification
   IVerification --> AccountData
   Verification --> AccountData
 
 Subsystem Interface Descriptions:
--------------------------------------
+---------------------------------
 
 IVerification: Encapsulates communications with external databases
 

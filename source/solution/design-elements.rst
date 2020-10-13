@@ -26,6 +26,6 @@ Verification Subsystem
 
 Subsystem Interface Descriptions:
 ----------------------
-IVerification:Encapsulates communications with external databases
+IVerification: Encapsulates communications with external databases
 
-verify:Sending a query to the database to check if the login information is valid or not
+verify: Sending a query to the database to check if the login information is valid or not

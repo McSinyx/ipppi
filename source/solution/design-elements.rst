@@ -62,13 +62,13 @@ RegistrationController     Application::Authentication
 LoginForm                  Middleware::Authentication
 LoginController            Application::Authentication
 AccountData                Business Services::Authentication
-ProposalForm               Middleware::Update Proposal
-ProposalController         Application::Update Proposal
+ProposalForm               Middleware::Proposal Management
+ProposalController         Application::Proposal Management
 MetadataSystem subsystem   Business Services
 IMetadataSystem interface  Business Services::Package Index
-ReviewForm                 Middleware::Update Proposal
-UpdateController           Application::Update Proposal
-Proposal                   Business Services::Update Proposal
+ReviewForm                 Middleware::Proposal Management
+UpdateController           Application::Proposal Management
+Proposal                   Business Services::Proposal Management
 DFS subsystem              Business Services
 IDFS interface             Business Services::External System Interfaces
 =========================  =============================================

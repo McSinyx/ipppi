@@ -18,6 +18,7 @@ Analysis-to-Design-to-Implementation Mechanisms Map
 Analysis Mechanism  Design Mechanism  Implementation Mechanism
 ==================  ================  ========================
 Persistency         RDBMS             PostgreSQL
+Persistency         DFS               IPFS
 Distribution        XML-RPC           Python package xmlrpc
 Security                              HTTPS
 ==================  ================  ========================

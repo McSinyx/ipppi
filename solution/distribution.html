@@ -6,7 +6,7 @@
     <meta name="generator" content="sphinx-3.2.1, furo 2020.10.13.beta12"/>
         <title>Distribution - IPPPI Analysis and Design</title>
       <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css" />
-    <link rel="stylesheet" href="../_static/styles/default.css?78cc6693383f2aaf98d8e251">
+    <link rel="stylesheet" href="../_static/styles/default.css?2f8282d8b736d7309e045109">
     <link rel="stylesheet" href="../_static/pygments.css">
     <link media="(prefers-color-scheme: dark)" rel="stylesheet" href="../_static/pygments_dark.css">
     
@@ -34,7 +34,7 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/language_data.js"></script>
-    <script src="../_static/scripts/main.js?78cc6693383f2aaf98d8e251"></script></head>
+    <script src="../_static/scripts/main.js?2f8282d8b736d7309e045109"></script></head>
   <body dir="">
     
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -124,11 +124,32 @@
   <main class="main">
     <div class="content">
       <article role="main">
-        <label class="toc-overlay-icon no-toc" for="__toc">
+        <label class="toc-overlay-icon" for="__toc">
           <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
         </label>
         <div class="section" id="distribution">
 <h1>Distribution<a class="headerlink" href="#distribution" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="deployment-model">
+<h2>Deployment Model<a class="headerlink" href="#deployment-model" title="Permalink to this headline">¶</a></h2>
+<p class="plantuml">
+<img alt='skinparam defaultFontColor #a80036
+
+package "Client Machine" as Client &lt;&lt;Node&gt;&gt; {
+}
+
+package "IPPPI Server" as Server &lt;&lt;Node&gt;&gt; {
+}
+
+package "Database" as DB &lt;&lt;Node&gt;&gt; {
+}
+
+package IPFS &lt;&lt;Node&gt;&gt; {
+}
+
+Server -- Client: &lt;&lt;Internet&gt;&gt;
+Server -- DB: &lt;&lt;LAN&gt;&gt;
+Server -- IPFS: &lt;&lt;LAN&gt;&gt;' src="../_images/plantuml-8ae920afb62ac3b018269a5e4ceb4ab5e20b504d.svg"/></p>
+</div>
 </div>
 
       </article>
@@ -166,8 +187,25 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree">
+          <ul>
+<li><a class="reference internal" href="#">Distribution</a><ul>
+<li><a class="reference internal" href="#deployment-model">Deployment Model</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
       
       
     </aside>

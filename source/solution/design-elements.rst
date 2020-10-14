@@ -57,26 +57,28 @@ Design-Element-to-Owning-Package Map
 =========================  =============================================
 Design Element             “Owning” Package
 =========================  =============================================
-RegistrationForm           Middleware::Authentication
-RegistrationController     Application::Authentication
-LoginForm                  Middleware::Authentication
-LoginController            Application::Authentication
+RegistrationForm           Application::Authentication UI
+RegistrationController     Application::Authentication Management
+LoginForm                  Application::Authentication UI
+LoginController            Application::Authentication Management
 AccountData                Business Services::Authentication
-ProposalForm               Middleware::Proposal Management
+ProposalForm               Application::Proposal Management
 ProposalController         Application::Proposal Management
 MetadataSystem subsystem   Business Services
 IMetadataSystem interface  Business Services::Package Index
-ReviewForm                 Middleware::Proposal Management
+ReviewForm                 Application::Proposal Management
 UpdateController           Application::Proposal Management
 Proposal                   Business Services::Proposal Management
-DFS subsystem              Business Services
-IDFS interface             Business Services::External System Interfaces
+DFS subsystem              Middleware
+IDFS interface             Middleware::External System Interfaces
 =========================  =============================================
 
 Architectural Layers and Their Dependencies
 -------------------------------------------
 
 .. uml::
+
+   skinparam defaultFontColor #a80036
 
    package "<<layer>>\nApplication" as App
    package "<<layer>>\nBusiness\nServices" as BS
@@ -102,3 +104,38 @@ Middleware
 
 Packages and Their Dependencies
 -------------------------------
+
+.. uml::
+
+   skinparam defaultFontColor #a80036
+
+   package "Authentication UI\n(from Application)" as AuthUI
+   package "Authentication Management\n(from Application)" as AuthMgm
+   package "Authentication\n(from Business Services)" as Auth
+   package "Proposal UI\n(from Application)" as ProposeUI
+   package "Proposal Management\n(from Business Services)" as ProposeMgm
+   package "Package Index\n(from Business Services)" as PI
+   package "External System Interfaces\n(from Middleware)" as ExtI
+
+   AuthUI --> AuthMgm
+   AuthMgm --> Auth
+   ProposeUI --> ProposeMgm
+   ProposeMgm --> PI
+   ProposeMgm --> ExtI
+
+Package Descriptions
+^^^^^^^^^^^^^^^^^^^^
+
+Authentication UI (from Application)
+
+Authentication Management (from Application)
+
+Authentication (from Business Services)
+
+Proposal UI (from Application)
+
+Proposal Management (from Business Services)
+
+Package Index (from Business Services)
+
+External System Interfaces (from Middleware)

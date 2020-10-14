@@ -4,38 +4,17 @@ Design Elements
 Subsystem Context Diagrams
 --------------------------
 
-Verification Subsystem
-^^^^^^^^^^^^^^^^^^^^^^
-
-.. uml::
-
-   skinparam defaultFontColor #a80036
-
-   class LoginController <<control>>
-
-   class RegistrationController <<control>>
-
-   class IVerification <<interface>> {
-      verify(username, password)
-   }
-
-   class Verification <<subsystem proxy>> extends IVerification {
-      verify(username, password)
-   }
-
-   class AccountData <<entity>>
-
-   LoginController "0..1" --> "0..1" Verification
-   RegistrationController "0..1" --> "0..1" Verification
-   IVerification --> AccountData
-   Verification --> AccountData
+MetadataSystem Subsystem
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 Subsystem Interface Descriptions
 """"""""""""""""""""""""""""""""
 
-``IVerification``: Encapsulates communications with external databases
-   ``verify``: Sending a query to the database to check
-   if the login/registration information is valid or not
+DFS Subsystem
+^^^^^^^^^^^^^
+
+Subsystem Interface Descriptions
+""""""""""""""""""""""""""""""""
 
 Analysis-Class-to-Design-Element Map
 ------------------------------------
@@ -79,17 +58,47 @@ Design-Element-to-Owning-Package Map
 Design Element             “Owning” Package
 =========================  =============================================
 RegistrationForm           Middleware::Authentication
-RegistrationController     Applications::Authentication
+RegistrationController     Application::Authentication
 LoginForm                  Middleware::Authentication
-LoginController            Applications::Authentication
+LoginController            Application::Authentication
 AccountData                Business Services::Authentication
 ProposalForm               Middleware::Update Proposal
-ProposalController         Applications::Update Proposal
+ProposalController         Application::Update Proposal
 MetadataSystem subsystem   Business Services
 IMetadataSystem interface  Business Services::Package Index
 ReviewForm                 Middleware::Update Proposal
-UpdateController           Applications::Update Proposal
+UpdateController           Application::Update Proposal
 Proposal                   Business Services::Update Proposal
 DFS subsystem              Business Services
 IDFS interface             Business Services::External System Interfaces
 =========================  =============================================
+
+Architectural Layers and Their Dependencies
+-------------------------------------------
+
+.. uml::
+
+   package "<<layer>>\nApplication" as App
+   package "<<layer>>\nBusiness\nServices" as BS
+   package "<<layer>>\nMiddleware" as Mid
+   package "Base Reuse" as Base
+
+   App ..> BS
+   BS ..> Mid
+   Mid .[hidden].> Base
+
+Layer Descriptions
+^^^^^^^^^^^^^^^^^^
+
+Application
+   The Application layer contains application-specific design elements.
+
+Business Services
+   The Business Services layer contains business-specific elements
+   that are used in several applications.
+
+Middleware
+   Utilities and platform-independent services.
+
+Packages and Their Dependencies
+-------------------------------

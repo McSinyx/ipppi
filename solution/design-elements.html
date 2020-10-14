@@ -6,7 +6,7 @@
     <meta name="generator" content="sphinx-3.2.1, furo 2020.10.13.beta12"/>
         <title>Design Elements - IPPPI Analysis and Design</title>
       <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css" />
-    <link rel="stylesheet" href="../_static/styles/default.css?19a6ad5c7c2393c36f8184ad">
+    <link rel="stylesheet" href="../_static/styles/default.css?746767182ba8535d107130cf">
     <link rel="stylesheet" href="../_static/pygments.css">
     <link media="(prefers-color-scheme: dark)" rel="stylesheet" href="../_static/pygments_dark.css">
     
@@ -34,7 +34,7 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/language_data.js"></script>
-    <script src="../_static/scripts/main.js?19a6ad5c7c2393c36f8184ad"></script></head>
+    <script src="../_static/scripts/main.js?746767182ba8535d107130cf"></script></head>
   <body dir="">
     
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -131,36 +131,16 @@
 <h1>Design Elements<a class="headerlink" href="#design-elements" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="subsystem-context-diagrams">
 <h2>Subsystem Context Diagrams<a class="headerlink" href="#subsystem-context-diagrams" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="verification-subsystem">
-<h3>Verification Subsystem<a class="headerlink" href="#verification-subsystem" title="Permalink to this headline">¶</a></h3>
-<p class="plantuml">
-<img alt='skinparam defaultFontColor #a80036
-
-class LoginController &lt;&lt;control&gt;&gt;
-
-class RegistrationController &lt;&lt;control&gt;&gt;
-
-class IVerification &lt;&lt;interface&gt;&gt; {
-   verify(username, password)
-}
-
-class Verification &lt;&lt;subsystem proxy&gt;&gt; extends IVerification {
-   verify(username, password)
-}
-
-class AccountData &lt;&lt;entity&gt;&gt;
-
-LoginController "0..1" --&gt; "0..1" Verification
-RegistrationController "0..1" --&gt; "0..1" Verification
-IVerification --&gt; AccountData
-Verification --&gt; AccountData' src="../_images/plantuml-2e67d6f029e8cee76babea5b95e1b19df3fba2c1.svg"/></p>
+<div class="section" id="metadatasystem-subsystem">
+<h3>MetadataSystem Subsystem<a class="headerlink" href="#metadatasystem-subsystem" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="subsystem-interface-descriptions">
 <h4>Subsystem Interface Descriptions<a class="headerlink" href="#subsystem-interface-descriptions" title="Permalink to this headline">¶</a></h4>
-<dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">IVerification</span></code>: Encapsulates communications with external databases</dt><dd><p><code class="docutils literal notranslate"><span class="pre">verify</span></code>: Sending a query to the database to check
-if the login/registration information is valid or not</p>
-</dd>
-</dl>
+</div>
+</div>
+<div class="section" id="dfs-subsystem">
+<h3>DFS Subsystem<a class="headerlink" href="#dfs-subsystem" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id1">
+<h4>Subsystem Interface Descriptions<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
 </div>
 </div>
 </div>
@@ -239,13 +219,13 @@ Interface</p></td>
 <td><p>Middleware::Authentication</p></td>
 </tr>
 <tr class="row-odd"><td><p>RegistrationController</p></td>
-<td><p>Applications::Authentication</p></td>
+<td><p>Application::Authentication</p></td>
 </tr>
 <tr class="row-even"><td><p>LoginForm</p></td>
 <td><p>Middleware::Authentication</p></td>
 </tr>
 <tr class="row-odd"><td><p>LoginController</p></td>
-<td><p>Applications::Authentication</p></td>
+<td><p>Application::Authentication</p></td>
 </tr>
 <tr class="row-even"><td><p>AccountData</p></td>
 <td><p>Business Services::Authentication</p></td>
@@ -254,7 +234,7 @@ Interface</p></td>
 <td><p>Middleware::Update Proposal</p></td>
 </tr>
 <tr class="row-even"><td><p>ProposalController</p></td>
-<td><p>Applications::Update Proposal</p></td>
+<td><p>Application::Update Proposal</p></td>
 </tr>
 <tr class="row-odd"><td><p>MetadataSystem subsystem</p></td>
 <td><p>Business Services</p></td>
@@ -266,7 +246,7 @@ Interface</p></td>
 <td><p>Middleware::Update Proposal</p></td>
 </tr>
 <tr class="row-even"><td><p>UpdateController</p></td>
-<td><p>Applications::Update Proposal</p></td>
+<td><p>Application::Update Proposal</p></td>
 </tr>
 <tr class="row-odd"><td><p>Proposal</p></td>
 <td><p>Business Services::Update Proposal</p></td>
@@ -279,6 +259,33 @@ Interface</p></td>
 </tr>
 </tbody>
 </table></div>
+</div>
+<div class="section" id="architectural-layers-and-their-dependencies">
+<h2>Architectural Layers and Their Dependencies<a class="headerlink" href="#architectural-layers-and-their-dependencies" title="Permalink to this headline">¶</a></h2>
+<p class="plantuml">
+<img alt='package "&lt;&lt;layer&gt;&gt;\nApplication" as App
+package "&lt;&lt;layer&gt;&gt;\nBusiness\nServices" as BS
+package "&lt;&lt;layer&gt;&gt;\nMiddleware" as Mid
+package "Base Reuse" as Base
+
+App ..&gt; BS
+BS ..&gt; Mid
+Mid .[hidden].&gt; Base' src="../_images/plantuml-33836185570b44e9eeee3b99e3962a14f72128f3.svg"/></p>
+<div class="section" id="layer-descriptions">
+<h3>Layer Descriptions<a class="headerlink" href="#layer-descriptions" title="Permalink to this headline">¶</a></h3>
+<dl class="simple">
+<dt>Application</dt><dd><p>The Application layer contains application-specific design elements.</p>
+</dd>
+<dt>Business Services</dt><dd><p>The Business Services layer contains business-specific elements
+that are used in several applications.</p>
+</dd>
+<dt>Middleware</dt><dd><p>Utilities and platform-independent services.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="packages-and-their-dependencies">
+<h2>Packages and Their Dependencies<a class="headerlink" href="#packages-and-their-dependencies" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -330,14 +337,23 @@ Interface</p></td>
           <ul>
 <li><a class="reference internal" href="#">Design Elements</a><ul>
 <li><a class="reference internal" href="#subsystem-context-diagrams">Subsystem Context Diagrams</a><ul>
-<li><a class="reference internal" href="#verification-subsystem">Verification Subsystem</a><ul>
+<li><a class="reference internal" href="#metadatasystem-subsystem">MetadataSystem Subsystem</a><ul>
 <li><a class="reference internal" href="#subsystem-interface-descriptions">Subsystem Interface Descriptions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#dfs-subsystem">DFS Subsystem</a><ul>
+<li><a class="reference internal" href="#id1">Subsystem Interface Descriptions</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><a class="reference internal" href="#analysis-class-to-design-element-map">Analysis-Class-to-Design-Element Map</a></li>
 <li><a class="reference internal" href="#design-element-to-owning-package-map">Design-Element-to-Owning-Package Map</a></li>
+<li><a class="reference internal" href="#architectural-layers-and-their-dependencies">Architectural Layers and Their Dependencies</a><ul>
+<li><a class="reference internal" href="#layer-descriptions">Layer Descriptions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#packages-and-their-dependencies">Packages and Their Dependencies</a></li>
 </ul>
 </li>
 </ul>

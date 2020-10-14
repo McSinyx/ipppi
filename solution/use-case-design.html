@@ -6,7 +6,7 @@
     <meta name="generator" content="sphinx-3.2.1, furo 2020.10.13.beta12"/>
         <title>Use-Case Design - IPPPI Analysis and Design</title>
       <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css" />
-    <link rel="stylesheet" href="../_static/styles/default.css?cd7ea9435f539f243b3b3e5f">
+    <link rel="stylesheet" href="../_static/styles/default.css?735187977d86f440b6f788a0">
     <link rel="stylesheet" href="../_static/pygments.css">
     <link media="(prefers-color-scheme: dark)" rel="stylesheet" href="../_static/pygments_dark.css">
     
@@ -34,7 +34,7 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/language_data.js"></script>
-    <script src="../_static/scripts/main.js?cd7ea9435f539f243b3b3e5f"></script></head>
+    <script src="../_static/scripts/main.js?735187977d86f440b6f788a0"></script></head>
   <body dir="">
     
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -124,11 +124,82 @@
   <main class="main">
     <div class="content">
       <article role="main">
-        <label class="toc-overlay-icon no-toc" for="__toc">
+        <label class="toc-overlay-icon" for="__toc">
           <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
         </label>
         <div class="section" id="use-case-design">
 <h1>Use-Case Design<a class="headerlink" href="#use-case-design" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="use-case-realization">
+<h2>Use-Case Realization<a class="headerlink" href="#use-case-realization" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="register">
+<h3>Register<a class="headerlink" href="#register" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="login">
+<h3>Login<a class="headerlink" href="#login" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="propose-package-update">
+<h3>Propose Package Update<a class="headerlink" href="#propose-package-update" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="iteraction-diagrams">
+<h4>Iteraction Diagrams<a class="headerlink" href="#iteraction-diagrams" title="Permalink to this headline">¶</a></h4>
+<p class="plantuml">
+<img alt='skinparam defaultFontColor #a80036
+autonumber "#: //"
+autoactivate on
+hide footbox
+
+actor Contributor
+
+activate Contributor
+Contributor -&gt; ProposalForm : create package update proposal()
+ProposalForm -&gt; ProposalForm : prompt for package names()
+ProposalForm -&gt; ProposalForm : prompt for update(package)
+ProposalForm -&gt; ProposalController : add proposal(updates)
+ProposalController -&gt; IMetadataSystem : check for conflicts(updates)
+ProposalController -&gt; NotificationSystem : notify maintainers for reviews(updates)
+deactivate NotificationSystem
+deactivate IMetadataSystem
+deactivate ProposalController
+deactivate ProposalForm
+deactivate Contributor' src="../_images/plantuml-df6a7a31327e691c03299bf7a508347fca54a450.svg"/></p>
+</div>
+<div class="section" id="view-of-participating-classes">
+<h4>View of Participating Classes<a class="headerlink" href="#view-of-participating-classes" title="Permalink to this headline">¶</a></h4>
+<p class="plantuml">
+<img alt='skinparam defaultFontColor #a80036
+
+class ProposalForm &lt;&lt;boundary&gt;&gt; {
+   // create package update proposal()
+   // prompt for package names()
+   // prompt for update(package)
+}
+
+class ProposalController &lt;&lt;control&gt;&gt; {
+   // add proposal(updates)
+}
+
+interface IMetadataSystem &lt;&lt;interface&gt;&gt; {
+   // check for conflicts(updates)
+}
+
+class NotificationSystem &lt;&lt;entity&gt;&gt; {
+   // notify maintainers for reviews(updates)
+}
+
+ProposalForm "0..*" -- "1" ProposalController
+ProposalController "1" -- "1" IMetadataSystem
+ProposalController "1" -- "1" NotificationSystem' src="../_images/plantuml-ccce9b3b622c375a67d05db9f6daf057885bf0f1.svg"/></p>
+</div>
+</div>
+<div class="section" id="review-proposal">
+<h3>Review Proposal<a class="headerlink" href="#review-proposal" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="update">
+<h3>Update<a class="headerlink" href="#update" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="packages-and-their-dependencies">
+<h2>Packages and Their Dependencies<a class="headerlink" href="#packages-and-their-dependencies" title="Permalink to this headline">¶</a></h2>
+</div>
 </div>
 
       </article>
@@ -158,8 +229,37 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree">
+          <ul>
+<li><a class="reference internal" href="#">Use-Case Design</a><ul>
+<li><a class="reference internal" href="#use-case-realization">Use-Case Realization</a><ul>
+<li><a class="reference internal" href="#register">Register</a></li>
+<li><a class="reference internal" href="#login">Login</a></li>
+<li><a class="reference internal" href="#propose-package-update">Propose Package Update</a><ul>
+<li><a class="reference internal" href="#iteraction-diagrams">Iteraction Diagrams</a></li>
+<li><a class="reference internal" href="#view-of-participating-classes">View of Participating Classes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#review-proposal">Review Proposal</a></li>
+<li><a class="reference internal" href="#update">Update</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#packages-and-their-dependencies">Packages and Their Dependencies</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
       
       
     </aside>

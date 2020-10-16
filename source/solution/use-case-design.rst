@@ -11,7 +11,7 @@ Iteraction Diagrams
 """""""""""""""""""
 
 Basic Flow
-""""""""""
+''''''''''
 
 .. uml::
 
@@ -42,7 +42,7 @@ Basic Flow
    deactivate Contributor
 
 Basic Flow (with Security)
-""""""""""""""""""""""""""
+''''''''''''''''''''''''''
 
 .. uml::
 
@@ -84,7 +84,7 @@ View of Participating Classes
 """""""""""""""""""""""""""""
 
 Register
-""""""""
+''''''''
 
 .. uml::
 
@@ -109,7 +109,7 @@ Register
    RegistrationController "1" -- "1" AccountData
 
 Register (with Security)
-""""""""""""""""""""""""
+''''''''''''''''''''''''
 
 .. uml::
 

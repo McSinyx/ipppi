@@ -10,8 +10,8 @@ Register
 Iteraction Diagrams
 """""""""""""""""""
 
-Register - Basic Flow
-"""""""""""""""""""""
+Basic Flow
+""""""""""
 
 .. uml::
 
@@ -41,8 +41,8 @@ Register - Basic Flow
    deactivate RF
    deactivate Contributor
 
-Register - Basic Flow (with Security)
-"""""""""""""""""""""""""""""""""""""
+Basic Flow (with Security)
+""""""""""""""""""""""""""
 
 .. uml::
 
@@ -55,7 +55,7 @@ Register - Basic Flow (with Security)
    boundary "Registration Form" as RF
    control "Registration Controller" as RC
    entity AccountData
-   boundary iSecureUser
+   boundary ISecureUser
 
    activate Contributor
    Contributor -> RF : request register()
@@ -73,8 +73,8 @@ Register - Basic Flow (with Security)
    RC -> AccountData : add new account()
    deactivate AccountData   
    RC -> RC : setup security context()
-   RC -> iSecureUser : new(UserID)
-   deactivate iSecureUser
+   RC -> ISecureUser : new(UserID)
+   deactivate ISecureUser
    deactivate RC
    deactivate RC   
    deactivate RF
@@ -133,13 +133,13 @@ Register (with Security)
       // add new account()
    }
    
-   class iSecureUser <<interface>> {
+   class ISecureUser <<interface>> {
       // new()
    }   
 
    RegistrationForm "0..*" -- "1" RegistrationController
    RegistrationController "1" -- "1" AccountData
-   RegistrationController "1" -- "1" iSecureUser
+   RegistrationController "1" -- "1" ISecureUser
 
 Login
 ^^^^^

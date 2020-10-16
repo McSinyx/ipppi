@@ -9,6 +9,88 @@ Register
 
 Login
 ^^^^^
+Interaction Diagrams
+^^^^^^^^^^^^^^^^^^^^
+
+Basic Flow
+""""""""""
+
+.. uml::
+
+   skinparam defaultFontColor #a80036
+   autonumber "#: //"
+   autoactivate on
+   hide footbox
+
+   actor Contributor
+   boundary LoginForm
+   participant ISecurity as S
+   control LoginController
+   participant AccountDBManager as D
+   entity AccountData
+   entity Account
+
+   Contributor -> LoginForm: start logging in()
+   LoginForm -> LoginForm: prompt for authentication information()
+   Contributor -> LoginForm: enter(authentication information)   
+   LoginForm -> LoginForm: Check empty field()
+   LoginForm -> S: Send data for encapsulate()
+   S -> Account: Create()
+   S -> D: Send account to verify()
+   D -> AccountData: verify(authentication information)
+   D -> LoginController: allowlogin(account)
+   LoginController -> LoginForm: initate login(account) 
+
+View of Participating Classes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. uml::
+
+   skinparam defaultFontColor #a80036
+   
+   class Account <<entity>>{
+     username
+     password
+     getUsername()
+     getPassword()
+   }
+   class LoginForm <<boundary>> extends Security{
+      usernamefield
+      passwordfield
+      start logging in()
+      prompt for authentication information()
+      enter(authentication information)
+      isValid(usernamefield,passwordfield)
+      send(authentication information)
+   }
+   class ISecurity <<interface>>{
+      createAccount(username,password)
+      send(Account)  
+   }
+   class Security<<subsystem proxy>> extends ISecurity{
+      createAccount(username,password)
+      send(Account)
+   }
+   class AccountDBManager{
+      getConnection()
+      createQuery()
+      search(Account.username,Account.password)
+      send(database information)
+   }
+   class LoginController <<control>> extends AccountDBManager {
+       initiate login(database information)
+   }
+   
+   class AccountData <<entity>> {
+    
+   }
+
+   LoginForm "0..*" -- "1" LoginController
+   LoginController "1" -- "1" AccountData
+    Security -> Account
+    Security "1" -- "1" AccountDBManager
+
+
 
 Propose Package Update
 ^^^^^^^^^^^^^^^^^^^^^^

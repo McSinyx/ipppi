@@ -33,12 +33,12 @@ Basic Flow
 
    Contributor -> RF : register(input)
    RF -> RC : request input verification()
+   deactivate RF   
    RC -> AccountData : verify input()
-
+   deactivate AccountData
    RC -> AccountData : add new account()
    deactivate AccountData
    deactivate RC
-   deactivate RF
    deactivate Contributor
 
 Basic Flow (with Security)
@@ -55,7 +55,7 @@ Basic Flow (with Security)
    boundary "Registration Form" as RF
    control "Registration Controller" as RC
    entity AccountData
-   boundary ISecureUser
+   participant ISecureUser
 
    activate Contributor
    Contributor -> RF : request register()
@@ -68,6 +68,7 @@ Basic Flow (with Security)
    deactivate RF
    Contributor -> RF : register account()
    RF -> RC : request input verification()
+   deactivate RF
    RC -> AccountData : verify input()
    deactivate AccountData
    RC -> AccountData : add new account()
@@ -77,7 +78,6 @@ Basic Flow (with Security)
    deactivate ISecureUser
    deactivate RC
    deactivate RC   
-   deactivate RF
    deactivate Contributor
 
 View of Participating Classes

@@ -7,83 +7,6 @@ Use-Case Realization
 Register
 ^^^^^^^^
 
-Iteraction Diagrams
-"""""""""""""""""""
-.. uml::
-
-   actor Contributor
-   boundary "Registration Form" as RF
-   participant IVerification as V
-   control "Registration Controller" as RC
-   participant AccountDBManager as D
-   entity AccountData
-
-   activate Contributor
-   Contributor -> RF : access()
-   RF -> RF : prompt registration field()
-   Contributor -> RF : register(input)
-   RF -> V : request input verification()
-   V -> RF : send error (AccountFormError)
-   RF -> RF: display error()
-   RF -> RF : prompt registration field()
-   Contributor -> RF: register(input)
-   RF -> V : request input verification()
-   RC -> D: request account verification(username) 
-   D -> AccountData : verify input()
-   D -> RF: send error(DatabaseError)
-   RF -> RF: display error()
-   RF -> RF : prompt registration field()
-   Contributor -> RF: cancel()
-
-View of Participating Classes
-"""""""""""""""""""""""""""""
-
-..uml::
-
-class "Registration Form" as RF extends Verification{
-  UsernameField
-  PasswordField
-  EmailField
-  getUsername()
-  getPassword()
-  getEmail()
-  createAccount(username,password,email)
-  displayError(error)
-  requestform()
-}
-class Account{
- Username
- Password
- Email
- getUsername
- getPassword
- getEmail
-}
-RF -> Account
-class IVerification<<interface>> {
- ValidName(Account.getName)
- ValidPassword(Account.getPassword)
- ValidEmail(Account.getEmail)
- VerifyQuery()
-
-}
-class Verification<<subsystem proxy>> extends IVerification
-{
- ValidName(Account.getUsername)
- ValidPassword(Account.getPassword)
- ValidEmail(Account.getEmail)
- VerifyQuery(Account)
-}
-class "Registration Controller" as RC extends AccountDBManager
-
-class AccountDBManager{
-    getConnection()
-    createQuery()
-    search(Account)
-    verify(result)
-}
-RF "0..1" -> "0..1" RC
-
 Login
 ^^^^^
 
@@ -147,9 +70,65 @@ View of Participating Classes
 Review Proposal
 ^^^^^^^^^^^^^^^
 
+Iteraction Diagrams
+"""""""""""""""""""
+
+.. uml::
+
+   skinparam defaultFontColor #a80036
+   autonumber "#: //"
+   autoactivate on
+   hide footbox
+
+   actor Maintainer
+   activate Maintainer
+   Maintainer -> ReviewForm : check proposal ()
+   ReviewForm -> UpdateControl : request proposal ()
+   UpdateControl -> Proposal : get proposal ()
+   deactivate UpdateControl
+   deactivate Proposal
+   ReviewForm -> ReviewForm : display proposal ()
+   deactivate ReviewForm
+   deactivate ReviewForm
+   Maintainer -> ReviewForm : approve proposal ()
+   ReviewForm -> UpdateControl :approve proposal ()
+   UpdateControl -> Proposal : change status to approved ()
+   deactivate ReviewForm
+   deactivate ReviewForm
+   deactivate UpdateControl
+   deactivate Maintainer
+   deactivate ReviewForm
+   deactivate Proposal
+
+View of Participating Classes
+"""""""""""""""""""""""""""""
+
+.. uml::
+
+   skinparam defaultFontColor #a80036
+
+   class ReviewForm <<boundary>> {
+      // check proposal ()
+      // display proposal ()
+      // approve proposal ()
+   }
+
+   class UpdateControl <<control>> {
+      // get proposal ()
+      // change status to approved ()
+   }
+
+   class Proposal <<entity>> {
+      // change status()
+      // get proposal()
+   }
+
+   ReviewForm "0..*" -- "1" UpdateControl
+   UpdateControl "1" -- "1" Proposal
+
+
 Update
 ^^^^^^
 
 Packages and Their Dependencies
 -------------------------------
-	

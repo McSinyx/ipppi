@@ -75,11 +75,11 @@ Iteraction Diagrams
 
 .. uml::
 
-skinparam defaultFontColor #a80036
-
-autonumber "#: //"
+   skinparam defaultFontColor #a80036
+   autonumber "#: //"
    autoactivate on
    hide footbox
+
    actor Maintainer    
    activate Maintainer
    Maintainer -> ReviewForm : check proposal ()

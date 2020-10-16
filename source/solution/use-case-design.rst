@@ -105,9 +105,9 @@ View of Participating Classes
 
 .. uml::
 
-skinparam defaultFontColor #a80036
+   skinparam defaultFontColor #a80036
 
-class ReviewForm <<boundary>> {
+   class ReviewForm <<boundary>> {
       // check proposal ()
       // display proposal ()
       // approve proposal ()

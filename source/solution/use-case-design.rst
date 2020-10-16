@@ -33,12 +33,12 @@ Basic Flow
 
    Contributor -> RF : register(input)
    RF -> RC : request input verification()
-   deactivate RF   
    RC -> AccountData : verify input()
-   deactivate AccountData
+
    RC -> AccountData : add new account()
    deactivate AccountData
    deactivate RC
+   deactivate RF
    deactivate Contributor
 
 Basic Flow (with Security)
@@ -55,7 +55,7 @@ Basic Flow (with Security)
    boundary "Registration Form" as RF
    control "Registration Controller" as RC
    entity AccountData
-   participant ISecureUser
+   boundary ISecureUser
 
    activate Contributor
    Contributor -> RF : request register()
@@ -68,7 +68,6 @@ Basic Flow (with Security)
    deactivate RF
    Contributor -> RF : register account()
    RF -> RC : request input verification()
-   deactivate RF
    RC -> AccountData : verify input()
    deactivate AccountData
    RC -> AccountData : add new account()
@@ -78,6 +77,7 @@ Basic Flow (with Security)
    deactivate ISecureUser
    deactivate RC
    deactivate RC   
+   deactivate RF
    deactivate Contributor
 
 View of Participating Classes
@@ -203,6 +203,63 @@ View of Participating Classes
 
 Review Proposal
 ^^^^^^^^^^^^^^^
+
+Iteraction Diagrams
+"""""""""""""""""""
+
+.. uml::
+
+   skinparam defaultFontColor #a80036
+   autonumber "#: //"
+   autoactivate on
+   hide footbox
+
+   actor Maintainer
+   activate Maintainer
+   Maintainer -> ReviewForm : check proposal ()
+   ReviewForm -> UpdateControl : request proposal ()
+   UpdateControl -> Proposal : get proposal ()
+   deactivate UpdateControl
+   deactivate Proposal
+   ReviewForm -> ReviewForm : display proposal ()
+   deactivate ReviewForm
+   deactivate ReviewForm
+   Maintainer -> ReviewForm : approve proposal ()
+   ReviewForm -> UpdateControl :approve proposal ()
+   UpdateControl -> Proposal : change status to approved ()
+   deactivate ReviewForm
+   deactivate ReviewForm
+   deactivate UpdateControl
+   deactivate Maintainer
+   deactivate ReviewForm
+   deactivate Proposal
+
+View of Participating Classes
+"""""""""""""""""""""""""""""
+
+.. uml::
+
+   skinparam defaultFontColor #a80036
+
+   class ReviewForm <<boundary>> {
+      // check proposal ()
+      // display proposal ()
+      // approve proposal ()
+   }
+
+   class UpdateControl <<control>> {
+      // get proposal ()
+      // change status to approved ()
+   }
+
+   class Proposal <<entity>> {
+      // change status()
+      // get proposal()
+   }
+
+   ReviewForm "0..*" -- "1" UpdateControl
+   UpdateControl "1" -- "1" Proposal
+
 
 Update
 ^^^^^^

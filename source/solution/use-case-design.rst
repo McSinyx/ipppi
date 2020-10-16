@@ -7,6 +7,140 @@ Use-Case Realization
 Register
 ^^^^^^^^
 
+Iteraction Diagrams
+"""""""""""""""""""
+
+Register - Basic Flow
+"""""""""""""""""""""
+
+.. uml::
+
+   skinparam defaultFontColor #a80036
+   autonumber "#: //"
+   autoactivate on
+   hide footbox
+
+   actor Contributor
+   boundary "Registration Form" as RF
+   control "Registration Controller" as RC
+   entity AccountData
+
+   activate Contributor
+   Contributor -> RF : request register()
+   RF -> RF : prompt registration field()
+   deactivate RF
+   deactivate RF
+
+   Contributor -> RF : register(input)
+   RF -> RC : request input verification()
+   RC -> AccountData : verify input()
+
+   RC -> AccountData : add new account()
+   deactivate AccountData
+   deactivate RC
+   deactivate RF
+   deactivate Contributor
+
+Register - Basic Flow (with Security)
+"""""""""""""""""""""""""""""""""""""
+
+.. uml::
+
+   skinparam defaultFontColor #a80036
+   autonumber "#: //"
+   autoactivate on
+   hide footbox
+
+   actor Contributor
+   boundary "Registration Form" as RF
+   control "Registration Controller" as RC
+   entity AccountData
+   boundary iSecureUser
+
+   activate Contributor
+   Contributor -> RF : request register()
+   RF -> RF : prompt registration field()
+   deactivate RF
+   deactivate RF
+   Contributor -> RF : enter username()
+   deactivate RF
+   Contributor -> RF : enter password()
+   deactivate RF
+   Contributor -> RF : register account()
+   RF -> RC : request input verification()
+   RC -> AccountData : verify input()
+   deactivate AccountData
+   RC -> AccountData : add new account()
+   deactivate AccountData   
+   RC -> RC : setup security context()
+   RC -> iSecureUser : new(UserID)
+   deactivate iSecureUser
+   deactivate RC
+   deactivate RC   
+   deactivate RF
+   deactivate Contributor
+
+View of Participating Classes
+"""""""""""""""""""""""""""""
+
+Register
+""""""""
+
+.. uml::
+
+   skinparam defaultFontColor #a80036
+
+   class RegistrationForm <<boundary>> {
+      // request register()
+      // prompt registration field()
+      // register(input)
+   }
+
+   class RegistrationController <<control>> {
+      // request input verification()
+   }
+
+   class AccountData <<entity>> {
+      // verify input()
+      // add new account()
+   }
+
+   RegistrationForm "0..*" -- "1" RegistrationController
+   RegistrationController "1" -- "1" AccountData
+
+Register (with Security)
+""""""""""""""""""""""""
+
+.. uml::
+
+   skinparam defaultFontColor #a80036
+
+   class RegistrationForm <<boundary>> {
+      // request register()
+      // prompt registration field()
+      // enter username()
+      // enter password()
+      // register account()
+   }
+
+   class RegistrationController <<control>> {
+      // request input verification()
+      // setup security context()
+   }
+
+   class AccountData <<entity>> {
+      // verify input()
+      // add new account()
+   }
+   
+   class iSecureUser <<interface>> {
+      // new()
+   }   
+
+   RegistrationForm "0..*" -- "1" RegistrationController
+   RegistrationController "1" -- "1" AccountData
+   RegistrationController "1" -- "1" iSecureUser
+
 Login
 ^^^^^
 

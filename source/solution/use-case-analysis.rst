@@ -11,28 +11,30 @@ Basic Flow
 """"""""""
 
 .. uml::
-   
+
+   skinparam defaultFontColor #a80036
    autonumber "#: //"
    autoactivate on
    hide footbox
-   
+
    actor Contributor
    boundary "Registration Form" as RF
    control "Registration Controller" as RC
-   entity Database
+   entity AccountData
 
    activate Contributor
-   Contributor -> RF : request register
-   RF -> RF : prompt registration field
+   Contributor -> RF : request register()
+   RF -> RF : prompt registration field()
+   deactivate RF
    deactivate RF
 
    Contributor -> RF : register(input)
-   RF -> RC : request input verification
-   RC -> Database : verify input
-   Database --> RC : return verification result
+   RF -> RC : request input verification()
+   RC -> AccountData : verify input()
+   AccountData --> RC : return verification result()
 
-   RC -> Database : add new account 
-   deactivate Database
+   RC -> AccountData : add new account()
+   deactivate AccountData
    deactivate RC
    deactivate RF
    deactivate Contributor
@@ -41,6 +43,8 @@ View of Participating Classes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. uml::
+
+   skinparam defaultFontColor #a80036
 
    class RegistrationForm <<boundary>> {
       // request register()
@@ -53,14 +57,14 @@ View of Participating Classes
       // return verification result()
    }
 
-   class Database <<entity>> {
+   class AccountData <<entity>> {
       // verify input()
       // add new account()
    }
 
    RegistrationForm "0..*" -- "1" RegistrationController
-   RegistrationController "1" -- "1" Database
-   
+   RegistrationController "1" -- "1" AccountData
+
 Login
 -----
 
@@ -80,43 +84,18 @@ Basic Flow
    actor Contributor
    boundary LoginForm
    control LoginController
-   entity Account
-	
-   Contributor -> LoginForm : access
-   LoginForm -> LoginForm : display request
+   entity AccountData
+
+   activate Contributor
+   Contributor -> LoginForm: start logging in()
+   LoginForm -> LoginForm: prompt for authentication information()
    deactivate LoginForm
-   Contributor -> LoginForm : input
-   LoginForm -> LoginController : send account info
-   LoginController -> Account :  verification request
-   Account -> LoginController : return verification result
-   LoginController -> LoginForm : allow access
-   LoginForm -> LoginForm : display access
-   deactivate Account
-   deactivate LoginController
    deactivate LoginForm
-   deactivate Contributor
 
-Alternate Flow
-""""""""""""""
-
-.. uml::
-
-   actor Contributor
-   boundary LoginForm
-   control LoginController
-   entity Account
-
-   Contributor -> LoginForm : access
-   LoginForm -> LoginForm : display request
-   Contributor -> LoginForm : input
-   LoginForm -> LoginController : send account info
-   LoginController -> Account : verify request
-   Account -> LoginController : return verification result
-   LoginController -> LoginForm : send error
-   LoginForm -> LoginForm : display request
-   LoginForm -> LoginForm : display error
-   Contributor -> LoginForm : cancel
-   deactivate Accountt
+   Contributor -> LoginForm: enter(authentication information)
+   LoginForm -> LoginController: log in(authentication information)
+   LoginController -> AccountData: verify(authentication information)
+   deactivate AccountData
    deactivate LoginController
    deactivate LoginForm
    deactivate Contributor
@@ -125,32 +104,25 @@ View of Participating Classes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. uml::
-   
-   class contributor <<actor>> {
-      username
-      password
-      input()
-      cancel()
-      access()
+
+   skinparam defaultFontColor #a80036
+
+   class LoginForm <<boundary>> {
+      start logging in()
+      prompt for authentication information()
+      enter(authentication information)
    }
 
-   class Login <<boundary>> {
-      // display request()
-      // display error()
-      // send account info()
-      // display access()
+   class LoginController <<control>> {
+      log in(authentication information)
    }
 
-   class Logincontroller <<control>> {
-      // verify request()
-      // allow access()
-      // send error()
-      // allow access()
+   class AccountData <<entity>> {
+      verify(authentication information)
    }
-   
-   class Account <<entity>> {
-      // return verification result()
-   }   
+
+   LoginForm "0..*" -- "1" LoginController
+   LoginController "1" -- "1" AccountData
 
 Propose Package Update
 ----------------------
@@ -163,6 +135,7 @@ Basic Flow
 
 .. uml::
 
+   skinparam defaultFontColor #a80036
    autonumber "#: //"
    autoactivate on
    hide footbox
@@ -171,7 +144,7 @@ Basic Flow
    boundary ProposalForm
    control ProposalController
    entity MetadataSystem
-   boundary NotificationSystem
+   entity NotificationSystem
 
    activate Contributor
    Contributor -> ProposalForm : create package update proposal()
@@ -191,6 +164,8 @@ View of Participating Classes
 
 .. uml::
 
+   skinparam defaultFontColor #a80036
+
    class ProposalForm <<boundary>> {
       // create package update proposal()
       // prompt for package names()
@@ -205,13 +180,79 @@ View of Participating Classes
       // check for conflicts(updates)
    }
 
-   class NotificationSystem <<boundary>> {
+   class NotificationSystem <<entity>> {
       // notify maintainers for reviews(updates)
    }
 
    ProposalForm "0..*" -- "1" ProposalController
    ProposalController "1" -- "1" MetadataSystem
    ProposalController "1" -- "1" NotificationSystem
+
+Review Proposal
+---------------
+
+Interaction Diagrams
+^^^^^^^^^^^^^^^^^^^^
+
+Basic Flow
+""""""""""
+
+.. uml::
+
+   skinparam defaultFontColor #a80036
+   autonumber "#: //"
+   autoactivate on
+   hide footbox
+
+   actor Maintainer
+   boundary ReviewForm
+   control UpdateControl
+   entity Proposal
+
+   activate Maintainer
+   Maintainer -> ReviewForm : check proposal ()
+   ReviewForm -> UpdateControl : request proposal ()
+   UpdateControl -> Proposal : get proposal ()
+   deactivate UpdateControl
+   deactivate Proposal
+   ReviewForm -> ReviewForm : display proposal ()
+   deactivate ReviewForm
+   deactivate ReviewForm
+   Maintainer -> ReviewForm : approve proposal ()
+   ReviewForm -> UpdateControl :approve proposal ()
+   UpdateControl -> Proposal : change status to approved ()
+   deactivate ReviewForm
+   deactivate ReviewForm
+   deactivate UpdateControl
+   deactivate Maintainer
+   deactivate ReviewForm
+   deactivate Proposal
+
+View of Participating Classes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. uml::
+
+   skinparam defaultFontColor #a80036
+
+   class ReviewForm <<boundary>> {
+      // check proposal ()
+      // display proposal ()
+      // approve proposal ()
+   }
+
+   class UpdateControl <<control>> {
+      // get proposal ()
+      // change status to approved ()
+   }
+
+   class Proposal <<entity>> {
+      // change status()
+      // get proposal()
+   }
+
+   ReviewForm "0..*" -- "1" UpdateControl
+   UpdateControl "1" -- "1" Proposal
 
 Update
 ------
@@ -224,20 +265,21 @@ Basic Flow
 
 .. uml::
 
+   skinparam defaultFontColor #a80036
    autonumber "#: //"
    autoactivate on
    hide footbox
 
-   control UpdateControl    
-   entity MetadataSystem 
+   control UpdateControl
+   entity MetadataSystem
    boundary DFSConnector
    actor DistributedFileSystem
-   
+
    activate UpdateControl
-   UpdateControl -> MetadataSystem : check against conflict
-   UpdateControl -> DFSConnector : update package
-   DFSConnector -> MetadataSystem : update to Metadata 
-   DFSConnector -> DistributedFileSystem : update to DFS
+   UpdateControl -> MetadataSystem : check against conflict()
+   UpdateControl -> DFSConnector : update package()
+   DFSConnector -> MetadataSystem : update to Metadata()
+   DFSConnector -> DistributedFileSystem : update to DFS()
    deactivate MetadataSystem
    deactivate UpdateControl
    deactivate DistributedFileSystem
@@ -247,18 +289,20 @@ View of Participating Classes
 
 .. uml::
 
+   skinparam defaultFontColor #a80036
+
    class DFSConnector <<boundary>> {
-      //update to DFS()
-      //update to Metadata()
+      // update to DFS()
+      // update to Metadata()
    }
 
    class UpdateControl <<control>> {
-      //check against conflict()
-      //update package()
+      // check against conflict()
+      // update package()
    }
 
    class MetadataSystem <<entity>> {
-      //store package()
+      // store package()
    }
 
    UpdateControl "1" -- "1" DFSConnector

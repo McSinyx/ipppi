@@ -5,3 +5,4 @@ Architecture Handbook
    :maxdepth: 2
 
    arch-mechanisms
+   process

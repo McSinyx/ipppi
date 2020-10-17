@@ -19,7 +19,7 @@ Basic Flow
 .. uml::
 
    skinparam defaultFontColor #a80036
-   autonumber "#: //"
+   autonumber "#:"
    autoactivate on
    hide footbox
 

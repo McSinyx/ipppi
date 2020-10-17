@@ -16,14 +16,14 @@ Basic Flow
 .. uml::
 
    skinparam defaultFontColor #a80036
-   autonumber "#: //"
+   autonumber "#: "
    autoactivate on
    hide footbox
 
    actor Contributor
-   boundary "Registration Form" as RF
-   control "Registration Controller" as RC
-   entity AccountData
+   participant "Registration Form" as RF
+   participant "Registration Controller" as RC
+   participant AccountData
 
    activate Contributor
    Contributor -> RF : request register()
@@ -33,12 +33,12 @@ Basic Flow
 
    Contributor -> RF : register(input)
    RF -> RC : request input verification()
-   deactivate RF
    RC -> AccountData : verify input()
    deactivate AccountData
    RC -> AccountData : add new account()
    deactivate AccountData
    deactivate RC
+   deactivate RF
    deactivate Contributor
 
 Basic Flow (with Security)
@@ -47,14 +47,14 @@ Basic Flow (with Security)
 .. uml::
 
    skinparam defaultFontColor #a80036
-   autonumber "#: //"
+   autonumber "#: "
    autoactivate on
    hide footbox
 
    actor Contributor
-   boundary "Registration Form" as RF
-   control "Registration Controller" as RC
-   entity AccountData
+   participant "Registration Form" as RF
+   participant "Registration Controller" as RC
+   participant AccountData
    participant ISecureUser
 
    activate Contributor
@@ -68,7 +68,6 @@ Basic Flow (with Security)
    deactivate RF
    Contributor -> RF : register account()
    RF -> RC : request input verification()
-   deactivate RF
    RC -> AccountData : verify input()
    deactivate AccountData
    RC -> AccountData : add new account()
@@ -78,6 +77,7 @@ Basic Flow (with Security)
    deactivate ISecureUser
    deactivate RC
    deactivate RC   
+   deactivate RF
    deactivate Contributor
 
 View of Participating Classes
@@ -90,19 +90,19 @@ Register
 
    skinparam defaultFontColor #a80036
 
-   class RegistrationForm <<boundary>> {
-      // request register()
-      // prompt registration field()
-      // register(input)
+   class RegistrationForm {
+      request register()
+      prompt registration field()
+      register(input)
    }
 
-   class RegistrationController <<control>> {
-      // request input verification()
+   class RegistrationController {
+      request input verification()
    }
 
-   class AccountData <<entity>> {
-      // verify input()
-      // add new account()
+   class AccountData {
+      verify input()
+      add new account()
    }
 
    RegistrationForm "0..*" -- "1" RegistrationController
@@ -115,26 +115,26 @@ Register (with Security)
 
    skinparam defaultFontColor #a80036
 
-   class RegistrationForm <<boundary>> {
-      // request register()
-      // prompt registration field()
-      // enter username()
-      // enter password()
-      // register account()
+   class RegistrationForm {
+      request register()
+      prompt registration field()
+      enter username()
+      enter password()
+      register account()
    }
 
-   class RegistrationController <<control>> {
-      // request input verification()
-      // setup security context()
+   class RegistrationController {
+      request input verification()
+      setup security context()
    }
 
-   class AccountData <<entity>> {
-      // verify input()
-      // add new account()
+   class AccountData {
+      verify input()
+      add new account()
    }
    
    class ISecureUser <<interface>> {
-      // new()
+      new()
    }   
 
    RegistrationForm "0..*" -- "1" RegistrationController

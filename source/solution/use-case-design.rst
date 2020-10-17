@@ -16,7 +16,7 @@ Basic Flow
 .. uml::
 
    skinparam defaultFontColor #a80036
-   autonumber "#: "
+   autonumber "#:"
    autoactivate on
    hide footbox
 
@@ -47,7 +47,7 @@ Basic Flow (with Security)
 .. uml::
 
    skinparam defaultFontColor #a80036
-   autonumber "#: "
+   autonumber "#:"
    autoactivate on
    hide footbox
 
@@ -55,7 +55,7 @@ Basic Flow (with Security)
    participant "Registration Form" as RF
    participant "Registration Controller" as RC
    participant AccountData
-   participant ISecureUser
+   participant ISecureUser <<interface>>
 
    activate Contributor
    Contributor -> RF : request register()

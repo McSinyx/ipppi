@@ -89,9 +89,8 @@ View of Participating Classes
 
    LoginForm "0..*" -- "1" LoginController
    LoginController "1" -- "1" AccountData
-    Security -> Account
-    Security "1" -- "1" AccountDBManager
-
+   Security -> Account
+   Security "1" -- "1" AccountDBManager
 
 
 Propose Package Update

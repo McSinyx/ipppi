@@ -49,14 +49,14 @@ View of Participating Classes
 
    skinparam defaultFontColor #a80036
    
-   class Account <<entity>>{
+   class Account {
      username
      password
      getUsername()
      getPassword()
    }
 
-   class LoginForm <<boundary>> extends Security {
+   class LoginForm extends Security {
       usernamefield
       passwordfield
       start logging in()
@@ -65,25 +65,25 @@ View of Participating Classes
       isValid(usernamefield,passwordfield)
       send(authentication information)
    }
-   class ISecurity <<interface>>{
+   class ISecurity {
       createAccount(username,password)
       send(Account)  
    }
-   class Security<<subsystem proxy>> extends ISecurity{
+   class Security extends ISecurity {
       createAccount(username,password)
       send(Account)
    }
-   class AccountDBManager{
+   class AccountDBManager {
       getConnection()
       createQuery()
       search(Account.username,Account.password)
       send(database information)
    }
-   class LoginController <<control>> extends AccountDBManager {
+   class LoginController extends AccountDBManager {
        initiate login(database information)
    }
    
-   class AccountData <<entity>> {
+   class AccountData {
     
    }
 

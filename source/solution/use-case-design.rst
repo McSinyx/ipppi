@@ -55,7 +55,8 @@ View of Participating Classes
      getUsername()
      getPassword()
    }
-   class LoginForm <<boundary>> extends Security{
+
+   class LoginForm <<boundary>> extends Security {
       usernamefield
       passwordfield
       start logging in()

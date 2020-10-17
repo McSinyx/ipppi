@@ -65,11 +65,11 @@ View of Participating Classes
       isValid(usernamefield,passwordfield)
       send(authentication information)
    }
-   class ISecurity {
+   class ISecurity <<interface>> {
       createAccount(username,password)
       send(Account)  
    }
-   class Security extends ISecurity {
+   class Security <<subsystem proxy>> extends ISecurity {
       createAccount(username,password)
       send(Account)
    }

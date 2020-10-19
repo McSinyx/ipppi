@@ -25,7 +25,7 @@ Basic Flow
 
    actor Contributor
    boundary LoginForm
-   participant ISecurity as S
+   participant Security as S
    control LoginController
    participant AccountDBManager as D
    entity AccountData

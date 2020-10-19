@@ -6,7 +6,7 @@
     <meta name="generator" content="sphinx-3.2.1, furo 2020.10.15.beta13"/>
         <title>Use-Case Design - IPPPI Analysis and Design</title>
       <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css" />
-    <link rel="stylesheet" href="../_static/styles/default.css?fac1497bf33e3f2235c6c740">
+    <link rel="stylesheet" href="../_static/styles/default.css?164a120e07522ac573188be3">
     <link rel="stylesheet" href="../_static/pygments.css">
     <link media="(prefers-color-scheme: dark)" rel="stylesheet" href="../_static/pygments_dark.css">
     
@@ -34,7 +34,7 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/language_data.js"></script>
-    <script src="../_static/scripts/main.js?fac1497bf33e3f2235c6c740"></script></head>
+    <script src="../_static/scripts/main.js?164a120e07522ac573188be3"></script></head>
   <body dir="">
     
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -139,14 +139,14 @@
 <h5>Basic Flow<a class="headerlink" href="#basic-flow" title="Permalink to this headline">¶</a></h5>
 <p class="plantuml">
 <img alt='skinparam defaultFontColor #a80036
-autonumber "#: //"
+autonumber "#:"
 autoactivate on
 hide footbox
 
 actor Contributor
-boundary "Registration Form" as RF
-control "Registration Controller" as RC
-entity AccountData
+participant "Registration Form" as RF
+participant "Registration Controller" as RC
+participant AccountData
 
 activate Contributor
 Contributor -&gt; RF : request register()
@@ -157,26 +157,26 @@ deactivate RF
 Contributor -&gt; RF : register(input)
 RF -&gt; RC : request input verification()
 RC -&gt; AccountData : verify input()
-
+deactivate AccountData
 RC -&gt; AccountData : add new account()
 deactivate AccountData
 deactivate RC
 deactivate RF
-deactivate Contributor' src="../_images/plantuml-d3d6ec7c5f6b20d7389bfddbeef639ecbdbae359.svg"/></p>
+deactivate Contributor' src="../_images/plantuml-e964458fb6ac2ad748988cefef768c2e77bf6154.svg"/></p>
 </div>
 <div class="section" id="basic-flow-with-security">
 <h5>Basic Flow (with Security)<a class="headerlink" href="#basic-flow-with-security" title="Permalink to this headline">¶</a></h5>
 <p class="plantuml">
 <img alt='skinparam defaultFontColor #a80036
-autonumber "#: //"
+autonumber "#:"
 autoactivate on
 hide footbox
 
 actor Contributor
-boundary "Registration Form" as RF
-control "Registration Controller" as RC
-entity AccountData
-boundary ISecureUser
+participant "Registration Form" as RF
+participant "Registration Controller" as RC
+participant AccountData
+participant ISecureUser &lt;&lt;interface&gt;&gt;
 
 activate Contributor
 Contributor -&gt; RF : request register()
@@ -199,7 +199,7 @@ deactivate ISecureUser
 deactivate RC
 deactivate RC
 deactivate RF
-deactivate Contributor' src="../_images/plantuml-1c8de654f6b0dbb601d8196681e83a6b8304c9cd.svg"/></p>
+deactivate Contributor' src="../_images/plantuml-03a2bf71f8bd59a7a85fb1d4222585ae98b1e1c3.svg"/></p>
 </div>
 </div>
 <div class="section" id="view-of-participating-classes">
@@ -209,54 +209,54 @@ deactivate Contributor' src="../_images/plantuml-1c8de654f6b0dbb601d8196681e83a6
 <p class="plantuml">
 <img alt='skinparam defaultFontColor #a80036
 
-class RegistrationForm &lt;&lt;boundary&gt;&gt; {
-   // request register()
-   // prompt registration field()
-   // register(input)
+class RegistrationForm {
+   request register()
+   prompt registration field()
+   register(input)
 }
 
-class RegistrationController &lt;&lt;control&gt;&gt; {
-   // request input verification()
+class RegistrationController {
+   request input verification()
 }
 
-class AccountData &lt;&lt;entity&gt;&gt; {
-   // verify input()
-   // add new account()
+class AccountData {
+   verify input()
+   add new account()
 }
 
 RegistrationForm "0..*" -- "1" RegistrationController
-RegistrationController "1" -- "1" AccountData' src="../_images/plantuml-9e8008227211901cf05e2ec139b4cfa3daca0124.svg"/></p>
+RegistrationController "1" -- "1" AccountData' src="../_images/plantuml-7a427ce0caee5702b841867e422ce6de63fde9c6.svg"/></p>
 </div>
 <div class="section" id="register-with-security">
 <h5>Register (with Security)<a class="headerlink" href="#register-with-security" title="Permalink to this headline">¶</a></h5>
 <p class="plantuml">
 <img alt='skinparam defaultFontColor #a80036
 
-class RegistrationForm &lt;&lt;boundary&gt;&gt; {
-   // request register()
-   // prompt registration field()
-   // enter username()
-   // enter password()
-   // register account()
+class RegistrationForm {
+   request register()
+   prompt registration field()
+   enter username()
+   enter password()
+   register account()
 }
 
-class RegistrationController &lt;&lt;control&gt;&gt; {
-   // request input verification()
-   // setup security context()
+class RegistrationController {
+   request input verification()
+   setup security context()
 }
 
-class AccountData &lt;&lt;entity&gt;&gt; {
-   // verify input()
-   // add new account()
+class AccountData {
+   verify input()
+   add new account()
 }
 
-class ISecureUser &lt;&lt;interface&gt;&gt; {
-   // new()
+interface ISecureUser &lt;&lt;interface&gt;&gt; {
+   new()
 }
 
 RegistrationForm "0..*" -- "1" RegistrationController
 RegistrationController "1" -- "1" AccountData
-RegistrationController "1" -- "1" ISecureUser' src="../_images/plantuml-f62220d06d5e4593aa82a486940ac5cfa45e2c57.svg"/></p>
+RegistrationController "1" -- "1" ISecureUser' src="../_images/plantuml-3346b69df6b01342c970c00157b12c7418724640.svg"/></p>
 </div>
 </div>
 </div>
@@ -269,7 +269,7 @@ RegistrationController "1" -- "1" ISecureUser' src="../_images/plantuml-f62220d0
 <h4>Iteraction Diagrams<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
 <p class="plantuml">
 <img alt='skinparam defaultFontColor #a80036
-autonumber "#: //"
+autonumber "#:"
 autoactivate on
 hide footbox
 
@@ -286,34 +286,34 @@ deactivate NotificationSystem
 deactivate IMetadataSystem
 deactivate ProposalController
 deactivate ProposalForm
-deactivate Contributor' src="../_images/plantuml-df6a7a31327e691c03299bf7a508347fca54a450.svg"/></p>
+deactivate Contributor' src="../_images/plantuml-381dcebb28c8bfc8e66e3d3cf5af6464049391b7.svg"/></p>
 </div>
 <div class="section" id="id3">
 <h4>View of Participating Classes<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
 <p class="plantuml">
 <img alt='skinparam defaultFontColor #a80036
 
-class ProposalForm &lt;&lt;boundary&gt;&gt; {
-   // create package update proposal()
-   // prompt for package names()
-   // prompt for update(package)
+class ProposalForm {
+   create package update proposal()
+   prompt for package names()
+   prompt for update(package)
 }
 
-class ProposalController &lt;&lt;control&gt;&gt; {
-   // add proposal(updates)
+class ProposalController {
+   add proposal(updates)
 }
 
 interface IMetadataSystem &lt;&lt;interface&gt;&gt; {
-   // check for conflicts(updates)
+   check for conflicts(updates)
 }
 
-class NotificationSystem &lt;&lt;entity&gt;&gt; {
-   // notify maintainers for reviews(updates)
+class NotificationSystem {
+   notify maintainers for reviews(updates)
 }
 
 ProposalForm "0..*" -- "1" ProposalController
 ProposalController "1" -- "1" IMetadataSystem
-ProposalController "1" -- "1" NotificationSystem' src="../_images/plantuml-ccce9b3b622c375a67d05db9f6daf057885bf0f1.svg"/></p>
+ProposalController "1" -- "1" NotificationSystem' src="../_images/plantuml-c466fd2f6bd5b0eb6f8274715054e8ef1ac2da63.svg"/></p>
 </div>
 </div>
 <div class="section" id="review-proposal">
@@ -322,7 +322,7 @@ ProposalController "1" -- "1" NotificationSystem' src="../_images/plantuml-ccce9
 <h4>Iteraction Diagrams<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
 <p class="plantuml">
 <img alt='skinparam defaultFontColor #a80036
-autonumber "#: //"
+autonumber "#:"
 autoactivate on
 hide footbox
 
@@ -344,31 +344,31 @@ deactivate ReviewForm
 deactivate UpdateControl
 deactivate Maintainer
 deactivate ReviewForm
-deactivate Proposal' src="../_images/plantuml-16e8ff0a12f0c412c92487172ea293d7c342eace.svg"/></p>
+deactivate Proposal' src="../_images/plantuml-5ba7295e8067d21fd1ab871a29d4420873bd2f9a.svg"/></p>
 </div>
 <div class="section" id="id5">
 <h4>View of Participating Classes<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
 <p class="plantuml">
 <img alt='skinparam defaultFontColor #a80036
 
-class ReviewForm &lt;&lt;boundary&gt;&gt; {
-   // check proposal ()
-   // display proposal ()
-   // approve proposal ()
+class ReviewForm {
+   check proposal ()
+   display proposal ()
+   approve proposal ()
 }
 
-class UpdateControl &lt;&lt;control&gt;&gt; {
-   // get proposal ()
-   // change status to approved ()
+class UpdateControl {
+   get proposal ()
+   change status to approved ()
 }
 
-class Proposal &lt;&lt;entity&gt;&gt; {
-   // change status()
-   // get proposal()
+class Proposal {
+   change status()
+   get proposal()
 }
 
 ReviewForm "0..*" -- "1" UpdateControl
-UpdateControl "1" -- "1" Proposal' src="../_images/plantuml-4e48abbdaf7c2d12ee9daf8df885eb1c71cc6398.svg"/></p>
+UpdateControl "1" -- "1" Proposal' src="../_images/plantuml-b7b571bf173dd219dbfc17b84758a0b2e35ba5cb.svg"/></p>
 </div>
 </div>
 <div class="section" id="update">

@@ -87,7 +87,7 @@ View of Participating Classes
        username
        password
        isMaintainer
-       
+       receiveQuery(username,password)
    }
 
    LoginForm "0..*" -- "1" LoginController

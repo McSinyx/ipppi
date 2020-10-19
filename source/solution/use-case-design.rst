@@ -76,7 +76,7 @@ View of Participating Classes
    class AccountDBManager {
       getConnection()
       createQuery()
-      search(Account.username,Account.password)
+      verify(Account.username,Account.password)
       send(database information)
    }
    class LoginController extends AccountDBManager {

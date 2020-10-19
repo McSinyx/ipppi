@@ -264,5 +264,111 @@ View of Participating Classes
 Update
 ^^^^^^
 
+Iteraction Diagrams
+"""""""""""""""""""
+
+Basic Flow
+''''''''''
+
+.. uml::
+
+   skinparam defaultFontColor #a80036
+   autonumber "#: //"
+   autoactivate on
+   hide footbox
+
+   control UpdateControl
+   entity MetadataSystem
+   boundary DFSConnector
+   actor DistributedFileSystem
+
+   activate UpdateControl
+   UpdateControl -> MetadataSystem : check against conflict()
+   UpdateControl -> DFSConnector : update package()
+   DFSConnector -> MetadataSystem : update to Metadata()
+   DFSConnector -> DistributedFileSystem : update to DFS()
+   deactivate MetadataSystem
+   deactivate UpdateControl
+   deactivate DistributedFileSystem
+   
+Basic Flow (with interface)
+'''''''''''''''''''''''''''
+
+.. uml::
+
+   skinparam defaultFontColor #a80036
+   autonumber "#: //"
+   autoactivate on
+   hide footbox
+
+   participant UpdateController
+   participant MetadataSystem
+   participant IMetadataSystemInterface
+   participant DFSConnector
+   actor DistributedFileSystem
+   participant IDFSinterface
+
+   activate UpdateController
+   UpdateController -> MetadataSystem : check against conflict()
+   UpdateController -> DFSConnector : update package()
+   DFSConnector -> MetadataSystem : update to Metadata()
+   MetadataSystem -> IMetadataSystemInterface : run update()
+   DFSConnector -> DistributedFileSystem : update to DFS()
+   DistributedFileSystem -> IDFSinterface : show updated and stored package()
+   deactivate MetadataSystem
+   deactivate UpdateController
+   deactivate DistributedFileSystem
+
+View of Participating Classes
+"""""""""""""""""""""""""""""
+
+Update
+''''''
+
+.. uml::
+
+   skinparam defaultFontColor #a80036
+
+   class DFSConnector <<boundary>> {
+      // update to DFS()
+      // update to Metadata()
+   }
+
+   class UpdateControl <<control>> {
+      // check against conflict()
+      // update package()
+   }
+
+   class MetadataSystem <<entity>> {
+      // store package()
+   }
+
+   UpdateControl "1" -- "1" DFSConnector
+   UpdateControl "1" -- "1" MetadataSystem
+  
+Update (with interface)
+'''''''''''''''''''''''
+
+.. uml::
+
+   skinparam defaultFontColor #a80036
+
+   class DFSConnector <<boundary>> {
+      // update to DFS()
+      // update to Metadata()
+   }
+
+   class UpdateControl <<control>> {
+      // check against conflict()
+      // update package()
+   }
+
+   class MetadataSystem <<entity>> {
+      // store package()
+   }
+   
+   interface DFSsubsystem <<interface>> {
+      // display package()
+
 Packages and Their Dependencies
 -------------------------------

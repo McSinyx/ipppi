@@ -133,7 +133,7 @@ Register (with Security)
       add new account()
    }
    
-   class ISecureUser <<interface>> {
+   interface ISecureUser <<interface>> {
       new()
    }   
 
@@ -153,7 +153,7 @@ Iteraction Diagrams
 .. uml::
 
    skinparam defaultFontColor #a80036
-   autonumber "#: //"
+   autonumber "#:"
    autoactivate on
    hide footbox
 
@@ -179,22 +179,22 @@ View of Participating Classes
 
    skinparam defaultFontColor #a80036
 
-   class ProposalForm <<boundary>> {
-      // create package update proposal()
-      // prompt for package names()
-      // prompt for update(package)
+   class ProposalForm {
+      create package update proposal()
+      prompt for package names()
+      prompt for update(package)
    }
 
-   class ProposalController <<control>> {
-      // add proposal(updates)
+   class ProposalController {
+      add proposal(updates)
    }
 
    interface IMetadataSystem <<interface>> {
-      // check for conflicts(updates)
+      check for conflicts(updates)
    }
 
-   class NotificationSystem <<entity>> {
-      // notify maintainers for reviews(updates)
+   class NotificationSystem {
+      notify maintainers for reviews(updates)
    }
 
    ProposalForm "0..*" -- "1" ProposalController
@@ -210,7 +210,7 @@ Iteraction Diagrams
 .. uml::
 
    skinparam defaultFontColor #a80036
-   autonumber "#: //"
+   autonumber "#:"
    autoactivate on
    hide footbox
 
@@ -241,20 +241,20 @@ View of Participating Classes
 
    skinparam defaultFontColor #a80036
 
-   class ReviewForm <<boundary>> {
-      // check proposal ()
-      // display proposal ()
-      // approve proposal ()
+   class ReviewForm {
+      check proposal ()
+      display proposal ()
+      approve proposal ()
    }
 
-   class UpdateControl <<control>> {
-      // get proposal ()
-      // change status to approved ()
+   class UpdateControl {
+      get proposal ()
+      change status to approved ()
    }
 
-   class Proposal <<entity>> {
-      // change status()
-      // get proposal()
+   class Proposal {
+      change status()
+      get proposal()
    }
 
    ReviewForm "0..*" -- "1" UpdateControl

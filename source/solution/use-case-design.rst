@@ -260,7 +260,6 @@ View of Participating Classes
    ReviewForm "0..*" -- "1" UpdateControl
    UpdateControl "1" -- "1" Proposal
 
-
 Update
 ^^^^^^
 

@@ -37,8 +37,8 @@ Basic Flow
    LoginForm -> LoginForm: Check empty field()
    LoginForm -> S: Send data for encapsulate()
    S -> Account: Create()
-   S -> D: Send account to verify()
-   D -> AccountData: verify(authentication information)
+   S -> D: Send account to verify(account)
+   D -> AccountData: send(account information)
    D -> LoginController: allowlogin(account)
    LoginController -> LoginForm: initate login(account) 
 
@@ -84,7 +84,10 @@ View of Participating Classes
    }
    
    class AccountData {
-    
+       username
+       password
+       isMaintainer
+       
    }
 
    LoginForm "0..*" -- "1" LoginController

@@ -43,7 +43,7 @@ Basic Flow
    LoginController -> LoginForm: initate login(account) 
 
 View of Participating Classes
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+"""""""""""""""""""""""""""""
 
 .. uml::
 

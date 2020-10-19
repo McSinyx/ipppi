@@ -16,14 +16,14 @@ Basic Flow
 .. uml::
 
    skinparam defaultFontColor #a80036
-   autonumber "#: //"
+   autonumber "#:"
    autoactivate on
    hide footbox
 
    actor Contributor
-   boundary "Registration Form" as RF
-   control "Registration Controller" as RC
-   entity AccountData
+   participant "Registration Form" as RF
+   participant "Registration Controller" as RC
+   participant AccountData
 
    activate Contributor
    Contributor -> RF : request register()
@@ -34,7 +34,7 @@ Basic Flow
    Contributor -> RF : register(input)
    RF -> RC : request input verification()
    RC -> AccountData : verify input()
-
+   deactivate AccountData
    RC -> AccountData : add new account()
    deactivate AccountData
    deactivate RC
@@ -47,15 +47,15 @@ Basic Flow (with Security)
 .. uml::
 
    skinparam defaultFontColor #a80036
-   autonumber "#: //"
+   autonumber "#:"
    autoactivate on
    hide footbox
 
    actor Contributor
-   boundary "Registration Form" as RF
-   control "Registration Controller" as RC
-   entity AccountData
-   boundary ISecureUser
+   participant "Registration Form" as RF
+   participant "Registration Controller" as RC
+   participant AccountData
+   participant ISecureUser <<interface>>
 
    activate Contributor
    Contributor -> RF : request register()
@@ -90,19 +90,19 @@ Register
 
    skinparam defaultFontColor #a80036
 
-   class RegistrationForm <<boundary>> {
-      // request register()
-      // prompt registration field()
-      // register(input)
+   class RegistrationForm {
+      request register()
+      prompt registration field()
+      register(input)
    }
 
-   class RegistrationController <<control>> {
-      // request input verification()
+   class RegistrationController {
+      request input verification()
    }
 
-   class AccountData <<entity>> {
-      // verify input()
-      // add new account()
+   class AccountData {
+      verify input()
+      add new account()
    }
 
    RegistrationForm "0..*" -- "1" RegistrationController
@@ -115,26 +115,26 @@ Register (with Security)
 
    skinparam defaultFontColor #a80036
 
-   class RegistrationForm <<boundary>> {
-      // request register()
-      // prompt registration field()
-      // enter username()
-      // enter password()
-      // register account()
+   class RegistrationForm {
+      request register()
+      prompt registration field()
+      enter username()
+      enter password()
+      register account()
    }
 
-   class RegistrationController <<control>> {
-      // request input verification()
-      // setup security context()
+   class RegistrationController {
+      request input verification()
+      setup security context()
    }
 
-   class AccountData <<entity>> {
-      // verify input()
-      // add new account()
+   class AccountData {
+      verify input()
+      add new account()
    }
    
-   class ISecureUser <<interface>> {
-      // new()
+   interface ISecureUser <<interface>> {
+      new()
    }   
 
    RegistrationForm "0..*" -- "1" RegistrationController
@@ -153,7 +153,7 @@ Iteraction Diagrams
 .. uml::
 
    skinparam defaultFontColor #a80036
-   autonumber "#: //"
+   autonumber "#:"
    autoactivate on
    hide footbox
 
@@ -179,22 +179,22 @@ View of Participating Classes
 
    skinparam defaultFontColor #a80036
 
-   class ProposalForm <<boundary>> {
-      // create package update proposal()
-      // prompt for package names()
-      // prompt for update(package)
+   class ProposalForm {
+      create package update proposal()
+      prompt for package names()
+      prompt for update(package)
    }
 
-   class ProposalController <<control>> {
-      // add proposal(updates)
+   class ProposalController {
+      add proposal(updates)
    }
 
    interface IMetadataSystem <<interface>> {
-      // check for conflicts(updates)
+      check for conflicts(updates)
    }
 
-   class NotificationSystem <<entity>> {
-      // notify maintainers for reviews(updates)
+   class NotificationSystem {
+      notify maintainers for reviews(updates)
    }
 
    ProposalForm "0..*" -- "1" ProposalController
@@ -210,7 +210,7 @@ Iteraction Diagrams
 .. uml::
 
    skinparam defaultFontColor #a80036
-   autonumber "#: //"
+   autonumber "#:"
    autoactivate on
    hide footbox
 
@@ -241,20 +241,20 @@ View of Participating Classes
 
    skinparam defaultFontColor #a80036
 
-   class ReviewForm <<boundary>> {
-      // check proposal ()
-      // display proposal ()
-      // approve proposal ()
+   class ReviewForm {
+      check proposal ()
+      display proposal ()
+      approve proposal ()
    }
 
-   class UpdateControl <<control>> {
-      // get proposal ()
-      // change status to approved ()
+   class UpdateControl {
+      get proposal ()
+      change status to approved ()
    }
 
-   class Proposal <<entity>> {
-      // change status()
-      // get proposal()
+   class Proposal {
+      change status()
+      get proposal()
    }
 
    ReviewForm "0..*" -- "1" UpdateControl

@@ -6,7 +6,7 @@
     <meta name="generator" content="sphinx-3.2.1, furo 2020.10.15.beta13"/>
         <title>Use-Case Design - IPPPI Analysis and Design</title>
       <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css" />
-    <link rel="stylesheet" href="../_static/styles/default.css?164a120e07522ac573188be3">
+    <link rel="stylesheet" href="../_static/styles/default.css?e52dbd7af9c692d7223be38f">
     <link rel="stylesheet" href="../_static/pygments.css">
     <link media="(prefers-color-scheme: dark)" rel="stylesheet" href="../_static/pygments_dark.css">
     
@@ -34,7 +34,7 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/language_data.js"></script>
-    <script src="../_static/scripts/main.js?164a120e07522ac573188be3"></script></head>
+    <script src="../_static/scripts/main.js?e52dbd7af9c692d7223be38f"></script></head>
   <body dir="">
     
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -262,11 +262,101 @@ RegistrationController "1" -- "1" ISecureUser' src="../_images/plantuml-3346b69d
 </div>
 <div class="section" id="login">
 <h3>Login<a class="headerlink" href="#login" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="interaction-diagrams">
+<h4>Interaction Diagrams<a class="headerlink" href="#interaction-diagrams" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id2">
+<h5>Basic Flow<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h5>
+<p class="plantuml">
+<img alt='skinparam defaultFontColor #a80036
+autonumber "#:"
+autoactivate on
+hide footbox
+
+actor Contributor
+participant LoginForm
+participant Security as S
+participant LoginController
+participant AccountDBManager as D
+participant AccountData
+participant Account
+
+activate Contributor
+Contributor -&gt; LoginForm: start logging in()
+LoginForm -&gt; LoginForm: prompt for authentication information()
+deactivate LoginForm
+deactivate LoginForm
+Contributor -&gt; LoginForm: enter(authentication information)
+LoginForm -&gt; LoginForm: check empty field()
+deactivate LoginForm
+LoginForm -&gt; S: send data for encapsulate()
+deactivate LoginForm
+S -&gt; Account: create()
+deactivate Account
+S -&gt; D: send account to verify(account)
+deactivate S
+D -&gt; AccountData: verify(account information)
+deactivate AccountData
+D -&gt; LoginController: allowlogin(account)
+deactivate D
+LoginController -&gt; LoginForm: initate login(account)
+deactivate LoginController
+deactivate LoginForm' src="../_images/plantuml-955924f7e568e7ac5d6ba9082232e8b6d3733c04.svg"/></p>
+</div>
+</div>
+<div class="section" id="id3">
+<h4>View of Participating Classes<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<p class="plantuml">
+<img alt='skinparam defaultFontColor #a80036
+
+class Account {
+  username
+  password
+  create()
+}
+
+class LoginForm extends Security {
+   usernamefield
+   passwordfield
+   start logging in()
+   prompt for authentication information()
+   enter(authentication information)
+   checkempty(usernamefield,passwordfield)
+   initate login(account)
+}
+interface ISecurity &lt;&lt;interface&gt;&gt; {
+   createAccount(username,password)
+   send data for encapsulate()
+}
+class Security &lt;&lt;subsystem proxy&gt;&gt; extends ISecurity {
+   createAccount(username,password)
+   send data for encapsulate()
+}
+class AccountDBManager {
+   getConnection()
+   send account to verify(account)
+}
+class LoginController extends AccountDBManager {
+    allowlogin(account)
+}
+
+class AccountData {
+    username
+    password
+    isMaintainer
+    verify(account information)
+}
+
+LoginForm "0..*" -- "1" LoginController
+LoginController "1" -- "1" AccountData
+Security -&gt; Account
+Security "1" -- "1" AccountDBManager
+AccountDBManager -&gt; AccountData' src="../_images/plantuml-322573fb86cf90b40b722f7026ed898b770b4b92.svg"/></p>
+</div>
 </div>
 <div class="section" id="propose-package-update">
 <h3>Propose Package Update<a class="headerlink" href="#propose-package-update" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id2">
-<h4>Iteraction Diagrams<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id4">
+<h4>Iteraction Diagrams<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
 <p class="plantuml">
 <img alt='skinparam defaultFontColor #a80036
 autonumber "#:"
@@ -288,8 +378,8 @@ deactivate ProposalController
 deactivate ProposalForm
 deactivate Contributor' src="../_images/plantuml-381dcebb28c8bfc8e66e3d3cf5af6464049391b7.svg"/></p>
 </div>
-<div class="section" id="id3">
-<h4>View of Participating Classes<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id5">
+<h4>View of Participating Classes<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
 <p class="plantuml">
 <img alt='skinparam defaultFontColor #a80036
 
@@ -318,8 +408,8 @@ ProposalController "1" -- "1" NotificationSystem' src="../_images/plantuml-c466f
 </div>
 <div class="section" id="review-proposal">
 <h3>Review Proposal<a class="headerlink" href="#review-proposal" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id4">
-<h4>Iteraction Diagrams<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id6">
+<h4>Iteraction Diagrams<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
 <p class="plantuml">
 <img alt='skinparam defaultFontColor #a80036
 autonumber "#:"
@@ -346,8 +436,8 @@ deactivate Maintainer
 deactivate ReviewForm
 deactivate Proposal' src="../_images/plantuml-5ba7295e8067d21fd1ab871a29d4420873bd2f9a.svg"/></p>
 </div>
-<div class="section" id="id5">
-<h4>View of Participating Classes<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id7">
+<h4>View of Participating Classes<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
 <p class="plantuml">
 <img alt='skinparam defaultFontColor #a80036
 
@@ -433,15 +523,22 @@ UpdateControl "1" -- "1" Proposal' src="../_images/plantuml-b7b571bf173dd219dbfc
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#login">Login</a></li>
-<li><a class="reference internal" href="#propose-package-update">Propose Package Update</a><ul>
-<li><a class="reference internal" href="#id2">Iteraction Diagrams</a></li>
+<li><a class="reference internal" href="#login">Login</a><ul>
+<li><a class="reference internal" href="#interaction-diagrams">Interaction Diagrams</a><ul>
+<li><a class="reference internal" href="#id2">Basic Flow</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#id3">View of Participating Classes</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#review-proposal">Review Proposal</a><ul>
+<li><a class="reference internal" href="#propose-package-update">Propose Package Update</a><ul>
 <li><a class="reference internal" href="#id4">Iteraction Diagrams</a></li>
 <li><a class="reference internal" href="#id5">View of Participating Classes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#review-proposal">Review Proposal</a><ul>
+<li><a class="reference internal" href="#id6">Iteraction Diagrams</a></li>
+<li><a class="reference internal" href="#id7">View of Participating Classes</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#update">Update</a></li>

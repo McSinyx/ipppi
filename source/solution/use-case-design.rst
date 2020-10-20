@@ -144,6 +144,100 @@ Register (with Security)
 Login
 ^^^^^
 
+Interaction Diagrams
+""""""""""""""""""""
+
+Basic Flow
+''''''''''
+
+.. uml::
+
+   skinparam defaultFontColor #a80036
+   autonumber "#:"
+   autoactivate on
+   hide footbox
+
+   actor Contributor
+   participant LoginForm
+   participant Security as S
+   participant LoginController
+   participant AccountDBManager as D
+   participant AccountData
+   participant Account
+
+   activate Contributor
+   Contributor -> LoginForm: start logging in()
+   LoginForm -> LoginForm: prompt for authentication information()
+   deactivate LoginForm
+   deactivate LoginForm
+   Contributor -> LoginForm: enter(authentication information)   
+   LoginForm -> LoginForm: check empty field()
+   deactivate LoginForm
+   LoginForm -> S: send data for encapsulate()
+   deactivate LoginForm
+   S -> Account: create()
+   deactivate Account
+   S -> D: send account to verify(account)
+   deactivate S
+   D -> AccountData: verify(account information)
+   deactivate AccountData
+   D -> LoginController: allowlogin(account)
+   deactivate D
+   LoginController -> LoginForm: initate login(account)
+   deactivate LoginController
+   deactivate LoginForm
+
+View of Participating Classes
+"""""""""""""""""""""""""""""
+
+.. uml::
+
+   skinparam defaultFontColor #a80036
+
+   class Account {
+     username
+     password
+     create()
+   }
+
+   class LoginForm extends Security {
+      usernamefield
+      passwordfield
+      start logging in()
+      prompt for authentication information()
+      enter(authentication information)
+      checkempty(usernamefield,passwordfield)
+      initate login(account)
+   }
+   interface ISecurity <<interface>> {
+      createAccount(username,password)
+      send data for encapsulate()  
+   }
+   class Security <<subsystem proxy>> extends ISecurity {
+      createAccount(username,password)
+      send data for encapsulate()
+   }
+   class AccountDBManager {
+      getConnection()
+      send account to verify(account)
+   }
+   class LoginController extends AccountDBManager {
+       allowlogin(account)
+   }
+
+   class AccountData {
+       username
+       password
+       isMaintainer
+       verify(account information)
+   }
+
+   LoginForm "0..*" -- "1" LoginController
+   LoginController "1" -- "1" AccountData
+   Security -> Account
+   Security "1" -- "1" AccountDBManager
+   AccountDBManager -> AccountData
+
 Propose Package Update
 ^^^^^^^^^^^^^^^^^^^^^^
 

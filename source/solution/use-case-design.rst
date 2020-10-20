@@ -63,8 +63,7 @@ View of Participating Classes
    class Account {
      username
      password
-     getUsername()
-     getPassword()
+     create()
    }
 
    class LoginForm extends Security {
@@ -74,31 +73,29 @@ View of Participating Classes
       prompt for authentication information()
       enter(authentication information)
       checkempty(usernamefield,passwordfield)
-      send(authentication information)
+      initate login(account)
    }
    interface ISecurity <<interface>> {
       createAccount(username,password)
-      send(Account)  
+      send data for encapsulate()  
    }
    class Security <<subsystem proxy>> extends ISecurity {
       createAccount(username,password)
-      send(Account)
+      send data for encapsulate()
    }
    class AccountDBManager {
       getConnection()
-      createQuery()
-      verify(Account.username,Account.password)
-      send(database information)
+      send account to verify(account)
    }
    class LoginController extends AccountDBManager {
-       initiate login(database information)
+       allowlogin(account)
    }
 
    class AccountData {
        username
        password
        isMaintainer
-       receiveVerification(Query)
+       verify(account information)
    }
 
    LoginForm "0..*" -- "1" LoginController

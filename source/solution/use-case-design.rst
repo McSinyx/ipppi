@@ -24,23 +24,34 @@ Basic Flow
    hide footbox
 
    actor Contributor
-   boundary LoginForm
+   participant LoginForm
    participant Security as S
-   control LoginController
+   participant LoginController
    participant AccountDBManager as D
-   entity AccountData
-   entity Account
+   participant AccountData
+   participant Account
 
+   activate Contributor
    Contributor -> LoginForm: start logging in()
    LoginForm -> LoginForm: prompt for authentication information()
+   deactivate LoginForm
+   deactivate LoginForm
    Contributor -> LoginForm: enter(authentication information)   
-   LoginForm -> LoginForm: Check empty field()
-   LoginForm -> S: Send data for encapsulate()
-   S -> Account: Create()
-   S -> D: Send account to verify(account)
+   LoginForm -> LoginForm: check empty field()
+   deactivate LoginForm
+   LoginForm -> S: send data for encapsulate()
+   deactivate LoginForm
+   S -> Account: create()
+   deactivate Account
+   S -> D: send account to verify(account)
+   deactivate S
    D -> AccountData: verify(account information)
+   deactivate AccountData
    D -> LoginController: allowlogin(account)
-   LoginController -> LoginForm: initate login(account) 
+   deactivate D
+   LoginController -> LoginForm: initate login(account)
+   deactivate LoginController
+   deactivate LoginForm
 
 View of Participating Classes
 """""""""""""""""""""""""""""
@@ -48,7 +59,7 @@ View of Participating Classes
 .. uml::
 
    skinparam defaultFontColor #a80036
-   
+
    class Account {
      username
      password
@@ -65,7 +76,7 @@ View of Participating Classes
       checkempty(usernamefield,passwordfield)
       send(authentication information)
    }
-   class ISecurity <<interface>> {
+   interface ISecurity <<interface>> {
       createAccount(username,password)
       send(Account)  
    }
@@ -82,7 +93,7 @@ View of Participating Classes
    class LoginController extends AccountDBManager {
        initiate login(database information)
    }
-   
+
    class AccountData {
        username
        password
@@ -94,7 +105,7 @@ View of Participating Classes
    LoginController "1" -- "1" AccountData
    Security -> Account
    Security "1" -- "1" AccountDBManager
-
+   AccountDBManager -> AccountData
 
 Propose Package Update
 ^^^^^^^^^^^^^^^^^^^^^^

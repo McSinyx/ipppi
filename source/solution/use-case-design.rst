@@ -38,7 +38,7 @@ Basic Flow
    LoginForm -> S: Send data for encapsulate()
    S -> Account: Create()
    S -> D: Send account to verify(account)
-   D -> AccountData: send(account information)
+   D -> AccountData: verify(account information)
    D -> LoginController: allowlogin(account)
    LoginController -> LoginForm: initate login(account) 
 
@@ -62,7 +62,7 @@ View of Participating Classes
       start logging in()
       prompt for authentication information()
       enter(authentication information)
-      isValid(usernamefield,passwordfield)
+      checkempty(usernamefield,passwordfield)
       send(authentication information)
    }
    class ISecurity <<interface>> {

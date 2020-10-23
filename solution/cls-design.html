@@ -6,7 +6,7 @@
     <meta name="generator" content="sphinx-3.2.1, furo 2020.10.15.beta13"/>
         <title>Class Design - IPPPI Analysis and Design</title>
       <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css" />
-    <link rel="stylesheet" href="../_static/styles/default.css?e5a05e6836176119150a1783">
+    <link rel="stylesheet" href="../_static/styles/default.css?0627e5de8814c132c2e5cf1b">
     <link rel="stylesheet" href="../_static/pygments.css">
     <link media="(prefers-color-scheme: dark)" rel="stylesheet" href="../_static/pygments_dark.css">
     
@@ -34,7 +34,7 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/language_data.js"></script>
-    <script src="../_static/scripts/main.js?e5a05e6836176119150a1783"></script></head>
+    <script src="../_static/scripts/main.js?0627e5de8814c132c2e5cf1b"></script></head>
   <body dir="">
     
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -127,11 +127,167 @@
   <main class="main">
     <div class="content">
       <article role="main">
-        <label class="toc-overlay-icon no-toc" for="__toc">
+        <label class="toc-overlay-icon" for="__toc">
           <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
         </label>
         <div class="section" id="class-design">
 <h1>Class Design<a class="headerlink" href="#class-design" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="register">
+<h2>Register<a class="headerlink" href="#register" title="Permalink to this headline">¶</a></h2>
+<p class="plantuml">
+<img alt='class RegistrationForm {
+   request register()
+   prompt registration field()
+   enter username()
+   enter password()
+   register account()
+}
+
+class RegistrationController {
+   request input verification()
+   setup security context()
+}
+
+class AccountData {
+   verify input()
+   add new account()
+}
+
+interface ISecureUser &lt;&lt;interface&gt;&gt; {
+   new()
+}
+
+RegistrationForm "0..*" -- "1" RegistrationController
+RegistrationController "1" -- "1" AccountData
+RegistrationController "1" -- "1" ISecureUser' src="../_images/plantuml-e3cbc89dd3e43186714280759a02d2a3beeaf965.svg"/></p>
+</div>
+<div class="section" id="login">
+<h2>Login<a class="headerlink" href="#login" title="Permalink to this headline">¶</a></h2>
+<p class="plantuml">
+<img alt='class Account {
+  username
+  password
+  create()
+}
+
+class LoginForm extends Security {
+   usernamefield
+   passwordfield
+   start logging in()
+   prompt for authentication information()
+   enter(authentication information)
+   checkempty(usernamefield,passwordfield)
+   initate login(account)
+}
+interface ISecurity &lt;&lt;interface&gt;&gt; {
+   createAccount(username,password)
+   send data for encapsulate()
+}
+class Security &lt;&lt;subsystem proxy&gt;&gt; extends ISecurity {
+   createAccount(username,password)
+   send data for encapsulate()
+}
+class AccountDBManager {
+   getConnection()
+   send account to verify(account)
+}
+class LoginController extends AccountDBManager {
+    allowlogin(account)
+}
+
+class AccountData {
+    username
+    password
+    isMaintainer
+    verify(account information)
+}
+
+LoginForm "0..*" -- "1" LoginController
+LoginController "1" -- "1" AccountData
+Security -&gt; Account
+Security "1" -- "1" AccountDBManager
+AccountDBManager -&gt; AccountData' src="../_images/plantuml-9ad864ae8d3c201d484d787b3a9a98fcf2951104.svg"/></p>
+</div>
+<div class="section" id="propose-package-update">
+<h2>Propose Package Update<a class="headerlink" href="#propose-package-update" title="Permalink to this headline">¶</a></h2>
+<p class="plantuml">
+<img alt='class ProposalForm {
+   create package update proposal()
+   prompt for package names()
+   prompt for update(package)
+}
+
+class ProposalCollection {
+   add proposal(updates)
+}
+
+interface IMetadataSystem &lt;&lt;interface&gt;&gt; {
+   check for conflicts(updates)
+}
+
+interface IRDBConnector &lt;&lt;interface&gt;&gt; {
+   insert_proposal(updates)
+}
+
+class NotificationSystem {
+   notify maintainers for reviews(updates)
+}
+
+ProposalForm "0..*" -- "1" ProposalCollection
+ProposalCollection "1" -- "1" IRDBConnector
+ProposalCollection "1" -- "1" IMetadataSystem
+ProposalCollection "1" -- "1" NotificationSystem' src="../_images/plantuml-ff8ec289cef6118e8515c0d5bf41f8bb86a9cba9.svg"/></p>
+</div>
+<div class="section" id="review-proposal">
+<h2>Review Proposal<a class="headerlink" href="#review-proposal" title="Permalink to this headline">¶</a></h2>
+<p class="plantuml">
+<img alt='class ReviewForm {
+   check proposal (uuid)
+   display proposal(uuid)
+   approve proposal(uuid)
+}
+
+class UpdateControl {
+   request proposal(uuid)
+   approve proposal(uuid)
+}
+
+class ProposalCollection {
+   get proposal(uuid)
+   change status to approved(uuid)
+}
+
+interface IRDBConnector &lt;&lt;interface&gt;&gt; {
+   change status to approved(uuid)
+}
+
+ReviewForm "0..*" -- "1" UpdateControl
+UpdateControl "1" -- "1" ProposalCollection
+IRDBConnector "1" -- "1" ProposalCollection' src="../_images/plantuml-38e697d111733c5cb9038c94e290d34c8b5fb3e4.svg"/></p>
+</div>
+<div class="section" id="update">
+<h2>Update<a class="headerlink" href="#update" title="Permalink to this headline">¶</a></h2>
+<p class="plantuml">
+<img alt='class DFSConnector &lt;&lt;boundary&gt;&gt; {
+   // update to DFS()
+   // update to Metadata()
+}
+
+class UpdateControl &lt;&lt;control&gt;&gt; {
+   // check against conflict()
+   // update package()
+}
+
+class MetadataSystem &lt;&lt;entity&gt;&gt; {
+   // store package()
+}
+
+interface DFSsubsystem &lt;&lt;interface&gt;&gt; {
+   // display package()
+}
+UpdateControl "1" -- "1" DFSConnector
+UpdateControl "1" -- "1" MetadataSystem' src="../_images/plantuml-18396792911c1563515241ba4d1851fafb5a4718.svg"/></p>
+</div>
 </div>
 
       </article>
@@ -169,8 +325,29 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree">
+          <ul>
+<li><a class="reference internal" href="#">Class Design</a><ul>
+<li><a class="reference internal" href="#register">Register</a></li>
+<li><a class="reference internal" href="#login">Login</a></li>
+<li><a class="reference internal" href="#propose-package-update">Propose Package Update</a></li>
+<li><a class="reference internal" href="#review-proposal">Review Proposal</a></li>
+<li><a class="reference internal" href="#update">Update</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
       
       
     </aside>

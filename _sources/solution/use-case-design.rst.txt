@@ -71,12 +71,12 @@ Basic Flow (with Security)
    RC -> AccountData : verify input()
    deactivate AccountData
    RC -> AccountData : add new account()
-   deactivate AccountData   
+   deactivate AccountData
    RC -> RC : setup security context()
    RC -> ISecureUser : new(UserID)
    deactivate ISecureUser
    deactivate RC
-   deactivate RC   
+   deactivate RC
    deactivate RF
    deactivate Contributor
 
@@ -132,10 +132,10 @@ Register (with Security)
       verify input()
       add new account()
    }
-   
+
    interface ISecureUser <<interface>> {
       new()
-   }   
+   }
 
    RegistrationForm "0..*" -- "1" RegistrationController
    RegistrationController "1" -- "1" AccountData
@@ -170,7 +170,7 @@ Basic Flow
    LoginForm -> LoginForm: prompt for authentication information()
    deactivate LoginForm
    deactivate LoginForm
-   Contributor -> LoginForm: enter(authentication information)   
+   Contributor -> LoginForm: enter(authentication information)
    LoginForm -> LoginForm: check empty field()
    deactivate LoginForm
    LoginForm -> S: send data for encapsulate()
@@ -211,7 +211,7 @@ View of Participating Classes
    }
    interface ISecurity <<interface>> {
       createAccount(username,password)
-      send data for encapsulate()  
+      send data for encapsulate()
    }
    class Security <<subsystem proxy>> extends ISecurity {
       createAccount(username,password)
@@ -515,91 +515,38 @@ Basic Flow
 
    activate UpdateControl
    UpdateControl -> IMetadataSystem : check against conflict()
-   UpdateControl -> DFSConnector : update package()
-   DFSConnector -> IMetadataSystem : update to Metadata()
-   DFSConnector -> DistributedFileSystem : update to DFS()
+   deactivate IMetadataSystem
+   UpdateControl -> IMetadataSystem : update metadata()
+   deactivate IMetadataSystem
+   UpdateControl -> DFSConnector : upload package()
+   DFSConnector -> DistributedFileSystem : upload()
    deactivate IMetadataSystem
    deactivate UpdateControl
-   deactivate DistributedFileSystem
-   
-Basic Flow (with Persistency)
-'''''''''''''''''''''''''''
-
-.. uml::
-
-   skinparam defaultFontColor #a80036
-   autonumber "#: //"
-   autoactivate on
-   hide footbox
-
-   participant UpdateController
-   participant IMetadataSystem
-   participant IMetadataSystemInterface
-   participant DFSConnector
-   actor DistributedFileSystem
-   participant IDFSinterface
-
-   activate UpdateController
-   UpdateController -> MetadataSystem : check against conflict()
-   UpdateController -> DFSConnector : update package()
-   DFSConnector -> MetadataSystem : update to Metadata()
-   MetadataSystem -> IMetadataSystemInterface : run update()
-   DFSConnector -> DistributedFileSystem : update to DFS()
-   DistributedFileSystem -> IDFSinterface : show updated and stored package()
-   deactivate MetadataSystem
-   deactivate UpdateController
    deactivate DistributedFileSystem
 
 View of Participating Classes
 """""""""""""""""""""""""""""
 
-Update
-''''''
+Basic Flow
+''''''''''
 
 .. uml::
 
    skinparam defaultFontColor #a80036
 
-   class DFSConnector <<boundary>> {
-      // update to DFS()
-      // update to Metadata()
+   class UpdateControl
+
+   class DFSConnector {
+      upload package()
    }
 
-   class UpdateControl <<control>> {
-      // check against conflict()
-      // update package()
-   }
-
-   class MetadataSystem <<entity>> {
-      // store package()
+   interface IMetadataSystem <<interface>> {
+      check against conflict()
+      update metadata()
    }
 
    UpdateControl "1" -- "1" DFSConnector
-   UpdateControl "1" -- "1" MetadataSystem
-  
-Update (with interface)
-'''''''''''''''''''''''
-
-.. uml::
-
-   skinparam defaultFontColor #a80036
-
-   class DFSConnector <<boundary>> {
-      // update to DFS()
-      // update to Metadata()
-   }
-
-   class UpdateControl <<control>> {
-      // check against conflict()
-      // update package()
-   }
-
-   class MetadataSystem <<entity>> {
-      // store package()
-   }
-   
-   interface DFSsubsystem <<interface>> {
-      // display package()
+   UpdateControl "1" -- "1" IMetadataSystem
 
 Packages and Their Dependencies
 -------------------------------

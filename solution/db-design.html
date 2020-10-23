@@ -6,7 +6,7 @@
     <meta name="generator" content="sphinx-3.2.1, furo 2020.10.15.beta13"/>
         <title>Database Design - IPPPI Analysis and Design</title>
       <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css" />
-    <link rel="stylesheet" href="../_static/styles/default.css?6cb0a404df8621ece98ed000">
+    <link rel="stylesheet" href="../_static/styles/default.css?2bc7f456cacbf358405fce50">
     <link rel="stylesheet" href="../_static/pygments.css">
     <link media="(prefers-color-scheme: dark)" rel="stylesheet" href="../_static/pygments_dark.css">
     
@@ -34,7 +34,7 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/language_data.js"></script>
-    <script src="../_static/scripts/main.js?6cb0a404df8621ece98ed000"></script></head>
+    <script src="../_static/scripts/main.js?2bc7f456cacbf358405fce50"></script></head>
   <body dir="">
     
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -132,6 +132,35 @@
         </label>
         <div class="section" id="database-design">
 <h1>Database Design<a class="headerlink" href="#database-design" title="Permalink to this headline">¶</a></h1>
+<p class="plantuml">
+<img alt='!define primary_key(x) &lt;u&gt;x&lt;/u&gt;
+entity "package" as pkg{
+ primary_key(pkg:text)
+ version:text
+ url:text
+}
+entity "dependency" as dp{
+ primary_key(pkg:text)
+ requirement:text
+}
+entity "proposal" as pp{
+ primary_key(uuid:text)
+ proposer:text
+ conflict:BOOL
+}
+entity "whlupdate" as whl{
+ primary_key(uuid:text)
+ primary_key(pkg:text)
+ whl:text
+}
+entity "account" as acc{
+ primary_key(username:text)
+ password:text
+ maintainer:BOOL
+}
+pkg ||--|| dp
+pkg }|--||whl
+whl||--|{pp' src="../_images/plantuml-e93cf12c63e7aa7221ba131997ee987480b7673e.svg"/></p>
 </div>
 
       </article>

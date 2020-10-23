@@ -6,7 +6,7 @@
     <meta name="generator" content="sphinx-3.2.1, furo 2020.10.15.beta13"/>
         <title>Use-Case Analysis - IPPPI Analysis and Design</title>
       <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css" />
-    <link rel="stylesheet" href="../_static/styles/default.css?554b17ef0df6af042a519464">
+    <link rel="stylesheet" href="../_static/styles/default.css?7b443d4b9960ca95e551e4f4">
     <link rel="stylesheet" href="../_static/pygments.css">
     <link media="(prefers-color-scheme: dark)" rel="stylesheet" href="../_static/pygments_dark.css">
     
@@ -34,7 +34,7 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/language_data.js"></script>
-    <script src="../_static/scripts/main.js?554b17ef0df6af042a519464"></script></head>
+    <script src="../_static/scripts/main.js?7b443d4b9960ca95e551e4f4"></script></head>
   <body dir="">
     
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -417,10 +417,9 @@ class MetadataSystem &lt;&lt;entity&gt;&gt; {
 
 UpdateControl "1" -- "1" DFSConnector
 UpdateControl "1" -- "1" MetadataSystem' src="../_images/plantuml-cb8ec56d714461e4ec7219009e8306b912899e03.svg"/></p>
-</div>
-</div>
-<div class="section" id="analysis-class-to-analysis-mechanism-map">
-<h2>Analysis-Class-To-Analysis-Mechanism Map<a class="headerlink" href="#analysis-class-to-analysis-mechanism-map" title="Permalink to this headline">¶</a></h2>
+<p>Security
+Analysis-Class-To-Analysis-Mechanism Map
+—————————————-</p>
 <div class="table-wrapper"><table class="docutils align-default">
 <colgroup>
 <col style="width: 47%"/>
@@ -433,46 +432,47 @@ UpdateControl "1" -- "1" MetadataSystem' src="../_images/plantuml-cb8ec56d714461
 </thead>
 <tbody>
 <tr class="row-even"><td><p>RegistrationForm</p></td>
-<td></td>
+<td><p>None</p></td>
 </tr>
 <tr class="row-odd"><td><p>RegistrationController</p></td>
-<td></td>
+<td><p>Distribution</p></td>
 </tr>
 <tr class="row-even"><td><p>LoginForm</p></td>
-<td></td>
+<td><p>None</p></td>
 </tr>
 <tr class="row-odd"><td><p>LoginController</p></td>
-<td></td>
+<td><p>Distribution</p></td>
 </tr>
 <tr class="row-even"><td><p>AccountData</p></td>
-<td></td>
+<td><p>Persistency, Security</p></td>
 </tr>
 <tr class="row-odd"><td><p>ProposalForm</p></td>
-<td></td>
+<td><p>Persistency</p></td>
 </tr>
 <tr class="row-even"><td><p>ProposalController</p></td>
-<td></td>
+<td><p>Distribution</p></td>
 </tr>
 <tr class="row-odd"><td><p>MetadataSystem</p></td>
-<td></td>
+<td><p>Persistency</p></td>
 </tr>
 <tr class="row-even"><td><p>ReviewForm</p></td>
-<td></td>
+<td><p>Persistency</p></td>
 </tr>
 <tr class="row-odd"><td><p>UpdateController</p></td>
-<td></td>
+<td><p>Distribution</p></td>
 </tr>
 <tr class="row-even"><td><p>Proposal</p></td>
-<td></td>
+<td><p>Persistency</p></td>
 </tr>
 <tr class="row-odd"><td rowspan="2"><p>Distributed
 File System
 Interface</p></td>
-<td rowspan="2"></td>
+<td rowspan="2"><p>None</p></td>
 </tr>
 <tr class="row-even"></tr>
 </tbody>
 </table></div>
+</div>
 </div>
 </div>
 
@@ -563,7 +563,6 @@ Interface</p></td>
 <li><a class="reference internal" href="#id12">View of Participating Classes</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#analysis-class-to-analysis-mechanism-map">Analysis-Class-To-Analysis-Mechanism Map</a></li>
 </ul>
 </li>
 </ul>

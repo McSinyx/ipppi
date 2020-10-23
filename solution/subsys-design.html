@@ -6,7 +6,7 @@
     <meta name="generator" content="sphinx-3.2.1, furo 2020.10.15.beta13"/>
         <title>Subsystem Design - IPPPI Analysis and Design</title>
       <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css" />
-    <link rel="stylesheet" href="../_static/styles/default.css?0302cc11b702faa5e35d12b2">
+    <link rel="stylesheet" href="../_static/styles/default.css?a771648f5db406a5516fc8cb">
     <link rel="stylesheet" href="../_static/pygments.css">
     <link media="(prefers-color-scheme: dark)" rel="stylesheet" href="../_static/pygments_dark.css">
     
@@ -34,7 +34,7 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/language_data.js"></script>
-    <script src="../_static/scripts/main.js?0302cc11b702faa5e35d12b2"></script></head>
+    <script src="../_static/scripts/main.js?a771648f5db406a5516fc8cb"></script></head>
   <body dir="">
     
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -127,11 +127,42 @@
   <main class="main">
     <div class="content">
       <article role="main">
-        <label class="toc-overlay-icon no-toc" for="__toc">
+        <label class="toc-overlay-icon" for="__toc">
           <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
         </label>
         <div class="section" id="subsystem-design">
 <h1>Subsystem Design<a class="headerlink" href="#subsystem-design" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="metadatasystem">
+<h2>MetadataSystem<a class="headerlink" href="#metadatasystem" title="Permalink to this headline">¶</a></h2>
+<p>MetadataSystem::check against conflicts</p>
+<p class="plantuml">
+<img alt='skinparam defaultFontColor #a80036
+autonumber "#:"
+autoactivate on
+hide footbox
+
+participant MetadataSystemClient
+participant MetadataSystem
+
+activate MetadataSystemClient
+MetadataSystemClient -&gt; MetadataSystem : check against conflicts(proposal)
+MetadataSystem -&gt; PackageAnalyzer : analyze(packages)
+PackageAnalyzer -&gt; PackageFetcher : fetch(packages)
+deactivate PackageAnalyzer
+deactivate PackageFetcher
+MetadataSystem -&gt; IRDBConnector : get all package versions()
+deactivate IRDBConnector
+MetadataSystem -&gt; IRDBConnector : get all package requirements()
+deactivate IRDBConnector
+MetadataSystem -&gt; ConflictChecker : check(versions, requirements)
+deactivate ConflictChecker
+deactivate MetadataSystem' src="../_images/plantuml-9910b890c502d7069667d00c2f44e87826060abd.svg"/></p>
+</div>
+<div class="section" id="rdbconnector">
+<h2>RDBConnector<a class="headerlink" href="#rdbconnector" title="Permalink to this headline">¶</a></h2>
+<p>For connector to a ralational database, we use third-party library conforming
+DB API v2.0 (<span class="target" id="index-0"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0249"><strong>PEP 249</strong></a>).</p>
+</div>
 </div>
 
       </article>
@@ -169,8 +200,26 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree">
+          <ul>
+<li><a class="reference internal" href="#">Subsystem Design</a><ul>
+<li><a class="reference internal" href="#metadatasystem">MetadataSystem</a></li>
+<li><a class="reference internal" href="#rdbconnector">RDBConnector</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
       
       
     </aside>

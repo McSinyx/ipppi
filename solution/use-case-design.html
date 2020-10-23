@@ -1,12 +1,12 @@
 <!doctype html>
 <html class="no-js">
   <head><meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width,initial-scale=1"/><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="prev" title="Distribution" href="distribution.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1"/><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Subsystem Design" href="subsys-design.html" /><link rel="prev" title="Distribution" href="distribution.html" />
 
     <meta name="generator" content="sphinx-3.2.1, furo 2020.10.15.beta13"/>
         <title>Use-Case Design - IPPPI Analysis and Design</title>
       <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css" />
-    <link rel="stylesheet" href="../_static/styles/default.css?e52dbd7af9c692d7223be38f">
+    <link rel="stylesheet" href="../_static/styles/default.css?11b4b5088bb061242b4c63bb">
     <link rel="stylesheet" href="../_static/pygments.css">
     <link media="(prefers-color-scheme: dark)" rel="stylesheet" href="../_static/pygments_dark.css">
     
@@ -34,7 +34,7 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/language_data.js"></script>
-    <script src="../_static/scripts/main.js?e52dbd7af9c692d7223be38f"></script></head>
+    <script src="../_static/scripts/main.js?11b4b5088bb061242b4c63bb"></script></head>
   <body dir="">
     
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -112,6 +112,9 @@
 <li class="toctree-l2"><a class="reference internal" href="run-time-arch.html">Run-time Architecture</a></li>
 <li class="toctree-l2"><a class="reference internal" href="distribution.html">Distribution</a></li>
 <li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Use-Case Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subsys-design.html">Subsystem Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cls-design.html">Class Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="db-design.html">Database Design</a></li>
 </ul>
 </li>
 </ul>
@@ -357,6 +360,8 @@ AccountDBManager -&gt; AccountData' src="../_images/plantuml-322573fb86cf90b40b7
 <h3>Propose Package Update<a class="headerlink" href="#propose-package-update" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="id4">
 <h4>Iteraction Diagrams<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id5">
+<h5>Basic Flow<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h5>
 <p class="plantuml">
 <img alt='skinparam defaultFontColor #a80036
 autonumber "#:"
@@ -368,18 +373,48 @@ actor Contributor
 activate Contributor
 Contributor -&gt; ProposalForm : create package update proposal()
 ProposalForm -&gt; ProposalForm : prompt for package names()
+deactivate ProposalForm
 ProposalForm -&gt; ProposalForm : prompt for update(package)
-ProposalForm -&gt; ProposalController : add proposal(updates)
-ProposalController -&gt; IMetadataSystem : check for conflicts(updates)
-ProposalController -&gt; NotificationSystem : notify maintainers for reviews(updates)
+ProposalForm -&gt; ProposalCollection : add proposal(updates)
+ProposalCollection -&gt; IMetadataSystem : check for conflicts(updates)
+ProposalCollection -&gt; NotificationSystem : notify maintainers for reviews(updates)
 deactivate NotificationSystem
 deactivate IMetadataSystem
-deactivate ProposalController
+deactivate ProposalCollection
 deactivate ProposalForm
-deactivate Contributor' src="../_images/plantuml-381dcebb28c8bfc8e66e3d3cf5af6464049391b7.svg"/></p>
+deactivate Contributor' src="../_images/plantuml-784d4fa3f630c262ebd54e3c648a7994f6852f55.svg"/></p>
 </div>
-<div class="section" id="id5">
-<h4>View of Participating Classes<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="basic-flow-with-persistency">
+<h5>Basic Flow (with Persistency)<a class="headerlink" href="#basic-flow-with-persistency" title="Permalink to this headline">¶</a></h5>
+<p class="plantuml">
+<img alt='skinparam defaultFontColor #a80036
+autonumber "#:"
+autoactivate on
+hide footbox
+
+actor Contributor
+participant IRDBConnector &lt;&lt;interface&gt;&gt;
+
+activate Contributor
+Contributor -&gt; ProposalForm : create package update proposal()
+ProposalForm -&gt; ProposalForm : prompt for package names()
+deactivate ProposalForm
+ProposalForm -&gt; ProposalForm : prompt for update(package)
+ProposalForm -&gt; ProposalCollection : add proposal(updates)
+ProposalCollection -&gt; IRDBConnector : insert_proposal(updates)
+ProposalCollection -&gt; IMetadataSystem : check for conflicts(updates)
+ProposalCollection -&gt; NotificationSystem : notify maintainers for reviews(updates)
+deactivate NotificationSystem
+deactivate IMetadataSystem
+deactivate ProposalCollection
+deactivate ProposalForm
+deactivate Contributor' src="../_images/plantuml-f272edb369e2563d2b14442dc9eb96181e5bd536.svg"/></p>
+</div>
+</div>
+<div class="section" id="id6">
+<h4>View of Participating Classes<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id7">
+<h5>Basic Flow<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h5>
 <p class="plantuml">
 <img alt='skinparam defaultFontColor #a80036
 
@@ -389,7 +424,7 @@ class ProposalForm {
    prompt for update(package)
 }
 
-class ProposalController {
+class ProposalCollection {
    add proposal(updates)
 }
 
@@ -401,15 +436,50 @@ class NotificationSystem {
    notify maintainers for reviews(updates)
 }
 
-ProposalForm "0..*" -- "1" ProposalController
-ProposalController "1" -- "1" IMetadataSystem
-ProposalController "1" -- "1" NotificationSystem' src="../_images/plantuml-c466fd2f6bd5b0eb6f8274715054e8ef1ac2da63.svg"/></p>
+ProposalForm "0..*" -- "1" ProposalCollection
+ProposalCollection "1" -- "1" IMetadataSystem
+ProposalCollection "1" -- "1" NotificationSystem' src="../_images/plantuml-f5e737e02b9a7fe59422f2c9afee1e96d5a4cb8f.svg"/></p>
+</div>
+<div class="section" id="id8">
+<h5>Basic Flow (with Persistency)<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h5>
+<p class="plantuml">
+<img alt='skinparam defaultFontColor #a80036
+
+class ProposalForm {
+   create package update proposal()
+   prompt for package names()
+   prompt for update(package)
+}
+
+class ProposalCollection {
+   add proposal(updates)
+}
+
+interface IMetadataSystem &lt;&lt;interface&gt;&gt; {
+   check for conflicts(updates)
+}
+
+interface IRDBConnector &lt;&lt;interface&gt;&gt; {
+   insert_proposal(updates)
+}
+
+class NotificationSystem {
+   notify maintainers for reviews(updates)
+}
+
+ProposalForm "0..*" -- "1" ProposalCollection
+ProposalCollection "1" -- "1" IRDBConnector
+ProposalCollection "1" -- "1" IMetadataSystem
+ProposalCollection "1" -- "1" NotificationSystem' src="../_images/plantuml-5cd9816a3868db2e1d8f2a29bbc93d07873061d5.svg"/></p>
+</div>
 </div>
 </div>
 <div class="section" id="review-proposal">
 <h3>Review Proposal<a class="headerlink" href="#review-proposal" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id6">
-<h4>Iteraction Diagrams<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id9">
+<h4>Iteraction Diagrams<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id10">
+<h5>Basic Flow<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h5>
 <p class="plantuml">
 <img alt='skinparam defaultFontColor #a80036
 autonumber "#:"
@@ -419,46 +489,109 @@ hide footbox
 actor Maintainer
 activate Maintainer
 Maintainer -&gt; ReviewForm : check proposal ()
-ReviewForm -&gt; UpdateControl : request proposal ()
-UpdateControl -&gt; Proposal : get proposal ()
+ReviewForm -&gt; UpdateControl : request proposal (uuid)
+UpdateControl -&gt; ProposalCollection : get proposal (uuid)
 deactivate UpdateControl
-deactivate Proposal
-ReviewForm -&gt; ReviewForm : display proposal ()
+deactivate ProposalCollection
+ReviewForm -&gt; ReviewForm : display proposal (uuid)
 deactivate ReviewForm
 deactivate ReviewForm
-Maintainer -&gt; ReviewForm : approve proposal ()
-ReviewForm -&gt; UpdateControl :approve proposal ()
-UpdateControl -&gt; Proposal : change status to approved ()
-deactivate ReviewForm
-deactivate ReviewForm
+Maintainer -&gt; ReviewForm : approve proposal (uuid)
+ReviewForm -&gt; UpdateControl : approve proposal (uuid)
+UpdateControl -&gt; ProposalCollection : change status to approved (uuid)
+deactivate ProposalCollection
 deactivate UpdateControl
-deactivate Maintainer
 deactivate ReviewForm
-deactivate Proposal' src="../_images/plantuml-5ba7295e8067d21fd1ab871a29d4420873bd2f9a.svg"/></p>
+deactivate Maintainer' src="../_images/plantuml-6278cf7cfb84800e4d3af82eacd8e3334f7b9b47.svg"/></p>
 </div>
-<div class="section" id="id7">
-<h4>View of Participating Classes<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id11">
+<h5>Basic Flow (with Persistency)<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h5>
+<p class="plantuml">
+<img alt='skinparam defaultFontColor #a80036
+autonumber "#:"
+autoactivate on
+hide footbox
+
+actor Maintainer
+participant ReviewForm
+participant UpdateControl
+participant ProposalCollection
+participant IRDBConnector &lt;&lt;interface&gt;&gt;
+
+activate Maintainer
+Maintainer -&gt; ReviewForm : check proposal ()
+ReviewForm -&gt; UpdateControl : request proposal (uuid)
+UpdateControl -&gt; ProposalCollection : get proposal (uuid)
+deactivate UpdateControl
+deactivate ProposalCollection
+ReviewForm -&gt; ReviewForm : display proposal (uuid)
+deactivate ReviewForm
+deactivate ReviewForm
+Maintainer -&gt; ReviewForm : approve proposal (uuid)
+ReviewForm -&gt; UpdateControl : approve proposal (uuid)
+UpdateControl -&gt; ProposalCollection : change status to approved (uuid)
+ProposalCollection -&gt; IRDBConnector : change status to approved (uuid)
+deactivate ProposalCollection
+deactivate UpdateControl
+deactivate ReviewForm
+deactivate Maintainer' src="../_images/plantuml-840da5a34c925579d5d405a36618692f2b6a7053.svg"/></p>
+</div>
+</div>
+<div class="section" id="id12">
+<h4>View of Participating Classes<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id13">
+<h5>Basic Flow<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h5>
 <p class="plantuml">
 <img alt='skinparam defaultFontColor #a80036
 
 class ReviewForm {
-   check proposal ()
-   display proposal ()
-   approve proposal ()
+   check proposal (uuid)
+   display proposal(uuid)
+   approve proposal(uuid)
 }
 
 class UpdateControl {
-   get proposal ()
-   change status to approved ()
+   request proposal(uuid)
+   approve proposal(uuid)
 }
 
-class Proposal {
-   change status()
-   get proposal()
+class ProposalCollection {
+   get proposal(uuid)
+   change status to approved(uuid)
 }
 
 ReviewForm "0..*" -- "1" UpdateControl
-UpdateControl "1" -- "1" Proposal' src="../_images/plantuml-b7b571bf173dd219dbfc17b84758a0b2e35ba5cb.svg"/></p>
+UpdateControl "1" -- "1" ProposalCollection' src="../_images/plantuml-7ca24b122c62162759d28263315a46255913905f.svg"/></p>
+</div>
+<div class="section" id="id14">
+<h5>Basic Flow (with Persistency)<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h5>
+<p class="plantuml">
+<img alt='skinparam defaultFontColor #a80036
+
+class ReviewForm {
+   check proposal (uuid)
+   display proposal(uuid)
+   approve proposal(uuid)
+}
+
+class UpdateControl {
+   request proposal(uuid)
+   approve proposal(uuid)
+}
+
+class ProposalCollection {
+   get proposal(uuid)
+   change status to approved(uuid)
+}
+
+interface IRDBConnector &lt;&lt;interface&gt;&gt; {
+   change status to approved(uuid)
+}
+
+ReviewForm "0..*" -- "1" UpdateControl
+UpdateControl "1" -- "1" ProposalCollection
+IRDBConnector "1" -- "1" ProposalCollection' src="../_images/plantuml-4ccff210dbbacd78f8472c61807486935140e36b.svg"/></p>
+</div>
 </div>
 </div>
 <div class="section" id="update">
@@ -474,7 +607,15 @@ UpdateControl "1" -- "1" Proposal' src="../_images/plantuml-b7b571bf173dd219dbfc
       <footer>
         
         <div class="related-pages">
-          
+          <a class="next-page" href="subsys-design.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Subsystem Design</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
           <a class="prev-page" href="distribution.html">
               <svg><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
@@ -532,13 +673,29 @@ UpdateControl "1" -- "1" Proposal' src="../_images/plantuml-b7b571bf173dd219dbfc
 </ul>
 </li>
 <li><a class="reference internal" href="#propose-package-update">Propose Package Update</a><ul>
-<li><a class="reference internal" href="#id4">Iteraction Diagrams</a></li>
-<li><a class="reference internal" href="#id5">View of Participating Classes</a></li>
+<li><a class="reference internal" href="#id4">Iteraction Diagrams</a><ul>
+<li><a class="reference internal" href="#id5">Basic Flow</a></li>
+<li><a class="reference internal" href="#basic-flow-with-persistency">Basic Flow (with Persistency)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id6">View of Participating Classes</a><ul>
+<li><a class="reference internal" href="#id7">Basic Flow</a></li>
+<li><a class="reference internal" href="#id8">Basic Flow (with Persistency)</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a class="reference internal" href="#review-proposal">Review Proposal</a><ul>
-<li><a class="reference internal" href="#id6">Iteraction Diagrams</a></li>
-<li><a class="reference internal" href="#id7">View of Participating Classes</a></li>
+<li><a class="reference internal" href="#id9">Iteraction Diagrams</a><ul>
+<li><a class="reference internal" href="#id10">Basic Flow</a></li>
+<li><a class="reference internal" href="#id11">Basic Flow (with Persistency)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id12">View of Participating Classes</a><ul>
+<li><a class="reference internal" href="#id13">Basic Flow</a></li>
+<li><a class="reference internal" href="#id14">Basic Flow (with Persistency)</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a class="reference internal" href="#update">Update</a></li>

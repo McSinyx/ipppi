@@ -6,7 +6,7 @@
     <meta name="generator" content="sphinx-3.2.1, furo 2020.10.15.beta13"/>
         <title>Use-Case Design - IPPPI Analysis and Design</title>
       <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css" />
-    <link rel="stylesheet" href="../_static/styles/default.css?11b4b5088bb061242b4c63bb">
+    <link rel="stylesheet" href="../_static/styles/default.css?76a81d4f0de4855d23516191">
     <link rel="stylesheet" href="../_static/pygments.css">
     <link media="(prefers-color-scheme: dark)" rel="stylesheet" href="../_static/pygments_dark.css">
     
@@ -34,7 +34,7 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/language_data.js"></script>
-    <script src="../_static/scripts/main.js?11b4b5088bb061242b4c63bb"></script></head>
+    <script src="../_static/scripts/main.js?76a81d4f0de4855d23516191"></script></head>
   <body dir="">
     
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -596,6 +596,85 @@ IRDBConnector "1" -- "1" ProposalCollection' src="../_images/plantuml-4ccff210db
 </div>
 <div class="section" id="update">
 <h3>Update<a class="headerlink" href="#update" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id15">
+<h4>Iteraction Diagrams<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id16">
+<h5>Basic Flow<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h5>
+<p class="plantuml">
+<img alt='skinparam defaultFontColor #a80036
+autonumber "#: //"
+autoactivate on
+hide footbox
+
+participant UpdateControl
+participant IMetadataSystem &lt;&lt;interface&gt;&gt;
+participant DFSConnector
+actor DistributedFileSystem
+
+activate UpdateControl
+UpdateControl -&gt; IMetadataSystem : check against conflict()
+UpdateControl -&gt; DFSConnector : update package()
+DFSConnector -&gt; IMetadataSystem : update to Metadata()
+DFSConnector -&gt; DistributedFileSystem : update to DFS()
+deactivate IMetadataSystem
+deactivate UpdateControl
+deactivate DistributedFileSystem' src="../_images/plantuml-169a7d9a53891e18fb643eba19535ced2bfd5ca5.svg"/></p>
+</div>
+<div class="section" id="id17">
+<h5>Basic Flow (with Persistency)<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h5>
+<p class="plantuml">
+<img alt='skinparam defaultFontColor #a80036
+autonumber "#: //"
+autoactivate on
+hide footbox
+
+participant UpdateController
+participant IMetadataSystem
+participant IMetadataSystemInterface
+participant DFSConnector
+actor DistributedFileSystem
+participant IDFSinterface
+
+activate UpdateController
+UpdateController -&gt; MetadataSystem : check against conflict()
+UpdateController -&gt; DFSConnector : update package()
+DFSConnector -&gt; MetadataSystem : update to Metadata()
+MetadataSystem -&gt; IMetadataSystemInterface : run update()
+DFSConnector -&gt; DistributedFileSystem : update to DFS()
+DistributedFileSystem -&gt; IDFSinterface : show updated and stored package()
+deactivate MetadataSystem
+deactivate UpdateController
+deactivate DistributedFileSystem' src="../_images/plantuml-7244b165ce797a4227e7cd33175634d46ff79b78.svg"/></p>
+</div>
+</div>
+<div class="section" id="id18">
+<h4>View of Participating Classes<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id19">
+<h5>Update<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h5>
+<p class="plantuml">
+<img alt='skinparam defaultFontColor #a80036
+
+class DFSConnector &lt;&lt;boundary&gt;&gt; {
+   // update to DFS()
+   // update to Metadata()
+}
+
+class UpdateControl &lt;&lt;control&gt;&gt; {
+   // check against conflict()
+   // update package()
+}
+
+class MetadataSystem &lt;&lt;entity&gt;&gt; {
+   // store package()
+}
+
+UpdateControl "1" -- "1" DFSConnector
+UpdateControl "1" -- "1" MetadataSystem' src="../_images/plantuml-cb8ec56d714461e4ec7219009e8306b912899e03.svg"/></p>
+</div>
+<div class="section" id="update-with-interface">
+<h5>Update (with interface)<a class="headerlink" href="#update-with-interface" title="Permalink to this headline">¶</a></h5>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="packages-and-their-dependencies">
@@ -698,7 +777,19 @@ IRDBConnector "1" -- "1" ProposalCollection' src="../_images/plantuml-4ccff210db
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#update">Update</a></li>
+<li><a class="reference internal" href="#update">Update</a><ul>
+<li><a class="reference internal" href="#id15">Iteraction Diagrams</a><ul>
+<li><a class="reference internal" href="#id16">Basic Flow</a></li>
+<li><a class="reference internal" href="#id17">Basic Flow (with Persistency)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id18">View of Participating Classes</a><ul>
+<li><a class="reference internal" href="#id19">Update</a></li>
+<li><a class="reference internal" href="#update-with-interface">Update (with interface)</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a class="reference internal" href="#packages-and-their-dependencies">Packages and Their Dependencies</a></li>

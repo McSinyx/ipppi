@@ -307,36 +307,36 @@ View of Participating Classes
 
    UpdateControl "1" -- "1" DFSConnector
    UpdateControl "1" -- "1" MetadataSystem
-
+Security
 Analysis-Class-To-Analysis-Mechanism Map
 ----------------------------------------
 
 +------------------------+---------------------------+
 | Analysis Class         | Analysis Mechanism(s)     |
 +========================+===========================+
-| RegistrationForm       |                           |
+| RegistrationForm       | None                      |
 +------------------------+---------------------------+
-| RegistrationController |                           |
+| RegistrationController | Distribution              |
 +------------------------+---------------------------+
-| LoginForm              |                           |
+| LoginForm              | None                      |
 +------------------------+---------------------------+
-| LoginController        |                           |
+| LoginController        | Distribution              |
 +------------------------+---------------------------+
-| AccountData            |                           |
+| AccountData            | Persistency, Security     |
 +------------------------+---------------------------+
-| ProposalForm           |                           |
+| ProposalForm           | Persistency               |
 +------------------------+---------------------------+
-| ProposalController     |                           |
+| ProposalController     | Distribution              |
 +------------------------+---------------------------+
-| MetadataSystem         |                           |
+| MetadataSystem         | Persistency               |
 +------------------------+---------------------------+
-| ReviewForm             |                           |
+| ReviewForm             | Persistency               |
 +------------------------+---------------------------+
-| UpdateController       |                           |
+| UpdateController       | Distribution              |
 +------------------------+---------------------------+
-| Proposal               |                           |
+| Proposal               | Persistency               |
 +------------------------+---------------------------+
-| Distributed            |                           |
+| Distributed            | None                      |
 + File System            +                           +
 | Interface              |                           |
 +------------------------+---------------------------+

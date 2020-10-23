@@ -1,10 +1,9 @@
 Database Design
 ===============
 
-..uml..
+..uml::
 
   !define primary_key(x) <u>x</u>
-
   entity "package" as pkg{
     primary_key(pkg:text)
     version:text

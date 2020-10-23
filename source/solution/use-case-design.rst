@@ -41,45 +41,6 @@ Basic Flow
    deactivate RF
    deactivate Contributor
 
-Basic Flow (with Security)
-''''''''''''''''''''''''''
-
-.. uml::
-
-   skinparam defaultFontColor #a80036
-   autonumber "#:"
-   autoactivate on
-   hide footbox
-
-   actor Contributor
-   participant "Registration Form" as RF
-   participant "Registration Controller" as RC
-   participant AccountData
-   participant ISecureUser <<interface>>
-
-   activate Contributor
-   Contributor -> RF : request register()
-   RF -> RF : prompt registration field()
-   deactivate RF
-   deactivate RF
-   Contributor -> RF : enter username()
-   deactivate RF
-   Contributor -> RF : enter password()
-   deactivate RF
-   Contributor -> RF : register account()
-   RF -> RC : request input verification()
-   RC -> AccountData : verify input()
-   deactivate AccountData
-   RC -> AccountData : add new account()
-   deactivate AccountData
-   RC -> RC : setup security context()
-   RC -> ISecureUser : new(UserID)
-   deactivate ISecureUser
-   deactivate RC
-   deactivate RC
-   deactivate RF
-   deactivate Contributor
-
 View of Participating Classes
 """""""""""""""""""""""""""""
 
@@ -107,39 +68,6 @@ Register
 
    RegistrationForm "0..*" -- "1" RegistrationController
    RegistrationController "1" -- "1" AccountData
-
-Register (with Security)
-''''''''''''''''''''''''
-
-.. uml::
-
-   skinparam defaultFontColor #a80036
-
-   class RegistrationForm {
-      request register()
-      prompt registration field()
-      enter username()
-      enter password()
-      register account()
-   }
-
-   class RegistrationController {
-      request input verification()
-      setup security context()
-   }
-
-   class AccountData {
-      verify input()
-      add new account()
-   }
-
-   interface ISecureUser <<interface>> {
-      new()
-   }
-
-   RegistrationForm "0..*" -- "1" RegistrationController
-   RegistrationController "1" -- "1" AccountData
-   RegistrationController "1" -- "1" ISecureUser
 
 Login
 ^^^^^
@@ -504,7 +432,7 @@ Basic Flow
 .. uml::
 
    skinparam defaultFontColor #a80036
-   autonumber "#: //"
+   autonumber "#:"
    autoactivate on
    hide footbox
 

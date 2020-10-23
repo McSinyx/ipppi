@@ -127,15 +127,22 @@ Package Descriptions
 ^^^^^^^^^^^^^^^^^^^^
 
 Authentication UI (from Application)
+   Interface for maintainers/contributors to initate login/register
 
 Authentication Management (from Application)
+   Allow or disallow login/register request 
 
 Authentication (from Business Services)
+   Containing account's information for manintainer/contributors to login/register
 
 Proposal UI (from Application)
-
+   Interface for contributor's proposal for packages
+ 
 Proposal Management (from Business Services)
-
+   Managing proposal from contributors for either accept or dismiss
+   
 Package Index (from Business Services)
-
+   Handling package 
+   
 External System Interfaces (from Middleware)
+   Interface for IDFS for downloading files

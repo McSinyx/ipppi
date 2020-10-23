@@ -9,3 +9,6 @@ System Solution
    run-time-arch
    distribution
    use-case-design
+   subsys-design
+   cls-design
+   db-design.rst

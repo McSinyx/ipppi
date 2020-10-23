@@ -307,7 +307,7 @@ View of Participating Classes
 
    UpdateControl "1" -- "1" DFSConnector
    UpdateControl "1" -- "1" MetadataSystem
-Security
+
 Analysis-Class-To-Analysis-Mechanism Map
 ----------------------------------------
 
@@ -337,6 +337,6 @@ Analysis-Class-To-Analysis-Mechanism Map
 | Proposal               | Persistency               |
 +------------------------+---------------------------+
 | Distributed            | None                      |
-+ File System            +                           +
+| File System            |                           |
 | Interface              |                           |
 +------------------------+---------------------------+

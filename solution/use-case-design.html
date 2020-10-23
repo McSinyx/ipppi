@@ -6,7 +6,7 @@
     <meta name="generator" content="sphinx-3.2.1, furo 2020.10.15.beta13"/>
         <title>Use-Case Design - IPPPI Analysis and Design</title>
       <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css" />
-    <link rel="stylesheet" href="../_static/styles/default.css?8cb4d8d18deb5caf95c2ed22">
+    <link rel="stylesheet" href="../_static/styles/default.css?50070965c5713194d97d5976">
     <link rel="stylesheet" href="../_static/pygments.css">
     <link media="(prefers-color-scheme: dark)" rel="stylesheet" href="../_static/pygments_dark.css">
     
@@ -34,7 +34,7 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/language_data.js"></script>
-    <script src="../_static/scripts/main.js?8cb4d8d18deb5caf95c2ed22"></script></head>
+    <script src="../_static/scripts/main.js?50070965c5713194d97d5976"></script></head>
   <body dir="">
     
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -581,6 +581,41 @@ UpdateControl "1" -- "1" IMetadataSystem' src="../_images/plantuml-840f65b89f7a2
 </div>
 <div class="section" id="packages-and-their-dependencies">
 <h2>Packages and Their Dependencies<a class="headerlink" href="#packages-and-their-dependencies" title="Permalink to this headline">¶</a></h2>
+<p class="plantuml">
+<img alt='skinparam defaultFontColor #a80036
+
+package "Authentication UI\n(from Application)" as AuthUI
+package "Authentication Management\n(from Application)" as AuthMgm
+package "Authentication\n(from Business Services)" as Auth
+package "Proposal UI\n(from Application)" as ProposeUI
+package "Proposal Management\n(from Business Services)" as ProposeMgm
+package "Package Index\n(from Business Services)" as PI
+package "External System Interfaces\n(from Middleware)" as ExtI
+
+AuthUI --&gt; AuthMgm
+AuthMgm --&gt; Auth
+ProposeUI --&gt; ProposeMgm
+ProposeMgm --&gt; PI
+ProposeMgm --&gt; ExtI' src="../_images/plantuml-73f3379a72758c8fceb673b11bafef3602724e7d.svg"/></p>
+<div class="section" id="package-descriptions">
+<h3>Package Descriptions<a class="headerlink" href="#package-descriptions" title="Permalink to this headline">¶</a></h3>
+<dl class="simple">
+<dt>Authentication UI (from Application)</dt><dd><p>Interface for maintainers/contributors to initate login/register</p>
+</dd>
+<dt>Authentication Management (from Application)</dt><dd><p>Allow or disallow login/register request</p>
+</dd>
+<dt>Authentication (from Business Services)</dt><dd><p>Containing account’s information for manintainer/contributors to login/register</p>
+</dd>
+<dt>Proposal UI (from Application)</dt><dd><p>Interface for contributor’s proposal for packages</p>
+</dd>
+<dt>Proposal Management (from Business Services)</dt><dd><p>Managing proposal from contributors for either accept or dismiss</p>
+</dd>
+<dt>Package Index (from Business Services)</dt><dd><p>Handling package</p>
+</dd>
+<dt>External System Interfaces (from Middleware)</dt><dd><p>Interface for IDFS for downloading files</p>
+</dd>
+</dl>
+</div>
 </div>
 </div>
 
@@ -690,7 +725,10 @@ UpdateControl "1" -- "1" IMetadataSystem' src="../_images/plantuml-840f65b89f7a2
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#packages-and-their-dependencies">Packages and Their Dependencies</a></li>
+<li><a class="reference internal" href="#packages-and-their-dependencies">Packages and Their Dependencies</a><ul>
+<li><a class="reference internal" href="#package-descriptions">Package Descriptions</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

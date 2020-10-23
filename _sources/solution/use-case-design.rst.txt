@@ -478,3 +478,46 @@ Basic Flow
 
 Packages and Their Dependencies
 -------------------------------
+
+.. uml::
+
+   skinparam defaultFontColor #a80036
+
+   package "Authentication UI\n(from Application)" as AuthUI
+   package "Authentication Management\n(from Application)" as AuthMgm
+   package "Authentication\n(from Business Services)" as Auth
+   package "Proposal UI\n(from Application)" as ProposeUI
+   package "Proposal Management\n(from Business Services)" as ProposeMgm
+   package "Package Index\n(from Business Services)" as PI
+   package "External System Interfaces\n(from Middleware)" as ExtI
+
+   AuthUI --> AuthMgm
+   AuthMgm --> Auth
+   ProposeUI --> ProposeMgm
+   ProposeMgm --> PI
+   ProposeMgm --> ExtI
+
+
+Package Descriptions
+^^^^^^^^^^^^^^^^^^^^
+
+Authentication UI (from Application)
+   Interface for maintainers/contributors to initate login/register
+
+Authentication Management (from Application)
+   Allow or disallow login/register request 
+
+Authentication (from Business Services)
+   Containing account's information for manintainer/contributors to login/register
+
+Proposal UI (from Application)
+   Interface for contributor's proposal for packages
+ 
+Proposal Management (from Business Services)
+   Managing proposal from contributors for either accept or dismiss
+   
+Package Index (from Business Services)
+   Handling package 
+   
+External System Interfaces (from Middleware)
+   Interface for IDFS for downloading files

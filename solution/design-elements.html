@@ -6,7 +6,7 @@
     <meta name="generator" content="sphinx-3.2.1, furo 2020.10.15.beta13"/>
         <title>Design Elements - IPPPI Analysis and Design</title>
       <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css" />
-    <link rel="stylesheet" href="../_static/styles/default.css?b5dfc47a35d60b39a0e9103a">
+    <link rel="stylesheet" href="../_static/styles/default.css?38a7f8cb3c469164dfbf15d4">
     <link rel="stylesheet" href="../_static/pygments.css">
     <link media="(prefers-color-scheme: dark)" rel="stylesheet" href="../_static/pygments_dark.css">
     
@@ -34,7 +34,7 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/language_data.js"></script>
-    <script src="../_static/scripts/main.js?b5dfc47a35d60b39a0e9103a"></script></head>
+    <script src="../_static/scripts/main.js?38a7f8cb3c469164dfbf15d4"></script></head>
   <body dir="">
     
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -309,13 +309,22 @@ ProposeMgm --&gt; PI
 ProposeMgm --&gt; ExtI' src="../_images/plantuml-73f3379a72758c8fceb673b11bafef3602724e7d.svg"/></p>
 <div class="section" id="package-descriptions">
 <h3>Package Descriptions<a class="headerlink" href="#package-descriptions" title="Permalink to this headline">¶</a></h3>
-<p>Authentication UI (from Application)</p>
-<p>Authentication Management (from Application)</p>
-<p>Authentication (from Business Services)</p>
-<p>Proposal UI (from Application)</p>
-<p>Proposal Management (from Business Services)</p>
-<p>Package Index (from Business Services)</p>
-<p>External System Interfaces (from Middleware)</p>
+<dl class="simple">
+<dt>Authentication UI (from Application)</dt><dd><p>Interface for maintainers/contributors to initate login/register</p>
+</dd>
+<dt>Authentication Management (from Application)</dt><dd><p>Allow or disallow login/register request</p>
+</dd>
+<dt>Authentication (from Business Services)</dt><dd><p>Containing account’s information for manintainer/contributors to login/register</p>
+</dd>
+<dt>Proposal UI (from Application)</dt><dd><p>Interface for contributor’s proposal for packages</p>
+</dd>
+<dt>Proposal Management (from Business Services)</dt><dd><p>Managing proposal from contributors for either accept or dismiss</p>
+</dd>
+<dt>Package Index (from Business Services)</dt><dd><p>Handling package</p>
+</dd>
+<dt>External System Interfaces (from Middleware)</dt><dd><p>Interface for IDFS for downloading files</p>
+</dd>
+</dl>
 </div>
 </div>
 </div>
